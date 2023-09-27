@@ -9,23 +9,24 @@ students who find checking for ingredients to be a
 hassle. This is interesting to me as I hate planning
 to cook something only to realize I am missing an
 ingredient. I want to remove this problem from my life.
+The intended functionality of this project is for users
+to be able to select a recipe from a list of recipies they
+like to cook. The program will then check if the user has 
+the necessary ingredients to make the meal, and
+let them know what items they are missing, so that they can
+effectively go shopping.
 
-### Required Data
+## Required Data
 Users will need to enter:
 - The items they initially have in their pantry
 - Any recipes they might want to make.
 
-### Proposed Functionality
-Users will be able to check if they can make a meal say cheese and crackers
-for example. The program will see if they have all the
-required ingredients to make this recipe. The program noticed that the user did 
-not have any cheese and adds it to the shopping list. After the user has 
-shopped for cheese, it will be added to their pantry, and upon selcting 
-make cheese and crackers, the cheese and cracker ingredients
-will be removed from the pantry. The next time the user wants to make this item
-they will be alerted that they are missing both ingredients.
-
 ## User Stories
+- As a user, I want to be able to add new recipes, which consist of a list of ingredients to my cookbook.
+- As a user, I want to be able to add ingredients to my pantry that I was not told to shop for.
+- As a user, I want to be able to view a list of all the ingredient I need to shop for if I want to make a particular recipe.
+- As a user, I want to be able to remove Items from my pantry that I have used.
+- As a user, I want to be able to save recipes and items that I have in my pantry for later use.
 
 
  
