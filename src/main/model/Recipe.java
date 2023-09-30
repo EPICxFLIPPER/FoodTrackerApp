@@ -19,30 +19,38 @@ public class Recipe {
 
     //Modifies: This
     //Effects: adds the ingredient to the list of ingredient
-    public void addIngredient(Ingredient ingredient){
-        //STUB
+    public void addIngredient(Ingredient ingredient) {
+        ingredients.add(ingredient);
     }
 
 
     //Requires: an ingredient with ingredient name is in ingredients
     //Modifies: This
     //Effects: removes the ingredient with the given name from ingredients
-    public void removeIngredient(String ingredientName){
-        //STUB
+    public void removeIngredient(String ingredientName) {
+        Ingredient i = nameToIngredient(ingredientName);
+        ingredients.remove(ingredients.indexOf(i));
     }
 
     //Requires: a ingredient with ingredient name is in ingredients;
     //Modifies: This, ingredient with given name
     //Effects: Changes the quantity of the ingredient in ingredients
-    public void editIngredientQuantity(String ingredientName, int quantity){
-        //STUB
+    public void editIngredientQuantity(String ingredientName, int quantity) {
+        Ingredient i = nameToIngredient(ingredientName);
+        i.setQuantity(quantity);
     }
+
 
     //Requires: The ingredient with ingredientName is in ingredients
     //Effects: returns the ingredient from ingredients with the given name
     private Ingredient nameToIngredient(String ingredientName) {
-        //Stub
-        return null;
+        Ingredient ingredient = null;
+        for (Ingredient i : ingredients) {
+            if (i.getName().equals(ingredientName)) {
+                ingredient = i;
+            }
+        }
+        return ingredient;
     }
 
 
