@@ -6,13 +6,13 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RecipeTest {
-    private Recipe testRecipe;
+    private Pantry testPantry;
     private Ingredient cheese;
     private Ingredient crackers;
 
     @BeforeEach
     void setup() {
-        testRecipe = new Recipe("Cheese+Crackers");
+        testPantry = new Pantry();
         cheese = new Ingredient("Cheese",500,"grams");
         crackers = new Ingredient("Crackers", 10, "crackers");
 
@@ -20,66 +20,65 @@ public class RecipeTest {
 
     @Test
     void testConstructor() {
-        assertEquals("Cheese+Crackers",testRecipe.getName());
-        assertEquals(0,testRecipe.getIngredients().size());
+        assertEquals(0, testPantry.getIngredients().size());
     }
 
     @Test
     void testAddIngredientOnce(){
-        testRecipe.addIngredient(cheese);
-        assertEquals(1,testRecipe.getIngredients().size());
-        assertEquals(cheese,testRecipe.getIngredients().get(0));
+        testPantry.addIngredient(cheese);
+        assertEquals(1, testPantry.getIngredients().size());
+        assertEquals(cheese, testPantry.getIngredients().get(0));
     }
 
     @Test
     void testAddIngredientMultiple(){
-        testRecipe.addIngredient(cheese);
-        testRecipe.addIngredient(crackers);
-        assertEquals(2,testRecipe.getIngredients().size());
-        assertEquals(cheese,testRecipe.getIngredients().get(0));
-        assertEquals(crackers,testRecipe.getIngredients().get(1));
+        testPantry.addIngredient(cheese);
+        testPantry.addIngredient(crackers);
+        assertEquals(2, testPantry.getIngredients().size());
+        assertEquals(cheese, testPantry.getIngredients().get(0));
+        assertEquals(crackers, testPantry.getIngredients().get(1));
     }
 
     @Test
     void testRemoveIngredientOnce(){
-        testRecipe.addIngredient(cheese);
-        testRecipe.addIngredient(crackers);
-        testRecipe.removeIngredient("Cheese");
-        assertEquals(1,testRecipe.getIngredients().size());
-        assertEquals(crackers,testRecipe.getIngredients().get(0));
+        testPantry.addIngredient(cheese);
+        testPantry.addIngredient(crackers);
+        testPantry.removeIngredient("Cheese");
+        assertEquals(1, testPantry.getIngredients().size());
+        assertEquals(crackers, testPantry.getIngredients().get(0));
     }
 
     @Test
     void testRemoveIngredientMultiple(){
-        testRecipe.addIngredient(cheese);
-        testRecipe.addIngredient(crackers);
-        testRecipe.removeIngredient("Cheese");
-        testRecipe.removeIngredient("Crackers");
-        assertEquals(0,testRecipe.getIngredients().size());
+        testPantry.addIngredient(cheese);
+        testPantry.addIngredient(crackers);
+        testPantry.removeIngredient("Cheese");
+        testPantry.removeIngredient("Crackers");
+        assertEquals(0, testPantry.getIngredients().size());
     }
 
     @Test
     void testEditIngredientQuantityOnce(){
-        testRecipe.addIngredient(cheese);
-        testRecipe.editIngredientQuantity("Cheese",100);
-        assertEquals(1,testRecipe.getIngredients().size());
-        assertEquals(cheese,testRecipe.getIngredients().get(0));
-        assertEquals(100,testRecipe.getIngredients().get(0).getQuantity());
+        testPantry.addIngredient(cheese);
+        testPantry.editIngredientQuantity("Cheese",100);
+        assertEquals(1, testPantry.getIngredients().size());
+        assertEquals(cheese, testPantry.getIngredients().get(0));
+        assertEquals(100, testPantry.getIngredients().get(0).getQuantity());
     }
 
     @Test
     void testEditIngredientQuantityMultiple(){
-        testRecipe.addIngredient(cheese);
+        testPantry.addIngredient(cheese);
 
-        testRecipe.editIngredientQuantity("Cheese",100);
-        assertEquals(1,testRecipe.getIngredients().size());
-        assertEquals(cheese,testRecipe.getIngredients().get(0));
-        assertEquals(100,testRecipe.getIngredients().get(0).getQuantity());
+        testPantry.editIngredientQuantity("Cheese",100);
+        assertEquals(1, testPantry.getIngredients().size());
+        assertEquals(cheese, testPantry.getIngredients().get(0));
+        assertEquals(100, testPantry.getIngredients().get(0).getQuantity());
 
-        testRecipe.editIngredientQuantity("Cheese",200);
-        assertEquals(1,testRecipe.getIngredients().size());
-        assertEquals(cheese,testRecipe.getIngredients().get(0));
-        assertEquals(200,testRecipe.getIngredients().get(0).getQuantity());
+        testPantry.editIngredientQuantity("Cheese",200);
+        assertEquals(1, testPantry.getIngredients().size());
+        assertEquals(cheese, testPantry.getIngredients().get(0));
+        assertEquals(200, testPantry.getIngredients().get(0).getQuantity());
     }
 
 
