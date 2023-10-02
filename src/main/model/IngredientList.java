@@ -25,7 +25,7 @@ public abstract class IngredientList {
     //Effects: removes the ingredient with the given name from ingredients
     public void removeIngredient(String ingredientName) {
         Ingredient i = nameToIngredient(ingredientName);
-        ingredients.remove(ingredients.indexOf(i));
+        ingredients.remove(i);
     }
 
     //Requires: a ingredient with ingredient name is in ingredients;
