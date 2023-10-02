@@ -26,6 +26,7 @@ Users will need to enter:
 - As a user, I want to be able to add ingredients to my pantry that I was not told to shop for.
 - As a user, I want to be able to view a list of all the ingredient I need to shop for if I want to make a particular recipe.
 - As a user, I want to be able to remove Items from my pantry that I have used.
+- As a user, I want to be able to see if I can make a particular recipe with the ingreidents in my pantry.
 - As a user, I want to be able to save recipes and items that I have in my pantry for later use.
 
 
