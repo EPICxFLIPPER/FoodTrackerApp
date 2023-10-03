@@ -25,7 +25,10 @@ public abstract class IngredientList {
     //Effects: removes the ingredient with the given name from ingredients
     public void removeIngredient(String ingredientName) {
         Ingredient i = nameToIngredient(ingredientName);
-        ingredients.remove(i);
+        if (!(i == null)) {
+            ingredients.remove(i);
+        }
+
     }
 
     //Requires: a ingredient with ingredient name is in ingredients;
@@ -33,7 +36,9 @@ public abstract class IngredientList {
     //Effects: Changes the quantity of the ingredient in ingredients
     public void editIngredientQuantity(String ingredientName, int quantity) {
         Ingredient i = nameToIngredient(ingredientName);
-        i.setQuantity(quantity);
+        if (!(i == null)) {
+            i.setQuantity(quantity);
+        }
     }
 
 

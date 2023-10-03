@@ -64,6 +64,13 @@ public class CookBook {
         pantry.addIngredient(ingredient);
     }
 
+    //REQUIRES: an ingrident with the given name is in the pantry
+    //Modifies: Pantry
+    //EFFECTS: removes ingredient with the same name from pantry
+    public void removeFromPantry(String ingredientName) {
+        pantry.removeIngredient(ingredientName);
+    }
+
 
     //Requires: The ingredient with ingredientName is in ingredients
     //Effects: returns the ingredient from ingredients with the given name
