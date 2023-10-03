@@ -10,6 +10,8 @@ public class FoodTrackerApp {
 
     private CookBook cookBook;
     private Scanner input;
+    private Menu mainMenu;
+    private Menu pantryMenu;
 
     private int displayMode; //an integer representing which menu to show
     private static final int MAIN_MENU = 0;
@@ -46,18 +48,21 @@ public class FoodTrackerApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: initializes cookBook
+    // EFFECTS: initializes cookBook and menu classes
     private void init() {
         cookBook = new CookBook();
         input = new Scanner(System.in);
         input.useDelimiter("\n");
+
+        mainMenu = new MainMenu(input,cookBook);
+        pantryMenu = new PantryMenu(input,cookBook);
     }
 
     private void selectDisplayMenu(int displayMode) {
         if (displayMode == MAIN_MENU) {
-            displayMainMenu();
+            mainMenu.displayMenu();
         } else if (displayMode == PANTRY_MENU) {
-            displayPantryMenu();
+            pantryMenu.displayMenu();
         }
     }
 
@@ -69,23 +74,6 @@ public class FoodTrackerApp {
         }
     }
 
-    private void displayMainMenu() {
-        System.out.println("\nSelect from:");
-        System.out.println("\tp ->  Pantry");
-        System.out.println("\tap -> Add to Pantry");
-        System.out.println("\tr -> View Recipes");
-        System.out.println("\tc -> Can Cook?");
-        System.out.println("\tn -> Needed to Cook");
-        System.out.println("\tq -> quit");
-    }
-
-    private void displayPantryMenu() {
-        System.out.println("\nSelect from:");
-        System.out.println("\tv ->  View Pantry");
-        System.out.println("\tap -> Add to Pantry");
-        System.out.println("\tr -> Remove from Pantry");
-        System.out.println("\tm -> To Main Menu");
-    }
 
     // MODIFIES: this
     // EFFECTS: processes user command
