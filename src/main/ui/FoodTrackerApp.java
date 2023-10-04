@@ -63,6 +63,8 @@ public class FoodTrackerApp {
             mainMenu.displayMenu();
         } else if (displayMode == PANTRY_MENU) {
             pantryMenu.displayMenu();
+        } else if (displayMode == RECIPE_MENU) {
+            recipeMenu.displayMenu();
         }
     }
 
@@ -71,6 +73,8 @@ public class FoodTrackerApp {
             mainMenu.processCommand(command);
         } else if (displayMode == PANTRY_MENU) {
             pantryMenu.processCommand(command);
+        } else if (displayMode == RECIPE_MENU) {
+            recipeMenu.processCommand(command);
         }
     }
 

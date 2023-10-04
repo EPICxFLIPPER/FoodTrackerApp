@@ -1,7 +1,10 @@
 package ui;
 
 import model.CookBook;
+import model.Ingredient;
+import model.Recipe;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RecipeMenu implements Menu {
@@ -42,6 +45,63 @@ public class RecipeMenu implements Menu {
     }
 
     private void addRecipe() {
+
+        String command;
+        String name;
+        Boolean keepGoing = true;
+
+        System.out.println("What is the name of the Recipe?");
+        name = input.next();
+        Recipe recipe = new Recipe(name);
+
+        while (keepGoing) {
+            System.out.println("Would You like to add an ingredient to the recipe? (y)es , (n)o");
+            command = input.next();
+            if (command.equals("y")) {
+                Ingredient ingredient = createIngredient();
+                recipe.addIngredient(ingredient);
+            } else if (command.equals("n")) {
+                keepGoing = false;
+            } else {
+                System.out.println("Not a vaild entry");
+            }
+        }
+        cookBook.addRecipe(recipe);
+
+    }
+
+    private Ingredient createIngredient() {
+        String name;
+        int quantity;
+        String units;
+
+
+        System.out.println("What is the name of the ingredient");
+        name = input.next();
+        System.out.println("What is the quantity of the ingredient");
+        quantity = Integer.parseInt(input.next());
+        System.out.println("What are the measurement units of the ingredient?");
+        units = input.next();
+
+        Ingredient ingredient = new Ingredient(name,quantity,units);
+        return ingredient;
+    }
+
+
+    private void addIngredient() {
+        String name;
+        int quantity;
+        String units;
+
+        System.out.println("What is the name of the ingredient?");
+        name = input.next();
+        System.out.println("What is the quantity of the ingredient");
+        quantity = Integer.parseInt(input.next());
+        System.out.println("What are the measurement units of the ingredient?");
+        units = input.next();
+
+        Ingredient ingredient = new Ingredient(name,quantity,units);
+
     }
 
     private void viewRecipes() {
