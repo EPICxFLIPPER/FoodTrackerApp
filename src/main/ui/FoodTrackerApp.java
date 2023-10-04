@@ -1,9 +1,6 @@
 package ui;
 
 import model.CookBook;
-import model.Ingredient;
-
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FoodTrackerApp {
@@ -12,6 +9,7 @@ public class FoodTrackerApp {
     private Scanner input;
     private Menu mainMenu;
     private Menu pantryMenu;
+    private Menu recipeMenu;
 
     protected int displayMode; //an integer representing which menu to show
     protected static final int MAIN_MENU = 0;
@@ -27,7 +25,7 @@ public class FoodTrackerApp {
     // EFFECTS: processes user input
     private void runFoodTracker() {
         boolean keepGoing = true;
-        String command = null;
+        String command;
 
         init();
 
@@ -57,6 +55,7 @@ public class FoodTrackerApp {
 
         mainMenu = new MainMenu(input,cookBook,this);
         pantryMenu = new PantryMenu(input,cookBook,this);
+        recipeMenu = new RecipeMenu(input,cookBook,this);
     }
 
     private void selectDisplayMenu(int displayMode) {
