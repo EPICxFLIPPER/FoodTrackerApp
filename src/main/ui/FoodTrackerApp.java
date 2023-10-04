@@ -13,9 +13,10 @@ public class FoodTrackerApp {
     private Menu mainMenu;
     private Menu pantryMenu;
 
-    private int displayMode; //an integer representing which menu to show
-    private static final int MAIN_MENU = 0;
-    private static final int PANTRY_MENU = 1;
+    protected int displayMode; //an integer representing which menu to show
+    protected static final int MAIN_MENU = 0;
+    protected static final int PANTRY_MENU = 1;
+    protected static final int RECIPE_MENU = 2;
 
     // EFFECTS: runs the teller application
     public FoodTrackerApp() {
@@ -54,8 +55,8 @@ public class FoodTrackerApp {
         input = new Scanner(System.in);
         input.useDelimiter("\n");
 
-        mainMenu = new MainMenu(input,cookBook);
-        pantryMenu = new PantryMenu(input,cookBook);
+        mainMenu = new MainMenu(input,cookBook,this);
+        pantryMenu = new PantryMenu(input,cookBook,this);
     }
 
     private void selectDisplayMenu(int displayMode) {
@@ -68,76 +69,11 @@ public class FoodTrackerApp {
 
     private void selectProcessCommand(int displayMode,String command) {
         if (displayMode == MAIN_MENU) {
-            processCommandMain(command);
+            mainMenu.processCommand(command);
         } else if (displayMode == PANTRY_MENU) {
-            processCommandPantry(command);
+            pantryMenu.processCommand(command);
         }
     }
-
-
-    // MODIFIES: this
-    // EFFECTS: processes user command
-    private void processCommandMain(String command) {
-        if (command.equals("p")) {
-            displayMode = PANTRY_MENU;
-        } else if (command.equals("r")) {
-            System.out.println("Works");
-        } else if (command.equals("ap")) {
-            addToPantry();
-        } else if (command.equals("c")) {
-            System.out.println("Works");
-        } else if (command.equals("n")) {
-            System.out.println("Works");
-        } else {
-            System.out.println("Selection not valid...");
-        }
-    }
-
-    private void processCommandPantry(String command) {
-        if (command.equals("v")) {
-            viewPantry();
-        } else if (command.equals("ap")) {
-            addToPantry();
-        } else if (command.equals("r")) {
-            removeFromPantry();
-        } else if (command.equals("m")) {
-            displayMode = MAIN_MENU;
-        } else {
-            System.out.println("Not a valid Command!");
-        }
-    }
-
-
-    private void viewPantry() {
-        ArrayList<Ingredient> itemsInPantry = cookBook.getPantry().getIngredients();
-        for (Ingredient i : itemsInPantry) {
-            System.out.println("\n" + i.getName());
-        }
-    }
-
-    private void addToPantry() {
-        String name;
-        int quantity;
-        String units;
-
-        System.out.println("What is the name of the ingredient?");
-        name = input.next();
-        System.out.println("What is the quantity of the ingredient");
-        quantity = Integer.parseInt(input.next());
-        System.out.println("What are the measurement units of the ingredient?");
-        units = input.next();
-
-        Ingredient ingredient = new Ingredient(name,quantity,units);
-        cookBook.addToPantry(ingredient);
-
-    }
-
-    private void removeFromPantry() {
-        System.out.println("What is the name of the ingredient you would like to remove");
-        String name = input.next();
-        cookBook.removeFromPantry(name);
-    }
-
 
 
 

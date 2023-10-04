@@ -4,6 +4,6 @@ public interface Menu {
 
     public void displayMenu();
 
-    public void processCommand();
+    public void processCommand(String command);
 
 }
