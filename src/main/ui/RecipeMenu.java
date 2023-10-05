@@ -26,6 +26,7 @@ public class RecipeMenu implements Menu {
         System.out.println("\tvr -> View Recipes");
         System.out.println("\tar -> Add Recipe");
         System.out.println("\trr -> Remove Recipe");
+        System.out.println("\tcc -> Find out if you can cook a recipe!");
         System.out.println("\tm -> To main");
     }
 
@@ -37,6 +38,10 @@ public class RecipeMenu implements Menu {
             addRecipe();
         } else if (command.equals("rr")) {
             removeRecipe();
+        }  else if (command.equals("cc")) {
+            canCook();
+        } else if (command.equals("nc")) {
+            jesseWeNeedToCook();
         } else if (command.equals("m")) {
             foodTrackerApp.displayMode = foodTrackerApp.MAIN_MENU;
         } else {
@@ -87,27 +92,44 @@ public class RecipeMenu implements Menu {
         return ingredient;
     }
 
-
-    private void addIngredient() {
-        String name;
-        int quantity;
-        String units;
-
-        System.out.println("What is the name of the ingredient?");
-        name = input.next();
-        System.out.println("What is the quantity of the ingredient");
-        quantity = Integer.parseInt(input.next());
-        System.out.println("What are the measurement units of the ingredient?");
-        units = input.next();
-
-        Ingredient ingredient = new Ingredient(name,quantity,units);
-
-    }
-
     private void viewRecipes() {
+        ArrayList<Recipe> recipesInCookBook = cookBook.getRecipes();
+        for (Recipe r : recipesInCookBook) {
+            System.out.println("\n" + r.getName());
+        }
+
     }
+
 
     private void removeRecipe() {
-
+        System.out.println("What is the name of the Recipe you would like to remove");
+        String name = input.next();
+        cookBook.removeRecipe(name);
     }
+
+    private void canCook() {
+        System.out.println("What recipe would you like to cook?");
+        String recipeName = input.next();
+        if (cookBook.canCookRecipe(recipeName)) {
+            System.out.println("You can cook this recipe!");
+        } else {
+            System.out.println("You are missing some ingredients to cook this!");
+        }
+    }
+
+    private void jesseWeNeedToCook() {
+        System.out.println("What recipe would ou like to cook?");
+        String recipeName = input.next();
+        ArrayList<String> items = cookBook.itemsToCook(recipeName);
+
+        if (items.size() == 0) {
+            System.out.println("You can cook this recipe!");
+        } else {
+            System.out.println("You still need to shop for these:");
+            for (String s : items) {
+                System.out.println(s);
+            }
+        }
+    }
+
 }

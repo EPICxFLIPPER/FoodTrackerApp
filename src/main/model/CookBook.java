@@ -26,7 +26,9 @@ public class CookBook {
     //Effects: Removes a recipe from the list of recipes
     public void removeRecipe(String recipeName) {
         Recipe recipe = nameToRecipe(recipeName);
-        recipes.remove(recipe);
+        if (!(recipe == null)) {
+            recipes.remove(recipe);
+        }
     }
 
     //Requires: recipe with given name is in recipes
@@ -35,9 +37,11 @@ public class CookBook {
     public boolean canCookRecipe(String recipeName) {
         Recipe recipe = nameToRecipe(recipeName);
         Boolean rsf = true;
-        for (Ingredient i : recipe.getIngredients()) {
-            if (!pantryHasIngredientInQuantity(i)) {
-                rsf = false;
+        if (!(recipe == null)) {
+            for (Ingredient i : recipe.getIngredients()) {
+                if (!pantryHasIngredientInQuantity(i)) {
+                    rsf = false;
+                }
             }
         }
         return rsf;
@@ -50,11 +54,14 @@ public class CookBook {
     public ArrayList<String> itemsToCook(String recipeName) {
         Recipe recipe = nameToRecipe(recipeName);
         ArrayList<String> rsf = new ArrayList<>();
-        for (Ingredient i : recipe.getIngredients()) {
-            if (!pantryHasIngredientInQuantity(i)) {
-                rsf.add(i.getName());
+        if (!(recipe == null)) {
+            for (Ingredient i : recipe.getIngredients()) {
+                if (!pantryHasIngredientInQuantity(i)) {
+                    rsf.add(i.getName());
+                }
             }
         }
+
         return rsf;
     }
 
