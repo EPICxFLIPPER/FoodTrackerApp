@@ -7,7 +7,7 @@ public class CookBook {
     private ArrayList<Recipe> recipes;
     private Pantry pantry;
 
-    //Effects: Constructs a cookbook with a empty list of recipies,
+    //Effects: Constructs a cookbook with an empty list of recipes,
     // and a pantry
     public CookBook() {
         this.recipes = new ArrayList<>();
@@ -21,9 +21,9 @@ public class CookBook {
     }
 
 
-    //Requires: A recipe with the given name is in recipes
+
     //Modifies: This
-    //Effects: Removes a recipe from the list of recipes
+    //Effects: Removes recipe with given name from the list of recipes
     public void removeRecipe(String recipeName) {
         Recipe recipe = nameToRecipe(recipeName);
         if (!(recipe == null)) {
@@ -31,7 +31,7 @@ public class CookBook {
         }
     }
 
-    //Requires: recipe with given name is in recipes
+
     //Effects: Returns true if all the ingredients in the recipe with the given name
     //are present in the pantry and have quantities >= specified quantity
     public boolean canCookRecipe(String recipeName) {
@@ -47,7 +47,7 @@ public class CookBook {
         return rsf;
     }
 
-    //Requires: recipe with given name is in recipes
+
     //Effects: returns a list of all the names of ingredients that are not in
     //or are of too little quantity in the pantry based off of the recipes
     //own ingredient list
@@ -65,22 +65,23 @@ public class CookBook {
         return rsf;
     }
 
-    //Modifies: pantry
-    //Effects: Adds the ingredient to the pantry
+    //Modifies: this.pantry
+    //Effects: Adds the ingredient to the pantry's list of ingredients.
     public void addToPantry(Ingredient ingredient) {
         pantry.addIngredient(ingredient);
     }
 
-    //REQUIRES: an ingrident with the given name is in the pantry
-    //Modifies: Pantry
+
+    //Modifies: this.pantry
     //EFFECTS: removes ingredient with the same name from pantry
     public void removeFromPantry(String ingredientName) {
         pantry.removeIngredient(ingredientName);
     }
 
 
-    //Requires: The ingredient with ingredientName is in ingredients
-    //Effects: returns the ingredient from ingredients with the given name
+
+    //Effects: returns the recipe from recipes with the given name,
+    //         Null if a recipe with that name is not in recipes.
     private Recipe nameToRecipe(String recipeName) {
         Recipe recipe = null;
         for (Recipe r : recipes) {
@@ -94,10 +95,10 @@ public class CookBook {
     //EFFECTS: returns true if the pantry contains an ingredient with the same name
     // and the ingredient in the pantry has quantity >= given ingredient
     private boolean pantryHasIngredientInQuantity(Ingredient ingredient) {
-        String iname = ingredient.getName();
+        String name = ingredient.getName();
         Boolean rsf = false;
         for (Ingredient j : pantry.getIngredients()) {
-            if (j.getName().equals(iname)
+            if (j.getName().equals(name)
                     && j.getQuantity() >= ingredient.getQuantity()) {
                 rsf = true;
             }

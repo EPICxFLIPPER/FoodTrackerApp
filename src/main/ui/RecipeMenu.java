@@ -13,6 +13,7 @@ public class RecipeMenu implements Menu {
     private CookBook cookBook;
     private FoodTrackerApp foodTrackerApp;
 
+    //EFFECTS: Creates a MainMenu with Scanner, cookbook and a foodTracker app.
     public RecipeMenu(Scanner input, CookBook cookbook, FoodTrackerApp foodTrackerApp) {
         this.input = input;
         this.cookBook = cookbook;
@@ -27,6 +28,7 @@ public class RecipeMenu implements Menu {
         System.out.println("\tar -> Add Recipe");
         System.out.println("\trr -> Remove Recipe");
         System.out.println("\tcc -> Find out if you can cook a recipe!");
+        System.out.println("\tnc -> Find out what you need to cook a recipe!");
         System.out.println("\tm -> To main");
     }
 
@@ -49,6 +51,9 @@ public class RecipeMenu implements Menu {
         }
     }
 
+    //MODIFIES: cookbook
+    //EFFECTS: allows the user to create a new recipe with arbitrary amount of ingredients
+    //         then adds that recipe to the cookbooks list of recipes
     private void addRecipe() {
 
         String command;
@@ -75,6 +80,7 @@ public class RecipeMenu implements Menu {
 
     }
 
+    //EFFECTS: Creates a new ingredient based off of the user input.
     private Ingredient createIngredient() {
         String name;
         int quantity;
@@ -92,6 +98,7 @@ public class RecipeMenu implements Menu {
         return ingredient;
     }
 
+    //EFFECTS: Prints a list of all recipe names in cookbook.recipes to console
     private void viewRecipes() {
         ArrayList<Recipe> recipesInCookBook = cookBook.getRecipes();
         for (Recipe r : recipesInCookBook) {
@@ -100,13 +107,16 @@ public class RecipeMenu implements Menu {
 
     }
 
-
+    //MODIFIES: cookbook
+    //EFFECTS: removes the recipe with name from the cookbook based on user input.
     private void removeRecipe() {
         System.out.println("What is the name of the Recipe you would like to remove");
         String name = input.next();
         cookBook.removeRecipe(name);
     }
 
+    //EFFECTS: Tells the user if they can cook the provided recipe with the ingredients
+               //they have in cookbook.pantry
     private void canCook() {
         System.out.println("What recipe would you like to cook?");
         String recipeName = input.next();
@@ -117,6 +127,7 @@ public class RecipeMenu implements Menu {
         }
     }
 
+    //EFFECTS: prints a list of ingredients that the recipe calls for that are not in the pantry
     private void jesseWeNeedToCook() {
         System.out.println("What recipe would ou like to cook?");
         String recipeName = input.next();

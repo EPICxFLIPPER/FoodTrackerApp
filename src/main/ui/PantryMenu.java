@@ -12,6 +12,7 @@ public class PantryMenu implements Menu {
     private CookBook cookBook;
     private FoodTrackerApp foodTrackerApp;
 
+    //EFFECTS: Creates a MainMenu with Scanner, cookbook and a foodTracker app.
     public PantryMenu(Scanner input, CookBook cookBook, FoodTrackerApp foodTrackerApp) {
         this.input = input;
         this.cookBook = cookBook;
@@ -43,6 +44,7 @@ public class PantryMenu implements Menu {
         }
     }
 
+    //EFFECTS: prints a list of ingredient names that are in the pantry.
     private void viewPantry() {
         ArrayList<Ingredient> itemsInPantry = cookBook.getPantry().getIngredients();
         for (Ingredient i : itemsInPantry) {
@@ -50,6 +52,8 @@ public class PantryMenu implements Menu {
         }
     }
 
+    //MODIFIES: cookbook.pantry
+    //EFFECTS: Adds the ingridient to the pantry based on user input.
     private void addToPantry() {
         String name;
         int quantity;
@@ -67,6 +71,8 @@ public class PantryMenu implements Menu {
 
     }
 
+    //MODIFIES: Cookbook.pantry
+    //EFFECTS: Removes the specified ingredient from the pantry
     private void removeFromPantry() {
         System.out.println("What is the name of the ingredient you would like to remove");
         String name = input.next();

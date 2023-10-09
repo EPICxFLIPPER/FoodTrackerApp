@@ -11,15 +11,17 @@ public class FoodTrackerApp {
     private Menu pantryMenu;
     private Menu recipeMenu;
 
+
     protected int displayMode; //an integer representing which menu to show
     protected static final int MAIN_MENU = 0;
     protected static final int PANTRY_MENU = 1;
     protected static final int RECIPE_MENU = 2;
 
-    // EFFECTS: runs the teller application
+    // EFFECTS: runs the FoodTracker application
     public FoodTrackerApp() {
         runFoodTracker();
     }
+
 
     // MODIFIES: this
     // EFFECTS: processes user input
@@ -58,6 +60,7 @@ public class FoodTrackerApp {
         recipeMenu = new RecipeMenu(input,cookBook,this);
     }
 
+    //EFFECTS: Sets the correct display menu based on displayMode;
     private void selectDisplayMenu(int displayMode) {
         if (displayMode == MAIN_MENU) {
             mainMenu.displayMenu();
@@ -68,6 +71,7 @@ public class FoodTrackerApp {
         }
     }
 
+    //EFFECTS: Sets the correct command processor based on display mode.
     private void selectProcessCommand(int displayMode,String command) {
         if (displayMode == MAIN_MENU) {
             mainMenu.processCommand(command);

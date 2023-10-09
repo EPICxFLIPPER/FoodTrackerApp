@@ -10,6 +10,7 @@ public class MainMenu implements Menu {
     private CookBook cookBook;
     private FoodTrackerApp foodTrackerApp;
 
+    //EFFECTS: Creates a MainMenu with Scanner, cookbook and a foodTracker app.
     public MainMenu(Scanner input, CookBook cookbook, FoodTrackerApp foodTrackerApp) {
         this.input = input;
         this.cookBook = cookbook;

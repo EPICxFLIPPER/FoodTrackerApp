@@ -6,6 +6,7 @@ package model;
 import java.util.ArrayList;
 
 public abstract class IngredientList {
+
     protected ArrayList<Ingredient> ingredients;
 
     //Effects: Constructs an empty ingredient list
@@ -14,15 +15,13 @@ public abstract class IngredientList {
     }
 
     //Modifies: This
-    //Effects: adds the ingredient to the list of ingredient
+    //Effects: Adds the ingredient to ingredients
     public void addIngredient(Ingredient ingredient) {
         ingredients.add(ingredient);
     }
 
-
-    //Requires: an ingredient with ingredient name is in ingredients
     //Modifies: This
-    //Effects: removes the ingredient with the given name from ingredients
+    //Effects: removes nameToIngredient(ingredientName) from ingredients
     public void removeIngredient(String ingredientName) {
         Ingredient i = nameToIngredient(ingredientName);
         if (!(i == null)) {
@@ -31,8 +30,7 @@ public abstract class IngredientList {
 
     }
 
-    //Requires: a ingredient with ingredient name is in ingredients;
-    //Modifies: This, ingredient with given name
+    //Modifies: This, nameToIngredient(ingredientName)
     //Effects: Changes the quantity of the ingredient in ingredients
     public void editIngredientQuantity(String ingredientName, int quantity) {
         Ingredient i = nameToIngredient(ingredientName);
@@ -41,9 +39,7 @@ public abstract class IngredientList {
         }
     }
 
-
-    //Requires: The ingredient with ingredientName is in ingredients
-    //Effects: returns the ingredient from ingredients with the given name
+    //Effects: returns the ingredient from ingredients with name = ingredientName.
     private Ingredient nameToIngredient(String ingredientName) {
         Ingredient ingredient = null;
         for (Ingredient i : ingredients) {
