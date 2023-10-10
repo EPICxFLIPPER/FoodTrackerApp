@@ -3,6 +3,8 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CookBookTest {
@@ -207,6 +209,18 @@ public class CookBookTest {
     void testRemoveFromPantryNoItemsInPantry() {
         testCookBook.removeFromPantry("blech");
         assertEquals(0,testCookBook.getPantry().getIngredients().size());
+    }
+
+    @Test
+    void testCanCookRecipeRecipeNotThere() {
+        boolean rsf = testCookBook.canCookRecipe("blech");
+        assertTrue(rsf);
+    }
+
+    @Test
+    void testItemsToCookRecipeNotThere() {
+        ArrayList<String> rsf = testCookBook.itemsToCook("clagkjs");
+        assertEquals(0,rsf.size());
     }
 
 

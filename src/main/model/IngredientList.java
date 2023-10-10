@@ -30,14 +30,6 @@ public abstract class IngredientList {
 
     }
 
-    //Modifies: This, nameToIngredient(ingredientName)
-    //Effects: Changes the quantity of the ingredient in ingredients
-    public void editIngredientQuantity(String ingredientName, int quantity) {
-        Ingredient i = nameToIngredient(ingredientName);
-        if (!(i == null)) {
-            i.setQuantity(quantity);
-        }
-    }
 
     //Effects: returns the ingredient from ingredients with name = ingredientName.
     private Ingredient nameToIngredient(String ingredientName) {

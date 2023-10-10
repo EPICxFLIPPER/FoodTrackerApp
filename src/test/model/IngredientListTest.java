@@ -61,27 +61,5 @@ public abstract class IngredientListTest {
         assertEquals(crackers, testList.getIngredients().get(1));
     }
 
-    @Test
-    void testEditIngredientQuantityOnce() {
-        testList.addIngredient(cheese);
-        testList.editIngredientQuantity("Cheese", 100);
-        assertEquals(1, testList.getIngredients().size());
-        assertEquals(cheese, testList.getIngredients().get(0));
-        assertEquals(100, testList.getIngredients().get(0).getQuantity());
-    }
 
-    @Test
-    void testEditIngredientQuantityMultiple() {
-        testList.addIngredient(cheese);
-
-        testList.editIngredientQuantity("Cheese", 100);
-        assertEquals(1, testList.getIngredients().size());
-        assertEquals(cheese, testList.getIngredients().get(0));
-        assertEquals(100, testList.getIngredients().get(0).getQuantity());
-
-        testList.editIngredientQuantity("Cheese", 200);
-        assertEquals(1, testList.getIngredients().size());
-        assertEquals(cheese, testList.getIngredients().get(0));
-        assertEquals(200, testList.getIngredients().get(0).getQuantity());
-    }
 }
