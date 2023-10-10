@@ -52,6 +52,16 @@ public abstract class IngredientListTest {
     }
 
     @Test
+    void testRemoveIngredientNotThere() {
+        testList.addIngredient(cheese);
+        testList.addIngredient(crackers);
+        testList.removeIngredient("Blecke");
+        assertEquals(2, testList.getIngredients().size());
+        assertEquals(cheese, testList.getIngredients().get(0));
+        assertEquals(crackers, testList.getIngredients().get(1));
+    }
+
+    @Test
     void testEditIngredientQuantityOnce() {
         testList.addIngredient(cheese);
         testList.editIngredientQuantity("Cheese", 100);

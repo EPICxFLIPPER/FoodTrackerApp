@@ -26,20 +26,20 @@ public class CookBookTest {
     }
 
     @Test
-    void constructorTest() {
+    void testConstructor() {
         assertEquals(0, testCookBook.getPantry().getIngredients().size());
         assertEquals(0, testCookBook.getRecipes().size());
     }
 
     @Test
-    void addRecipeOnceTest() {
+    void testAddRecipeOnce() {
         testCookBook.addRecipe(testRecipe1);
         assertEquals(1, testCookBook.getRecipes().size());
         assertEquals(testRecipe1, testCookBook.getRecipes().get(0));
     }
 
     @Test
-    void addRecipeMultipleTest() {
+    void testAddRecipeMultiple() {
         testCookBook.addRecipe(testRecipe1);
         testCookBook.addRecipe(testRecipe2);
         assertEquals(2, testCookBook.getRecipes().size());
@@ -48,14 +48,14 @@ public class CookBookTest {
     }
 
     @Test
-    void removeRecipeOnceTest() {
+    void testRemoveRecipeOnce() {
         testCookBook.addRecipe(testRecipe1);
         testCookBook.removeRecipe("Cheese+Crackers");
         assertEquals(0, testCookBook.getRecipes().size());
     }
 
     @Test
-    void removeRecipeMultipleTest() {
+    void testRemoveRecipeMultiple() {
         testCookBook.addRecipe(testRecipe1);
         testCookBook.addRecipe(testRecipe2);
         testCookBook.removeRecipe("Cheese+Crackers");
@@ -64,7 +64,18 @@ public class CookBookTest {
     }
 
     @Test
-    void removeRecipeAddTwoSubOneTest() {
+    void testRemoveRecipeMultipleRecipeNotThere() {
+        testCookBook.addRecipe(testRecipe1);
+        testCookBook.addRecipe(testRecipe2);
+        testCookBook.removeRecipe("Blech");
+        assertEquals(2, testCookBook.getRecipes().size());
+        assertEquals(testRecipe1, testCookBook.getRecipes().get(0));
+        assertEquals(testRecipe2, testCookBook.getRecipes().get(1));
+    }
+
+
+    @Test
+    void testRemoveRecipeAddTwoSubOne() {
         testCookBook.addRecipe(testRecipe1);
         testCookBook.addRecipe(testRecipe2);
         testCookBook.removeRecipe("Cheese+Crackers");
@@ -73,13 +84,13 @@ public class CookBookTest {
     }
 
     @Test
-    void canCookRecipeNoIngredientsTest() {
+    void testCanCookRecipeNoIngredients() {
         testCookBook.addRecipe(testRecipe1);
         assertTrue(testCookBook.canCookRecipe("Cheese+Crackers"));
     }
 
     @Test
-    void canCookRecipeTooFewIngredientsTest() {
+    void testCanCookRecipeTooFewIngredients() {
         Ingredient cheese100 = new Ingredient("Cheese",100,"grams");
         testRecipe1.addIngredient(cheese500);
         testCookBook.addRecipe(testRecipe1);
@@ -89,7 +100,7 @@ public class CookBookTest {
     }
 
     @Test
-    void canCookRecipeMissingIngredientTest() {
+    void testCanCookRecipeMissingIngredient() {
         Ingredient cheese100 = new Ingredient("Cheese",100,"grams");
         testRecipe1.addIngredient(cheese500);
         testRecipe1.addIngredient(crackers10);
@@ -100,7 +111,7 @@ public class CookBookTest {
     }
 
     @Test
-    void canCookRecipePerfectIngredientsTest() {
+    void testCanCookRecipePerfectIngredients() {
         Ingredient cheese100 = new Ingredient("Cheese",100,"grams");
         testRecipe1.addIngredient(cheese500);
         testRecipe1.addIngredient(crackers10);
@@ -112,7 +123,7 @@ public class CookBookTest {
     }
 
     @Test
-    void canCookRecipeExcessIngredientsTest() {
+    void testCanCookRecipeExcessIngredients() {
         Ingredient cheese100 = new Ingredient("Cheese",100,"grams");
         testRecipe1.addIngredient(cheese100);
         testRecipe1.addIngredient(crackers10);
@@ -124,7 +135,7 @@ public class CookBookTest {
     }
 
     @Test
-    void itemsToCookNoItemsTest(){
+    void testItemsToCookNoItems(){
         testRecipe1.addIngredient(cheese500);
         testRecipe1.addIngredient(crackers10);
         testCookBook.addRecipe(testRecipe1);
@@ -134,7 +145,7 @@ public class CookBookTest {
     }
 
     @Test
-    void itemsToCookOneItemTest(){
+    void testItemsToCookOneItem(){
         testRecipe1.addIngredient(cheese500);
         testRecipe1.addIngredient(crackers10);
         testCookBook.addToPantry(cheese500);
@@ -144,7 +155,7 @@ public class CookBookTest {
     }
 
     @Test
-    void itemsToCookAllItemTest(){
+    void testItemsToCookAllItem(){
         testRecipe1.addIngredient(cheese500);
         testRecipe1.addIngredient(crackers10);
         testCookBook.addToPantry(cheese500);
@@ -154,7 +165,7 @@ public class CookBookTest {
     }
 
     @Test
-    void itemsToCookTooLittleQuantity(){
+    void testItemsToCookTooLittleQuantity(){
         testRecipe1.addIngredient(cheese500);
         testRecipe1.addIngredient(crackers10);
         Ingredient cheese100 = new Ingredient("Cheese",100,"grams");
@@ -167,14 +178,14 @@ public class CookBookTest {
     }
 
     @Test
-    void removeFromPantryTestOnce() {
+    void testRemoveFromPantryOnce() {
         testCookBook.addToPantry(cheese500);
         testCookBook.removeFromPantry("Cheese");
         assertEquals(0,testCookBook.getPantry().getIngredients().size());
     }
 
     @Test
-    void removeFromPantryTestMultiple() {
+    void testRemoveFromPantryMultiple() {
         testCookBook.addToPantry(cheese500);
         testCookBook.addToPantry(crackers10);
         testCookBook.removeFromPantry("Cheese");
@@ -183,7 +194,7 @@ public class CookBookTest {
     }
 
     @Test
-    void removeFromPantryTestItemNotInPantry() {
+    void testRemoveFromPantryItemNotInPantry() {
         testCookBook.addToPantry(cheese500);
         testCookBook.addToPantry(crackers10);
         testCookBook.removeFromPantry("blech");
@@ -193,7 +204,7 @@ public class CookBookTest {
     }
 
     @Test
-    void removeFromPantryTestNoItemsInPantry() {
+    void testRemoveFromPantryNoItemsInPantry() {
         testCookBook.removeFromPantry("blech");
         assertEquals(0,testCookBook.getPantry().getIngredients().size());
     }
