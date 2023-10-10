@@ -166,4 +166,37 @@ public class CookBookTest {
 
     }
 
+    @Test
+    void removeFromPantryTestOnce() {
+        testCookBook.addToPantry(cheese500);
+        testCookBook.removeFromPantry("Cheese");
+        assertEquals(0,testCookBook.getPantry().getIngredients().size());
+    }
+
+    @Test
+    void removeFromPantryTestMultiple() {
+        testCookBook.addToPantry(cheese500);
+        testCookBook.addToPantry(crackers10);
+        testCookBook.removeFromPantry("Cheese");
+        testCookBook.removeFromPantry("Crackers");
+        assertEquals(0,testCookBook.getPantry().getIngredients().size());
+    }
+
+    @Test
+    void removeFromPantryTestItemNotInPantry() {
+        testCookBook.addToPantry(cheese500);
+        testCookBook.addToPantry(crackers10);
+        testCookBook.removeFromPantry("blech");
+        assertEquals(2,testCookBook.getPantry().getIngredients().size());
+        assertEquals(cheese500,testCookBook.getPantry().getIngredients().get(0));
+        assertEquals(crackers10,testCookBook.getPantry().getIngredients().get(1));
+    }
+
+    @Test
+    void removeFromPantryTestNoItemsInPantry() {
+        testCookBook.removeFromPantry("blech");
+        assertEquals(0,testCookBook.getPantry().getIngredients().size());
+    }
+
+
 }
