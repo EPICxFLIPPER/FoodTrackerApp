@@ -53,17 +53,17 @@ public class PantryMenu implements Menu {
     }
 
     //MODIFIES: cookbook.pantry
-    //EFFECTS: Adds the ingridient to the pantry based on user input.
+    //EFFECTS: Adds the ingredient to the pantry based on user input.
     private void addToPantry() {
         String name;
         int quantity;
         String units;
 
-        System.out.println("What is the name of the ingredient?");
+        System.out.println("What is the name of the ingredient? (string)");
         name = input.next();
-        System.out.println("What is the quantity of the ingredient");
+        System.out.println("What is the quantity of the ingredient (int)");
         quantity = Integer.parseInt(input.next());
-        System.out.println("What are the measurement units of the ingredient?");
+        System.out.println("What are the measurement units of the ingredient? (lowerCase String)");
         units = input.next();
 
         Ingredient ingredient = new Ingredient(name,quantity,units);

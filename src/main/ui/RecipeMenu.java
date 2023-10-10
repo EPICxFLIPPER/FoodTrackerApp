@@ -87,11 +87,11 @@ public class RecipeMenu implements Menu {
         String units;
 
 
-        System.out.println("What is the name of the ingredient");
+        System.out.println("What is the name of the ingredient (String)");
         name = input.next();
-        System.out.println("What is the quantity of the ingredient");
+        System.out.println("What is the quantity of the ingredient? (int)");
         quantity = Integer.parseInt(input.next());
-        System.out.println("What are the measurement units of the ingredient?");
+        System.out.println("What are the measurement units of the ingredient? (lowercase String)");
         units = input.next();
 
         Ingredient ingredient = new Ingredient(name,quantity,units);
