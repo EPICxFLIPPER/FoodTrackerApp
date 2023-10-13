@@ -3,6 +3,7 @@ package ui;
 import model.CookBook;
 import java.util.Scanner;
 
+//Handles the changing of menues and the initialization of the console interface
 public class FoodTrackerApp {
 
     private CookBook cookBook;

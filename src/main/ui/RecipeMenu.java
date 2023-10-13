@@ -7,6 +7,7 @@ import model.Recipe;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//Handles the creation and functiality of the Recipe Menu screen;
 public class RecipeMenu implements Menu {
 
     private Scanner input;

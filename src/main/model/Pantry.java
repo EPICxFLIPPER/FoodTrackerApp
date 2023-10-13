@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-//Consists of a list of ingredients that the user has
+//Consists of a list of ingredients that the user has in their pantry
 public class Pantry extends IngredientList {
 
 

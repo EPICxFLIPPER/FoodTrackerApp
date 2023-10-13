@@ -4,6 +4,7 @@ import model.CookBook;
 
 import java.util.Scanner;
 
+//Handles the creation and functiality of the Main Menu screen;
 public class MainMenu implements Menu {
 
     private Scanner input;

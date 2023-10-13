@@ -6,6 +6,8 @@ import model.Ingredient;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+//Handles the creation and functiality of the Pantry Menu screen;
 public class PantryMenu implements Menu {
 
     private Scanner input;
