@@ -27,7 +27,7 @@ Users will need to enter:
 - As a user, I want to be able to view a list of all the ingredient I need to shop for if I want to make a particular recipe.
 - As a user, I want to be able to remove Items from my pantry that I have used.
 - As a user, I want to be able to see if I can make a particular recipe with the ingreidents in my pantry.
-- As a user, I want to be able to save recipes and items that I have in my pantry for later use.
-
+- As a user, I want to have the option to save recipes and items that I have in my pantry for later use.
+- As a user, I want to be able to load a save file of recipes and items in the pantry to continue use.
 
  
