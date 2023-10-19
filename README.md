@@ -30,4 +30,9 @@ Users will need to enter:
 - As a user, I want to have the option to save recipes and items that I have in my pantry for later use.
 - As a user, I want to be able to load a save file of recipes and items in the pantry to continue use.
 
+
+
+## Citations
+- Json demo provided by the CPSC 210 course team.
+
  

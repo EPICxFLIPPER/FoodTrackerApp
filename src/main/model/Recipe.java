@@ -3,6 +3,8 @@ package model;
 //Consists of a name of thing to be cooked, and
 //list of ingredients that will be used to cook said thing.
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class Recipe extends IngredientList {
@@ -19,4 +21,11 @@ public class Recipe extends IngredientList {
         return name;
     }
 
+    @Override //TODO
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("ingredients", ingredientsToJson());
+        return json;
+    }
 }

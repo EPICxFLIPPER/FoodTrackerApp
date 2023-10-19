@@ -3,6 +3,9 @@ package model;
 //Represents a list of ingredients and contains methods that will be
 //Commonly Called on a list of ingredients.
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public abstract class IngredientList {
@@ -45,4 +48,17 @@ public abstract class IngredientList {
     public ArrayList<Ingredient> getIngredients() {
         return ingredients;
     }
+
+    public abstract JSONObject toJson();
+
+    protected JSONArray ingredientsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Ingredient i : ingredients) {
+            jsonArray.put(i.toJson());
+        }
+
+        return jsonArray;
+    }
+
 }

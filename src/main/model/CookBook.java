@@ -1,9 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
 //A cookbook contains a list of recipes and a pantry
-public class CookBook {
+public class CookBook implements Writable {
     private ArrayList<Recipe> recipes;
     private Pantry pantry;
 
@@ -113,4 +117,30 @@ public class CookBook {
     public Pantry getPantry() {
         return pantry;
     }
+
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("pantry", pantryToJson());
+        json.put("recipes", recipesToJson());
+        return json;
+    }
+
+    private JSONObject pantryToJson() {
+        return this.pantry.toJson();
+    }
+
+    private JSONArray recipesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Recipe r : recipes) {
+            jsonArray.put(r.toJson());
+        }
+
+        return jsonArray;
+    }
+
+
+
 }

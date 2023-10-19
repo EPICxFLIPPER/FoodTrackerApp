@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 //Consists of a list of ingredients that the user has in their pantry
@@ -10,5 +12,14 @@ public class Pantry extends IngredientList {
     public Pantry() {
         super();
     }
+
+    @Override
+    public JSONObject toJson() { //TODO
+        JSONObject json = new JSONObject();
+        json.put("ingredients", ingredientsToJson());
+
+        return json;
+    }
+
 
 }

@@ -6,6 +6,8 @@ package model;
 //All units must be the same to compare ingredients
 //Ex, Cheese, 100, grams is not comparable to Cheese, 200 , kilograms
 
+import org.json.JSONObject;
+
 public class Ingredient {
     private String name;
     private int quantity;
@@ -29,5 +31,14 @@ public class Ingredient {
     public String getUnits() {
         return units;
     }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("quantity", quantity);
+        json.put("units", units);
+        return json;
+    }
+
 
 }
