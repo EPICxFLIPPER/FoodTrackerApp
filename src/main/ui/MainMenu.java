@@ -2,7 +2,11 @@ package ui;
 
 import model.CookBook;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
+
+import static ui.FoodTrackerApp.JSON_STORE;
 
 //Handles the creation and functiality of the Main Menu screen;
 public class MainMenu implements Menu {
@@ -24,6 +28,8 @@ public class MainMenu implements Menu {
         System.out.println("\nSelect from:");
         System.out.println("\tp ->  Pantry");
         System.out.println("\tr -> Recipe");
+        System.out.println("\ts -> Save cookbook to file");
+        System.out.println("\tl -> Load cookbook from file");
         System.out.println("\tq -> quit");
     }
 
@@ -33,10 +39,37 @@ public class MainMenu implements Menu {
             foodTrackerApp.displayMode = foodTrackerApp.PANTRY_MENU;
         } else if (command.equals("r")) {
             foodTrackerApp.displayMode = foodTrackerApp.RECIPE_MENU;
-        } else if (command.equals("q")) {
-            System.out.println("Works");
-        } else {
+        } else if (command.equals("s")) {
+            saveCookBook();
+        } else if (command.equals("l")) {
+            loadCookBook();
+        }  else {
             System.out.println("Selection not valid...");
         }
     }
+
+    // EFFECTS: saves the workroom to file
+    private void saveCookBook() {
+        try {
+            foodTrackerApp.jsonWriter.open();
+            foodTrackerApp.jsonWriter.write(cookBook);
+            foodTrackerApp.jsonWriter.close();
+            System.out.println("Saved CookBook to" + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadCookBook() {
+        try {
+            cookBook = foodTrackerApp.jsonReader.read();
+            System.out.println("Loaded CookBook from:" + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
+
 }

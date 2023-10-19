@@ -118,6 +118,11 @@ public class CookBook implements Writable {
         return pantry;
     }
 
+    public void setPantry(Pantry pantry) {
+        this.pantry = pantry;
+    }
+
+
 
     @Override
     public JSONObject toJson() {

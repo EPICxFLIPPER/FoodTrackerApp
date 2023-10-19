@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 
 import model.CookBook;
 import model.Ingredient;
+import model.Pantry;
 import model.Recipe;
 import org.json.*;
 
@@ -49,29 +50,12 @@ public class JsonReader {
         return cookBook;
     }
 
-//    // MODIFIES: wr
-//    // EFFECTS: parses thingies from JSON object and adds them to workroom
-//    private void addThingies(WorkRoom wr, JSONObject jsonObject) {
-//        JSONArray jsonArray = jsonObject.getJSONArray("thingies");
-//        for (Object json : jsonArray) {
-//            JSONObject nextThingy = (JSONObject) json;
-//            addThingy(wr, nextThingy);
-//        }
-//    }
-//
-//    // MODIFIES: wr
-//    // EFFECTS: parses thingy from JSON object and adds it to workroom
-//    private void addThingy(WorkRoom wr, JSONObject jsonObject) {
-//        String name = jsonObject.getString("name");
-//        Category category = Category.valueOf(jsonObject.getString("category"));
-//        Thingy thingy = new Thingy(name, category);
-//        wr.addThingy(thingy);
-//    }
-
-
 
     private void addPantry(CookBook cookBook, JSONObject jsonObject) {
-        //TODO
+        Pantry pantry = new Pantry();
+        JSONObject jsonObject1 = jsonObject.getJSONObject("pantry");
+        pantry.setIngredients(createIngredientList(jsonObject1));
+        cookBook.setPantry(pantry);
     }
 
     private void addRecipes(CookBook cookBook, JSONObject jsonObject) {

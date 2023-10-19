@@ -1,6 +1,9 @@
 package ui;
 
 import model.CookBook;
+import persistence.JsonReader;
+import persistence.JsonWriter;
+
 import java.util.Scanner;
 
 //Handles the changing of menues and the initialization of the console interface
@@ -11,6 +14,10 @@ public class FoodTrackerApp {
     private Menu mainMenu;
     private Menu pantryMenu;
     private Menu recipeMenu;
+
+    protected JsonWriter jsonWriter;
+    protected JsonReader jsonReader;
+    protected static final String JSON_STORE = "./data/cookbook.json";
 
 
     protected int displayMode; //an integer representing which menu to show
@@ -55,6 +62,9 @@ public class FoodTrackerApp {
         cookBook = new CookBook();
         input = new Scanner(System.in);
         input.useDelimiter("\n");
+
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
 
         mainMenu = new MainMenu(input,cookBook,this);
         pantryMenu = new PantryMenu(input,cookBook,this);
