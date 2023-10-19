@@ -14,7 +14,7 @@ public class Pantry extends IngredientList {
     }
 
     @Override
-    public JSONObject toJson() { //TODO
+    public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("ingredients", ingredientsToJson());
 

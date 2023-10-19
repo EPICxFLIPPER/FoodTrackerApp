@@ -21,7 +21,7 @@ public class Recipe extends IngredientList {
         return name;
     }
 
-    @Override //TODO
+    @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", name);

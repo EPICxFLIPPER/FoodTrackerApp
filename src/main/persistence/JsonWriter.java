@@ -26,7 +26,7 @@ public class JsonWriter {
     // MODIFIES: this
     // EFFECTS: writes JSON representation of workroom to file
     public void write(CookBook cookBook) {
-        JSONObject json = cookBook.toJson(); //TODO
+        JSONObject json = cookBook.toJson();
         saveToFile(json.toString(TAB));
     }
 

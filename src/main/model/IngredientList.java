@@ -49,6 +49,10 @@ public abstract class IngredientList {
         return ingredients;
     }
 
+    public void setIngredients(ArrayList<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
     public abstract JSONObject toJson();
 
     protected JSONArray ingredientsToJson() {
