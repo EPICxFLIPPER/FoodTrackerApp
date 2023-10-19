@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.stream.Stream;
 
 import model.CookBook;
@@ -84,25 +85,29 @@ public class JsonReader {
     private void addRecipe(CookBook cookBook, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         Recipe recipe = new Recipe(name);
-        addIngredients(recipe,jsonObject);
+        recipe.setIngredients(createIngredientList(jsonObject));
         cookBook.addRecipe(recipe);
     }
 
-    private void addIngredients(Recipe recipe, JSONObject jsonObject) {
+    private ArrayList<Ingredient> createIngredientList(JSONObject jsonObject) {
+        ArrayList<Ingredient> ingredients = new ArrayList<>();
         JSONArray jsonArray = jsonObject.getJSONArray("ingredients");
         for (Object json : jsonArray) {
             JSONObject nextIngredient = (JSONObject) json;
-            addIngredient(recipe,nextIngredient);
+            addIngredient(ingredients,nextIngredient);
         }
+        return ingredients;
     }
 
-    private void addIngredient(Recipe recipe, JSONObject jsonObject) {
+    private ArrayList<Ingredient> addIngredient(ArrayList<Ingredient> ingredients, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         int quantity = Integer.valueOf(jsonObject.getString("quantity"));
         String units = jsonObject.getString("units");
 
         Ingredient ingredient = new Ingredient(name, quantity,units);
-        recipe.addIngredient(ingredient);
+        ingredients.add(ingredient);
+
+        return ingredients;
     }
 
 
