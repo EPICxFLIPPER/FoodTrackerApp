@@ -22,7 +22,6 @@ public class MainMenu implements Menu {
         cookBook = foodTrackerApp.getCookBook();
     }
 
-
     @Override
     public void displayMenu() {
         System.out.println("\nSelect from:");
@@ -64,13 +63,19 @@ public class MainMenu implements Menu {
     // EFFECTS: loads workroom from file
     private void loadCookBook() {
         try {
-            foodTrackerApp.setCookBook(foodTrackerApp.jsonReader.read());
+            CookBook tempBook = foodTrackerApp.jsonReader.read();
+            //assert (1 == tempBook.getNumIngredientsPantry());
+
+            foodTrackerApp.setCookBook(tempBook);
+            //assert (1 == foodTrackerApp.cookBook.getNumIngredientsPantry());
+            this.cookBook = tempBook;
 
             System.out.println("Loaded CookBook from:" + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
+
 
 
 }

@@ -4,6 +4,8 @@ import model.CookBook;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 //Handles the changing of menues and the initialization of the console interface
@@ -100,4 +102,7 @@ public class FoodTrackerApp {
     public void setCookBook(CookBook cookBook) {
         this.cookBook = cookBook;
     }
+
+
+
 }
