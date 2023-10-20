@@ -55,7 +55,7 @@ public class MainMenu extends Menu {
     }
 
     // MODIFIES: FoodTrackerApp, any menu that extends menu
-    // EFFECTS: loads CookBook from file, and applys it to all menus and food tracker app
+    // EFFECTS: loads CookBook from file, and apply it to all menus and food tracker app
     private void loadCookBook() {
         try {
             CookBook tempBook = foodTrackerApp.jsonReader.read();

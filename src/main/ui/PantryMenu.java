@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-//Handles the creation and functiality of the Pantry Menu screen;
+//Handles the creation and functionality of the Pantry Menu screen;
 public class PantryMenu extends Menu {
 
-    //EFFECTS: Creates a MainMenu with Scanner, cookbook and a foodTracker app.
+    //EFFECTS: Creates a MainMenu with Scanner and a foodTracker app.
     public PantryMenu(Scanner input, FoodTrackerApp foodTrackerApp) {
         this.input = input;
         this.foodTrackerApp = foodTrackerApp;
@@ -77,10 +77,5 @@ public class PantryMenu extends Menu {
         String name = input.next();
         cookBook.removeFromPantry(name);
     }
-
-    public void setCookBook(CookBook cookBook) {
-        this.cookBook = cookBook;
-    }
-
 
 }
