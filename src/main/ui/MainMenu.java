@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 import static ui.FoodTrackerApp.JSON_STORE;
 
-//Handles the creation and functiality of the Main Menu screen;
+//Handles the creation and functionality of the Main Menu screen;
 public class MainMenu implements Menu {
 
     private Scanner input;
@@ -71,7 +71,7 @@ public class MainMenu implements Menu {
             CookBook tempBook = foodTrackerApp.jsonReader.read();
             //assert (1 == tempBook.getNumIngredientsPantry());
 
-            foodTrackerApp.setCookBook(tempBook);
+            foodTrackerApp.setCookBookAll(tempBook);
             //assert (1 == foodTrackerApp.cookBook.getNumIngredientsPantry());
 
 

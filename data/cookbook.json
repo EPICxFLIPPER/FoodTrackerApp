@@ -1,5 +1,12 @@
 {
-    "recipes": [],
+    "recipes": [{
+        "name": "alyson",
+        "ingredients": [{
+            "quantity": 1,
+            "name": "Alyson",
+            "units": "Balyson"
+        }]
+    }],
     "pantry": {"ingredients": [{
         "quantity": 40,
         "name": "sdgsjdgkdg",

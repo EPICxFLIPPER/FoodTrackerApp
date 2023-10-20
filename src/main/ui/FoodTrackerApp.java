@@ -4,11 +4,9 @@ import model.CookBook;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Scanner;
 
-//Handles the changing of menues and the initialization of the console interface
+//Handles the changing of menus and the initialization of the console interface
 public class FoodTrackerApp {
 
     protected CookBook cookBook;
@@ -29,21 +27,11 @@ public class FoodTrackerApp {
 
     // EFFECTS: runs the FoodTracker application
     public FoodTrackerApp() {
-        cookBook = new CookBook();
-        input = new Scanner(System.in);
-        input.useDelimiter("\n");
-
-        jsonWriter = new JsonWriter(JSON_STORE);
-        jsonReader = new JsonReader(JSON_STORE);
-
-        mainMenu = new MainMenu(input,this);
-        pantryMenu = new PantryMenu(input,this);
-        recipeMenu = new RecipeMenu(input,this);
         runFoodTracker();
     }
 
     // MODIFIES: this
-    // EFFECTS: processes user input
+    // EFFECTS: processes user input and starts the application
     private void runFoodTracker() {
         boolean keepGoing = true;
         String command;
@@ -68,9 +56,18 @@ public class FoodTrackerApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: initializes cookBook and menu classes
+    // EFFECTS: initializes cookBook ,menu classes, and JSON readers/ writers
     private void init() {
+        cookBook = new CookBook();
+        input = new Scanner(System.in);
+        input.useDelimiter("\n");
 
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+
+        mainMenu = new MainMenu(input,this);
+        pantryMenu = new PantryMenu(input,this);
+        recipeMenu = new RecipeMenu(input,this);
     }
 
     //EFFECTS: Sets the correct display menu based on displayMode;
@@ -95,11 +92,14 @@ public class FoodTrackerApp {
         }
     }
 
+    //EFFECTS: returns this.cookBook
     public CookBook getCookBook() {
         return cookBook;
     }
 
-    public void setCookBook(CookBook cookBook) {
+    //MODIFIES: this, pantryMenu, RecipeMenu, MainMenu
+    //EFFECTS: sets the cookbook of this and all the menus to the given cookbook
+    public void setCookBookAll(CookBook cookBook) {
         this.cookBook = cookBook;
         pantryMenu.setCookBook(cookBook);
         mainMenu.setCookBook(cookBook);
