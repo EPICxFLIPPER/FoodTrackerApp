@@ -32,6 +32,7 @@ public class Ingredient {
         return units;
     }
 
+    //EFFECTS: returns this as a JSONObject
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", name);

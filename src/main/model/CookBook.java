@@ -132,12 +132,12 @@ public class CookBook implements Writable {
         return pantry.getIngredients().size();
     }
 
-    //EFFECTS: Produces the recipe from recipies at the given index
+    //EFFECTS: Produces the recipe from recipes at the given index
     public Recipe getRecipeAtIndex(int index) {
         return recipes.get(index);
     }
 
-    //EFFECTS: produces the ingrident at the given index in the pantry
+    //EFFECTS: produces the ingredient at the given index in the pantry
     public Ingredient getIngredientFromPantryIndex(int index) {
         return pantry.getIngredients().get(index);
     }
@@ -153,10 +153,12 @@ public class CookBook implements Writable {
         return json;
     }
 
+    //EFFECTS: Returns the pantry as a JSONObject
     private JSONObject pantryToJson() {
         return this.pantry.toJson();
     }
 
+    //EFFECTS: Returns the recipes as a JSONArray
     private JSONArray recipesToJson() {
         JSONArray jsonArray = new JSONArray();
 

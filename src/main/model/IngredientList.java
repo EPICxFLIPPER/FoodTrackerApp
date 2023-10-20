@@ -53,8 +53,10 @@ public abstract class IngredientList {
         this.ingredients = ingredients;
     }
 
+    //EFFECTS: Returns this as a Json Object
     public abstract JSONObject toJson();
 
+    //EFFECTS: Returns the list of ingredients as a JSONObject.
     protected JSONArray ingredientsToJson() {
         JSONArray jsonArray = new JSONArray();
 
