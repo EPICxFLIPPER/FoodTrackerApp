@@ -83,4 +83,10 @@ public class PantryMenu implements Menu {
         String name = input.next();
         cookBook.removeFromPantry(name);
     }
+
+    public void setCookBook(CookBook cookBook) {
+        this.cookBook = cookBook;
+    }
+
+
 }

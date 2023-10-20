@@ -47,6 +47,11 @@ public class MainMenu implements Menu {
         }
     }
 
+    @Override
+    public void setCookBook(CookBook cookBook) {
+        this.cookBook = cookBook;
+    }
+
     // EFFECTS: saves the workroom to file
     private void saveCookBook() {
         try {
@@ -68,9 +73,10 @@ public class MainMenu implements Menu {
 
             foodTrackerApp.setCookBook(tempBook);
             //assert (1 == foodTrackerApp.cookBook.getNumIngredientsPantry());
-            this.cookBook = tempBook;
+
 
             System.out.println("Loaded CookBook from:" + JSON_STORE);
+
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }

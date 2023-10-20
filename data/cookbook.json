@@ -1,15 +1,8 @@
 {
     "recipes": [],
-    "pantry": {"ingredients": [
-        {
-            "quantity": 75,
-            "name": "djgka",
-            "units": "sdkgj"
-        },
-        {
-            "quantity": 40,
-            "name": "sdgsjdgkdg",
-            "units": "fjkd"
-        }
-    ]}
+    "pantry": {"ingredients": [{
+        "quantity": 40,
+        "name": "sdgsjdgkdg",
+        "units": "fjkd"
+    }]}
 }

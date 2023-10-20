@@ -144,4 +144,8 @@ public class RecipeMenu implements Menu {
         }
     }
 
+    public void setCookBook(CookBook cookBook) {
+        this.cookBook = cookBook;
+    }
+
 }

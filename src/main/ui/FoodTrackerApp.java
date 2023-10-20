@@ -14,8 +14,8 @@ public class FoodTrackerApp {
     protected CookBook cookBook;
     private Scanner input;
     private Menu mainMenu;
-    private Menu pantryMenu;
-    private Menu recipeMenu;
+    protected Menu pantryMenu;
+    protected Menu recipeMenu;
 
     protected JsonWriter jsonWriter;
     protected JsonReader jsonReader;
@@ -29,9 +29,18 @@ public class FoodTrackerApp {
 
     // EFFECTS: runs the FoodTracker application
     public FoodTrackerApp() {
+        cookBook = new CookBook();
+        input = new Scanner(System.in);
+        input.useDelimiter("\n");
+
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+
+        mainMenu = new MainMenu(input,this);
+        pantryMenu = new PantryMenu(input,this);
+        recipeMenu = new RecipeMenu(input,this);
         runFoodTracker();
     }
-
 
     // MODIFIES: this
     // EFFECTS: processes user input
@@ -61,16 +70,7 @@ public class FoodTrackerApp {
     // MODIFIES: this
     // EFFECTS: initializes cookBook and menu classes
     private void init() {
-        cookBook = new CookBook();
-        input = new Scanner(System.in);
-        input.useDelimiter("\n");
 
-        jsonWriter = new JsonWriter(JSON_STORE);
-        jsonReader = new JsonReader(JSON_STORE);
-
-        mainMenu = new MainMenu(input,this);
-        pantryMenu = new PantryMenu(input,this);
-        recipeMenu = new RecipeMenu(input,this);
     }
 
     //EFFECTS: Sets the correct display menu based on displayMode;
@@ -101,6 +101,9 @@ public class FoodTrackerApp {
 
     public void setCookBook(CookBook cookBook) {
         this.cookBook = cookBook;
+        pantryMenu.setCookBook(cookBook);
+        mainMenu.setCookBook(cookBook);
+        recipeMenu.setCookBook(cookBook);
     }
 
 
