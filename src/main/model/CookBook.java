@@ -122,6 +122,27 @@ public class CookBook implements Writable {
         this.pantry = pantry;
     }
 
+    //EFFECTS: Produces the number of recipes in recipes
+    public int getNumRecipes() {
+        return recipes.size();
+    }
+
+    //EFFECTS: Produces the number of ingredients in the pantry
+    public int getNumIngredientsPantry() {
+        return pantry.getIngredients().size();
+    }
+
+    //EFFECTS: Produces the recipe from recipies at the given index
+    public Recipe getRecipeAtIndex(int index) {
+        return recipes.get(index);
+    }
+
+    //EFFECTS: produces the ingrident at the given index in the pantry
+    public Ingredient getIngredientFromPantryIndex(int index) {
+        return pantry.getIngredients().get(index);
+    }
+
+
 
 
     @Override

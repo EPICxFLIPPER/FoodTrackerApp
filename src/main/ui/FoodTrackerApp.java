@@ -9,7 +9,7 @@ import java.util.Scanner;
 //Handles the changing of menues and the initialization of the console interface
 public class FoodTrackerApp {
 
-    private CookBook cookBook;
+    protected CookBook cookBook;
     private Scanner input;
     private Menu mainMenu;
     private Menu pantryMenu;
@@ -66,9 +66,9 @@ public class FoodTrackerApp {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
 
-        mainMenu = new MainMenu(input,cookBook,this);
-        pantryMenu = new PantryMenu(input,cookBook,this);
-        recipeMenu = new RecipeMenu(input,cookBook,this);
+        mainMenu = new MainMenu(input,this);
+        pantryMenu = new PantryMenu(input,this);
+        recipeMenu = new RecipeMenu(input,this);
     }
 
     //EFFECTS: Sets the correct display menu based on displayMode;
@@ -93,6 +93,11 @@ public class FoodTrackerApp {
         }
     }
 
+    public CookBook getCookBook() {
+        return cookBook;
+    }
 
-
+    public void setCookBook(CookBook cookBook) {
+        this.cookBook = cookBook;
+    }
 }

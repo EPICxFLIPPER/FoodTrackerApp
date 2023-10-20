@@ -1,0 +1,8 @@
+{
+    "recipes": [],
+    "pantry": {"ingredients": [{
+        "quantity": 500,
+        "name": "Cheese",
+        "units": "grams"
+    }]}
+}

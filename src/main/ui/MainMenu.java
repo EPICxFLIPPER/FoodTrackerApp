@@ -16,10 +16,10 @@ public class MainMenu implements Menu {
     private FoodTrackerApp foodTrackerApp;
 
     //EFFECTS: Creates a MainMenu with Scanner, cookbook and a foodTracker app.
-    public MainMenu(Scanner input, CookBook cookbook, FoodTrackerApp foodTrackerApp) {
+    public MainMenu(Scanner input, FoodTrackerApp foodTrackerApp) {
         this.input = input;
-        this.cookBook = cookbook;
         this.foodTrackerApp = foodTrackerApp;
+        cookBook = foodTrackerApp.getCookBook();
     }
 
 
@@ -64,7 +64,8 @@ public class MainMenu implements Menu {
     // EFFECTS: loads workroom from file
     private void loadCookBook() {
         try {
-            cookBook = foodTrackerApp.jsonReader.read();
+            foodTrackerApp.setCookBook(foodTrackerApp.jsonReader.read());
+
             System.out.println("Loaded CookBook from:" + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);

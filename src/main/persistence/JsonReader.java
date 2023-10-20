@@ -85,7 +85,7 @@ public class JsonReader {
 
     private ArrayList<Ingredient> addIngredient(ArrayList<Ingredient> ingredients, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
-        int quantity = Integer.valueOf(jsonObject.getString("quantity"));
+        int quantity = jsonObject.getInt("quantity");
         String units = jsonObject.getString("units");
 
         Ingredient ingredient = new Ingredient(name, quantity,units);

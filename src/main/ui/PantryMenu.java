@@ -15,10 +15,11 @@ public class PantryMenu implements Menu {
     private FoodTrackerApp foodTrackerApp;
 
     //EFFECTS: Creates a MainMenu with Scanner, cookbook and a foodTracker app.
-    public PantryMenu(Scanner input, CookBook cookBook, FoodTrackerApp foodTrackerApp) {
+    public PantryMenu(Scanner input, FoodTrackerApp foodTrackerApp) {
         this.input = input;
-        this.cookBook = cookBook;
+
         this.foodTrackerApp = foodTrackerApp;
+        cookBook = foodTrackerApp.getCookBook();
     }
 
 
@@ -41,6 +42,8 @@ public class PantryMenu implements Menu {
             removeFromPantry();
         } else if (command.equals("m")) {
             foodTrackerApp.displayMode = foodTrackerApp.MAIN_MENU;
+        } else if (command.equals("n")) {
+            System.out.println(cookBook.getNumIngredientsPantry());
         } else {
             System.out.println("Not a valid Command!");
         }
