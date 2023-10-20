@@ -11,7 +11,7 @@ import static ui.FoodTrackerApp.JSON_STORE;
 //Handles the creation and functionality of the Main Menu screen;
 public class MainMenu extends Menu {
 
-    //EFFECTS: Creates a MainMenu with Scanner, cookbook and a foodTracker app.
+    //EFFECTS: Creates a MainMenu with Scanner, and a foodTracker app.
     public MainMenu(Scanner input, FoodTrackerApp foodTrackerApp) {
         this.input = input;
         this.foodTrackerApp = foodTrackerApp;
@@ -42,7 +42,7 @@ public class MainMenu extends Menu {
         }
     }
 
-    // EFFECTS: saves the workroom to file
+    // EFFECTS: saves the cookBook to file
     private void saveCookBook() {
         try {
             foodTrackerApp.jsonWriter.open();
@@ -54,17 +54,12 @@ public class MainMenu extends Menu {
         }
     }
 
-    // MODIFIES: this
-    // EFFECTS: loads workroom from file
+    // MODIFIES: FoodTrackerApp, any menu that extends menu
+    // EFFECTS: loads CookBook from file, and applys it to all menus and food tracker app
     private void loadCookBook() {
         try {
             CookBook tempBook = foodTrackerApp.jsonReader.read();
-            //assert (1 == tempBook.getNumIngredientsPantry());
-
             foodTrackerApp.setCookBookAll(tempBook);
-            //assert (1 == foodTrackerApp.cookBook.getNumIngredientsPantry());
-
-
             System.out.println("Loaded CookBook from:" + JSON_STORE);
 
         } catch (IOException e) {

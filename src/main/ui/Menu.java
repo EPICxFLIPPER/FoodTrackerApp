@@ -4,7 +4,7 @@ import model.CookBook;
 
 import java.util.Scanner;
 
-//A menu is a dispaly with a set of commands that leads to specific results
+//A menu is a display with a set of commands that leads to specific results
 public abstract class Menu {
 
     protected Scanner input;
@@ -17,6 +17,8 @@ public abstract class Menu {
     //EFFECTS: runs the result of user commands.
     public abstract void processCommand(String command);
 
+    //MODIFIES: this
+    //EFFECTS: Sets the cookbook to the given cookbook
     public void setCookBook(CookBook cookBook) {
         this.cookBook = cookBook;
     }
