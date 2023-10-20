@@ -14,7 +14,7 @@ import model.Pantry;
 import model.Recipe;
 import org.json.*;
 
-// Represents a reader that reads workroom from JSON data stored in file
+// Represents a reader that reads cookBook from JSON data stored in file
 public class JsonReader {
     private String source;
 
@@ -23,7 +23,7 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: reads cookBook from file and returns it;
     // throws IOException if an error occurs reading data from file
     public CookBook read() throws IOException {
         String jsonData = readFile(source);
@@ -42,7 +42,7 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    // EFFECTS: parses workroom from JSON object and returns it
+    // EFFECTS: parses CookBook from JSON object and returns it
     private CookBook parseCookBook(JSONObject jsonObject) {
         CookBook cookBook = new CookBook();
         addPantry(cookBook, jsonObject);
@@ -50,7 +50,7 @@ public class JsonReader {
         return cookBook;
     }
 
-
+    //EFFECTS: parses pantry from JSON object and adds it to cookbook
     private void addPantry(CookBook cookBook, JSONObject jsonObject) {
         Pantry pantry = new Pantry();
         JSONObject jsonObject1 = jsonObject.getJSONObject("pantry");
@@ -58,6 +58,7 @@ public class JsonReader {
         cookBook.setPantry(pantry);
     }
 
+    //EFFECTS: parses recipes from JSON object and adds it to cookbook
     private void addRecipes(CookBook cookBook, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("recipes");
         for (Object json : jsonArray) {
@@ -66,6 +67,7 @@ public class JsonReader {
         }
     }
 
+    //EFFECTS: parses a recipe from JSONObject and adds it to cookbook
     private void addRecipe(CookBook cookBook, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         Recipe recipe = new Recipe(name);
@@ -73,6 +75,7 @@ public class JsonReader {
         cookBook.addRecipe(recipe);
     }
 
+    //EFFECTS: parses a list of Ingredients from JSONObject and returns the list
     private ArrayList<Ingredient> createIngredientList(JSONObject jsonObject) {
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         JSONArray jsonArray = jsonObject.getJSONArray("ingredients");
@@ -83,6 +86,7 @@ public class JsonReader {
         return ingredients;
     }
 
+    //EFFECTS: constructs an Ingredient from the json Object and adds it to the given list of ingredients
     private ArrayList<Ingredient> addIngredient(ArrayList<Ingredient> ingredients, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         int quantity = jsonObject.getInt("quantity");
