@@ -68,6 +68,8 @@ public class FoodTrackerApp {
         mainMenu = new MainMenu(input,this);
         pantryMenu = new PantryMenu(input,this);
         recipeMenu = new RecipeMenu(input,this);
+
+        setCookBookAll(cookBook);
     }
 
     //EFFECTS: Sets the correct display menu based on displayMode;

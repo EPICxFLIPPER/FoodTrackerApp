@@ -8,17 +8,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 //Handles the creation and functiality of the Recipe Menu screen;
-public class RecipeMenu implements Menu {
-
-    private Scanner input;
-    private CookBook cookBook;
-    private FoodTrackerApp foodTrackerApp;
+public class RecipeMenu extends Menu {
 
     //EFFECTS: Creates a MainMenu with Scanner, cookbook and a foodTracker app.
     public RecipeMenu(Scanner input, FoodTrackerApp foodTrackerApp) {
         this.input = input;
         this.foodTrackerApp = foodTrackerApp;
-        cookBook = foodTrackerApp.getCookBook();
     }
 
 
@@ -144,8 +139,5 @@ public class RecipeMenu implements Menu {
         }
     }
 
-    public void setCookBook(CookBook cookBook) {
-        this.cookBook = cookBook;
-    }
 
 }

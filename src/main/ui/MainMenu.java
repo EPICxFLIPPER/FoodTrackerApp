@@ -9,17 +9,12 @@ import java.util.Scanner;
 import static ui.FoodTrackerApp.JSON_STORE;
 
 //Handles the creation and functionality of the Main Menu screen;
-public class MainMenu implements Menu {
-
-    private Scanner input;
-    private CookBook cookBook;
-    private FoodTrackerApp foodTrackerApp;
+public class MainMenu extends Menu {
 
     //EFFECTS: Creates a MainMenu with Scanner, cookbook and a foodTracker app.
     public MainMenu(Scanner input, FoodTrackerApp foodTrackerApp) {
         this.input = input;
         this.foodTrackerApp = foodTrackerApp;
-        cookBook = foodTrackerApp.getCookBook();
     }
 
     @Override
@@ -45,11 +40,6 @@ public class MainMenu implements Menu {
         }  else {
             System.out.println("Selection not valid...");
         }
-    }
-
-    @Override
-    public void setCookBook(CookBook cookBook) {
-        this.cookBook = cookBook;
     }
 
     // EFFECTS: saves the workroom to file
