@@ -8,9 +8,12 @@ public class FoodTrackerGUI extends JFrame {
     private static final String TITLE = "Food Tracker";
     private static final int X_DIM = 800;
     private static final int Y_DIM = 800;
+    private static final int FONT_SIZE = 20;
+    private static final Font COOPER_BLACK = new Font("Cooper Black",Font.PLAIN,FONT_SIZE);
 
 
     private JMenuBar menuBar;
+    private JLabel titleLabel;
 
     public FoodTrackerGUI() {
         super(TITLE);
@@ -65,7 +68,13 @@ public class FoodTrackerGUI extends JFrame {
     //Modifies: This
     //Effects: Creates the title label
     private void createTitleLabel() {
+        titleLabel = new JLabel(TITLE);
+        titleLabel.setHorizontalAlignment(JLabel.CENTER);
+        titleLabel.setVerticalAlignment(JLabel.TOP);
+        titleLabel.setFont(COOPER_BLACK);
 
+
+        this.add(titleLabel);
     }
 
 }
