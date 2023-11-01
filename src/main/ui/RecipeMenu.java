@@ -18,6 +18,7 @@ public class RecipeMenu extends Menu {
 
 
     @Override
+    //Effects: Prints the menue screen to the console
     public void displayMenu() {
         System.out.println("\nSelect from:");
         System.out.println("\tvr -> View Recipes");
@@ -29,6 +30,7 @@ public class RecipeMenu extends Menu {
     }
 
     @Override
+    //Effects: Calls the apropriate process command method based on user input
     public void processCommand(String command) {
         if (command.equals("vr")) {
             viewRecipes();

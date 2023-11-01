@@ -18,6 +18,7 @@ public class PantryMenu extends Menu {
 
 
     @Override
+    //Effects: Prints the menue screen to the console
     public void displayMenu() {
         System.out.println("\nSelect from:");
         System.out.println("\tv ->  View Pantry");
@@ -27,6 +28,7 @@ public class PantryMenu extends Menu {
     }
 
     @Override
+    //Effects: Calls the apropriate process command method based on user input
     public void processCommand(String command) {
         if (command.equals("v")) {
             viewPantry();
