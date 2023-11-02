@@ -5,12 +5,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-//Represents the GUI for the Food Tracker application
-public class FoodTrackerGUI extends JFrame implements ActionListener {
+public class PantryGUI extends JFrame implements ActionListener {
 
     GIManager gim;
 
-    private static final String TITLE = "Food Tracker";
+    private static final String TITLE = "Pantry Menu";
     private static final int X_DIM = 800;
     private static final int Y_DIM = 800;
     private static final int FONT_SIZE = 20;
@@ -33,16 +32,13 @@ public class FoodTrackerGUI extends JFrame implements ActionListener {
     private JButton pantryMenuButton = new JButton("Pantry Menu");
     private JButton canCookButton = new JButton("Can Cook?");
 
-
-
-
-    public FoodTrackerGUI(GIManager gim) {
-        super(TITLE);
+    public PantryGUI(GIManager gim) {
+        super("Food Tracker");
         this.gim = gim;
 
 
         init();
-        createButtons();
+        //createButtons();
         createMenuBar();
         createTitleLabel();
 
@@ -50,8 +46,6 @@ public class FoodTrackerGUI extends JFrame implements ActionListener {
 
         pack();
         repaint();
-        //setVisible(true);
-
     }
 
 
@@ -129,58 +123,9 @@ public class FoodTrackerGUI extends JFrame implements ActionListener {
         repaint();
     }
 
-    //Modifes: This
-    //Effects: Creates the buttons for the Jframe
-    private void createButtons() {
-        recipeMenuButton.addActionListener(this);
-        canCookButton.addActionListener(this);
-        pantryMenuButton.addActionListener(this);
-
-        centerPanel.add(new JLabel());
-
-        centerPanel.add(recipeMenuButton);
-
-
-        centerPanel.add(new JLabel());
-
-        centerPanel.add(pantryMenuButton);
-
-
-        centerPanel.add(new JLabel());
-        centerPanel.add(new JLabel());
-        centerPanel.add(new JLabel());
-
-        centerPanel.add(canCookButton);
-
-
-        centerPanel.add(new JLabel());
-        centerPanel.add(new JLabel());
-        centerPanel.add(new JLabel());
-        centerPanel.add(new JLabel());
-        centerPanel.add(new JLabel());
-        centerPanel.add(new JLabel());
-        centerPanel.add(new JLabel());
-
-
-        repaint();
-    }
-
-
-
-
-
     @Override
-    //Effects: Specifies the actions preformed by each button;
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == recipeMenuButton) {
-            System.out.println("recipe");
-        } else if (e.getSource() == pantryMenuButton) {
-            System.out.println("pantry");
-            gim.active = gim.PANTRY_ACTIVE;
-            gim.activateFrame();
-        } else if (e.getSource() == canCookButton) {
-            System.out.println("cook");
-        }
+
     }
 
     //Modifies: this
@@ -196,5 +141,6 @@ public class FoodTrackerGUI extends JFrame implements ActionListener {
         active = true;
         this.setVisible(active);
     }
+
 
 }

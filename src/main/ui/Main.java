@@ -6,7 +6,8 @@ public class Main {
 
     //Effects: Starts the program by creating a FoodTrackerApp();
     public static void main(String[] args) {
-        new FoodTrackerGUI();
+        new GIManager();
+        //new FoodTrackerGUI();
         //new FoodTrackerApp();
     }
 }
