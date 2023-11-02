@@ -12,17 +12,22 @@ public class FoodTrackerGUI extends JFrame implements ActionListener {
     private static final int X_DIM = 800;
     private static final int Y_DIM = 800;
     private static final int FONT_SIZE = 20;
+    private static final int GRID_ROWS = 3;
+    private static final int GRID_COLS = 5;
     private static final Font COOPER_BLACK = new Font("Cooper Black",Font.PLAIN,FONT_SIZE);
 
 
     private JPanel centerPanel;
     private JPanel northPanel;
+    private JPanel southPanel;
+    private JPanel eastPanel;
+    private JPanel westPanel;
 
     private JMenuBar menuBar;
     private JLabel titleLabel;
-    private JButton recipeMenuButton = new JButton();
-    private JButton pantryMenuButton = new JButton();
-    private JButton canCookButton = new JButton();
+    private JButton recipeMenuButton = new JButton("Recipe Menu");
+    private JButton pantryMenuButton = new JButton("Pantry Menu");
+    private JButton canCookButton = new JButton("Can Cook?");
 
 
 
@@ -32,7 +37,7 @@ public class FoodTrackerGUI extends JFrame implements ActionListener {
 
 
         init();
-        //createButtons();
+        createButtons();
         createMenuBar();
         createTitleLabel();
 
@@ -65,12 +70,18 @@ public class FoodTrackerGUI extends JFrame implements ActionListener {
     private void initPanels() {
         centerPanel = new JPanel();
         northPanel = new JPanel();
+        southPanel = new JPanel();
+        eastPanel = new JPanel();
+        westPanel = new JPanel();
 
-        centerPanel.setLayout(new GridLayout(2,5));
+        centerPanel.setLayout(new GridLayout(GRID_ROWS,GRID_COLS));
         northPanel.setLayout(new FlowLayout());
 
         this.add(northPanel,BorderLayout.NORTH);
         this.add(centerPanel,BorderLayout.CENTER);
+        this.add(westPanel,BorderLayout.WEST);
+        this.add(eastPanel,BorderLayout.EAST);
+        this.add(southPanel,BorderLayout.SOUTH);
     }
 
 
@@ -116,25 +127,39 @@ public class FoodTrackerGUI extends JFrame implements ActionListener {
     //Modifes: This
     //Effects: Creates the buttons for the Jframe
     private void createButtons() {
-        createButton(canCookButton,"Can Cook?",100,200,200,200);
-//        createButton(recipeMenuButton,"Recipe Menu",X_DIM * 3 / 4,Y_DIM / 2,200,200);
-//        createButton(pantryMenuButton,"Pantry Menu",X_DIM / 4,Y_DIM / 2,200,400);
+
+        centerPanel.add(new JLabel());
+
+        centerPanel.add(recipeMenuButton);
+
+
+        centerPanel.add(new JLabel());
+
+        centerPanel.add(pantryMenuButton);
+
+
+        centerPanel.add(new JLabel());
+        centerPanel.add(new JLabel());
+        centerPanel.add(new JLabel());
+
+        centerPanel.add(canCookButton);
+
+
+        centerPanel.add(new JLabel());
+        centerPanel.add(new JLabel());
+        centerPanel.add(new JLabel());
+        centerPanel.add(new JLabel());
+        centerPanel.add(new JLabel());
+        centerPanel.add(new JLabel());
+        centerPanel.add(new JLabel());
+
+
         repaint();
-
     }
 
-    //Effects: sets the button defaults to the given button
-    private void createButton(JButton button, String label,int x,int y,int width, int height) {
-
-        button.setBounds(x,y,width,height);
-        button.addActionListener(this);
-        button.setText(label);
-        button.setFocusable(false);
-        this.add(button);
 
 
 
-    }
 
     @Override
     //Effects: Specifies the actions preformed by each button;
