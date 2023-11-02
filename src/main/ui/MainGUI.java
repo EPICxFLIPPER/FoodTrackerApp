@@ -15,42 +15,30 @@ public class MainGUI extends MenuGUI {
     private static final int GRID_ROWS = 3;
     private static final int GRID_COLS = 5;
 
-
-    private boolean active = false;
-
-
-
     private JButton recipeMenuButton = new JButton("Recipe Menu");
     private JButton pantryMenuButton = new JButton("Pantry Menu");
     private JButton canCookButton = new JButton("Can Cook?");
 
 
-
-
     public MainGUI(GIManager gim) {
         super(TITLE);
         this.gim = gim;
-
+        active = false;
 
         init();
         createButtons();
         createMenuBar();
-        createTitleLabel();
-
-
+        createTitleLabel(TITLE);
 
         pack();
         repaint();
-        //setVisible(true);
-
     }
 
 
     //Modifies: This
     //Effects: Sets the initial settings of the JFrame
-    private void init() {
+    protected void init() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //setVisible(true);
         setSize(X_DIM,Y_DIM);
         setResizable(true);
         setTitle(TITLE);
@@ -81,48 +69,10 @@ public class MainGUI extends MenuGUI {
     }
 
 
-    //Modifies: This
-    //Effects: Creates the menu bar for the JFrame
-    private void createMenuBar() {
-        menuBar = new JMenuBar();
-
-        JMenu fileMenu = new JMenu("File v");
-        JMenu pantryMenu = new JMenu("Pantry");
-        JMenu recipeMenu = new JMenu("Recipe");
-        JMenu mainMenu = new JMenu("Main");
-
-        JMenuItem saveItem = new JMenuItem("Save");
-        JMenuItem loadItem = new JMenuItem("Load");
-
-        fileMenu.add(saveItem);
-        fileMenu.add(loadItem);
-
-        menuBar.add(fileMenu);
-        menuBar.add(pantryMenu);
-        menuBar.add(recipeMenu);
-        menuBar.add(mainMenu);
-
-        setJMenuBar(menuBar);
-    }
-
-    //Modifies: This
-    //Effects: Creates the title label
-    private void createTitleLabel() {
-        northPanel.setBackground(Color.green);
-
-        titleLabel = new JLabel(TITLE);
-        titleLabel.setHorizontalTextPosition(JLabel.CENTER);
-        titleLabel.setVerticalAlignment(JLabel.TOP);
-        titleLabel.setFont(COOPER_BLACK);
-
-        northPanel.add(titleLabel);
-
-        repaint();
-    }
 
     //Modifes: This
     //Effects: Creates the buttons for the Jframe
-    private void createButtons() {
+    protected void createButtons() {
         recipeMenuButton.addActionListener(this);
         canCookButton.addActionListener(this);
         pantryMenuButton.addActionListener(this);
@@ -174,18 +124,6 @@ public class MainGUI extends MenuGUI {
         }
     }
 
-    //Modifies: this
-    //Effects: Changes active to false and sets the visability to false
-    public void deactivate() {
-        active = false;
-        this.setVisible(active);
-    }
 
-    //Modifies: this
-    //Effects: Changes active to true and sets the visability to true
-    public void activate() {
-        active = true;
-        this.setVisible(active);
-    }
 
 }
