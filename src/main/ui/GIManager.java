@@ -3,15 +3,15 @@ package ui;
 //Manages all the different Menu Panels for the GUI
 public class GIManager {
 
-    private FoodTrackerGUI foodTrackerGUI;
-    private PantryGUI pantryGUI;
+    private MenuGUI foodTrackerGUI;
+    private MenuGUI pantryGUI;
 
     protected int active = 0;
     protected static final int MAIN_ACTIVE = 0;
     protected static final int PANTRY_ACTIVE = 1;
 
     public GIManager() {
-        this.foodTrackerGUI = new FoodTrackerGUI(this);
+        this.foodTrackerGUI = new MainGUI(this);
         this.pantryGUI = new PantryGUI(this);
         activateFrame();
     }

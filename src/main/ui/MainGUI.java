@@ -3,32 +3,23 @@ package ui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 //Represents the GUI for the Food Tracker application
-public class FoodTrackerGUI extends JFrame implements ActionListener {
+public class MainGUI extends MenuGUI {
 
-    GIManager gim;
+
 
     private static final String TITLE = "Food Tracker";
-    private static final int X_DIM = 800;
-    private static final int Y_DIM = 800;
-    private static final int FONT_SIZE = 20;
+
+
     private static final int GRID_ROWS = 3;
     private static final int GRID_COLS = 5;
-    private static final Font COOPER_BLACK = new Font("Cooper Black",Font.PLAIN,FONT_SIZE);
+
 
     private boolean active = false;
 
 
-    private JPanel centerPanel;
-    private JPanel northPanel;
-    private JPanel southPanel;
-    private JPanel eastPanel;
-    private JPanel westPanel;
 
-    private JMenuBar menuBar;
-    private JLabel titleLabel;
     private JButton recipeMenuButton = new JButton("Recipe Menu");
     private JButton pantryMenuButton = new JButton("Pantry Menu");
     private JButton canCookButton = new JButton("Can Cook?");
@@ -36,7 +27,7 @@ public class FoodTrackerGUI extends JFrame implements ActionListener {
 
 
 
-    public FoodTrackerGUI(GIManager gim) {
+    public MainGUI(GIManager gim) {
         super(TITLE);
         this.gim = gim;
 

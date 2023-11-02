@@ -5,44 +5,26 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PantryGUI extends JFrame implements ActionListener {
-
-    GIManager gim;
+public class PantryGUI extends MenuGUI {
 
     private static final String TITLE = "Pantry Menu";
-    private static final int X_DIM = 800;
-    private static final int Y_DIM = 800;
-    private static final int FONT_SIZE = 20;
+
     private static final int GRID_ROWS = 3;
     private static final int GRID_COLS = 5;
-    private static final Font COOPER_BLACK = new Font("Cooper Black",Font.PLAIN,FONT_SIZE);
+
 
     private boolean active = false;
 
-
-    private JPanel centerPanel;
-    private JPanel northPanel;
-    private JPanel southPanel;
-    private JPanel eastPanel;
-    private JPanel westPanel;
-
     private JMenuBar menuBar;
     private JLabel titleLabel;
-    private JButton recipeMenuButton = new JButton("Recipe Menu");
-    private JButton pantryMenuButton = new JButton("Pantry Menu");
-    private JButton canCookButton = new JButton("Can Cook?");
 
     public PantryGUI(GIManager gim) {
         super("Food Tracker");
         this.gim = gim;
 
-
         init();
-        //createButtons();
         createMenuBar();
         createTitleLabel();
-
-
 
         pack();
         repaint();
