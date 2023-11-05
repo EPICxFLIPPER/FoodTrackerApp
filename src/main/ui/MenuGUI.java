@@ -1,10 +1,13 @@
 package ui;
 
 import javax.swing.*;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public abstract class MenuGUI extends JFrame implements ActionListener {
+public abstract class MenuGUI extends JFrame implements ActionListener, MenuListener {
 
     protected GIManager gim;
 
@@ -20,10 +23,20 @@ public abstract class MenuGUI extends JFrame implements ActionListener {
     protected JPanel eastPanel;
     protected JPanel westPanel;
 
-    protected JMenuBar menuBar;
     protected JLabel titleLabel;
 
     protected boolean active;
+
+    protected JMenuBar menuBar = new JMenuBar();
+    protected JMenu fileMenu = new JMenu("File v");
+    protected JMenu pantryMenu = new JMenu("Pantry");
+    protected JMenu recipeMenu = new JMenu("Recipe");
+    protected JMenu mainMenu = new JMenu("Main");
+
+    protected JMenuItem saveItem = new JMenuItem("Save");
+    protected JMenuItem loadItem = new JMenuItem("Load");
+
+    protected String[] listInit = new String[0];
 
 
     public MenuGUI(String title) {
@@ -33,15 +46,7 @@ public abstract class MenuGUI extends JFrame implements ActionListener {
     //Modifies: This
     //Effects: Creates the menu bar for the JFrame
     protected void createMenuBar() {
-        menuBar = new JMenuBar();
 
-        JMenu fileMenu = new JMenu("File v");
-        JMenu pantryMenu = new JMenu("Pantry");
-        JMenu recipeMenu = new JMenu("Recipe");
-        JMenu mainMenu = new JMenu("Main");
-
-        JMenuItem saveItem = new JMenuItem("Save");
-        JMenuItem loadItem = new JMenuItem("Load");
 
         fileMenu.add(saveItem);
         fileMenu.add(loadItem);
@@ -52,6 +57,12 @@ public abstract class MenuGUI extends JFrame implements ActionListener {
         menuBar.add(mainMenu);
 
         setJMenuBar(menuBar);
+
+        saveItem.addActionListener(this);
+        loadItem.addActionListener(this);
+        pantryMenu.addMenuListener(this);
+        recipeMenu.addMenuListener(this);
+        mainMenu.addMenuListener(this);
     }
 
     //Modifies: This
@@ -83,9 +94,47 @@ public abstract class MenuGUI extends JFrame implements ActionListener {
         this.setVisible(active);
     }
 
+    //Effects: Sets the actions for the menu bar
+    protected void menuBarActions(ActionEvent e) {
+        if (e.getSource() == saveItem) {
+            //STUB
+            System.out.println("save");
+        } else if (e.getSource() == loadItem) {
+            //STUB
+            System.out.println("load");
+        }
+    }
+
+    @Override
+    public void menuSelected(MenuEvent e) {
+        if (e.getSource() == mainMenu) {
+            gim.active = gim.MAIN_ACTIVE;
+            gim.activateFrame();
+        } else if (e.getSource() == pantryMenu) {
+            gim.active = gim.PANTRY_ACTIVE;
+            gim.activateFrame();
+            System.out.println("pantry");
+        } else if (e.getSource() == recipeMenu) {
+            gim.active = gim.RECIPE_ACTIVE;
+            gim.activateFrame();
+            System.out.println("recipe");
+        }
+    }
+
+    @Override
+    public void menuDeselected(MenuEvent e) {
+
+    }
+
+    @Override
+    public void menuCanceled(MenuEvent e) {
+
+    }
+
+
     protected abstract void init();
 
-    protected abstract void createButtons();
+    protected abstract void createCenterFrame();
 
 
 

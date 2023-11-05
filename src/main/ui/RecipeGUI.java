@@ -5,42 +5,46 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
-public class PantryGUI extends MenuGUI {
+public class RecipeGUI extends MenuGUI {
 
-    private static final String TITLE = "Pantry Menu";
+    private static final String TITLE = "Recipe Menu";
 
-    private static final int GRID_ROWS = 3;
+    private static final int GRID_ROWS = 4;
     private static final int GRID_COLS = 4;
 
+    private JButton addRecipeButton = new JButton("Add Recipe");
     private JButton addIngredientButton = new JButton("Add Ingredient");
-    private JButton removeIngredientButton = new JButton("Remove Ingredient");
+    private JButton removeRecipeButton = new JButton("Remove Recipe");
 
 
-    private JTextField ingSelect = new JTextField("Ingredient Name");
-    private JTextField ingName = new JTextField("Ingredient Name");
+    private JTextField recipeName = new JTextField("Recipe Name");
+    private JTextField recipeSelect = new JTextField("Recipe Name");
+    private JTextField ingName = new JTextField("Name");
     private JTextField ingQty = new JTextField("Quantity (int)");
     private JTextField ingUnit = new JTextField("Units");
 
-    private ArrayList<String> ingredientsList = new ArrayList<>();
+    private ArrayList<String> recipesList = new ArrayList<>();
     private JList<String> sideList = new JList<>();
     JScrollPane scrollPane = new JScrollPane(sideList);
 
 
-    public PantryGUI(GIManager gim) {
+
+    public RecipeGUI(GIManager gim) {
         super("Food Tracker");
         this.gim = gim;
         active = false;
+
 
         init();
         createMenuBar();
         createTitleLabel(TITLE);
         createCenterFrame();
-        createSidebar();
+        createSideBar();
+
 
         pack();
         repaint();
     }
-
 
     //Modifies: This
     //Effects: Sets the initial settings of the JFrame
@@ -55,33 +59,6 @@ public class PantryGUI extends MenuGUI {
         setLayout(new BorderLayout());
 
         initPanels();
-    }
-
-    @Override
-    protected void createCenterFrame() {
-        addIngredientButton.addActionListener(this);
-        removeIngredientButton.addActionListener(this);
-
-
-        centerPanel.add(new JLabel("Items Select:"));
-
-        centerPanel.add(ingSelect);
-
-        centerPanel.add(new JLabel());
-        centerPanel.add(new JLabel());
-
-        centerPanel.add(addIngredientButton);
-        centerPanel.add(ingName);
-        centerPanel.add(ingQty);
-        centerPanel.add(ingUnit);
-
-        centerPanel.add(removeIngredientButton);
-
-        centerPanel.add(new JLabel());
-        centerPanel.add(new JLabel());
-        centerPanel.add(new JLabel());
-
-        repaint();
     }
 
     //Modifies: this
@@ -103,18 +80,46 @@ public class PantryGUI extends MenuGUI {
         this.add(southPanel,BorderLayout.SOUTH);
     }
 
-    private void createSidebar() {
-        sideList.setListData(ingredientsList.toArray(listInit));
+    private void createSideBar() {
+        sideList.setListData(recipesList.toArray(listInit));
         westPanel.add(scrollPane);
     }
 
 
     @Override
+    protected void createCenterFrame() {
+        addIngredientButton.addActionListener(this);
+        addRecipeButton.addActionListener(this);
+        removeRecipeButton.addActionListener(this);
+
+        recipeSelect.addActionListener(this);
+
+        centerPanel.add(new JLabel("Recipe Select:"));
+        centerPanel.add(recipeSelect);
+        centerPanel.add(new JLabel());
+        centerPanel.add(new JLabel());
+
+        centerPanel.add(addRecipeButton);
+        centerPanel.add(recipeName);
+        centerPanel.add(new JLabel());
+        centerPanel.add(new JLabel());
+
+        centerPanel.add(addIngredientButton);
+        centerPanel.add(ingName);
+        centerPanel.add(ingQty);
+        centerPanel.add(ingUnit);
+
+        centerPanel.add(removeRecipeButton);
+        centerPanel.add(new JLabel());
+        centerPanel.add(new JLabel());
+        centerPanel.add(new JLabel());
+
+        repaint();
+    }
+
+    @Override
     public void actionPerformed(ActionEvent e) {
         menuBarActions(e);
     }
-
-
-
 
 }

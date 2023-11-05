@@ -26,7 +26,7 @@ public class MainGUI extends MenuGUI {
         active = false;
 
         init();
-        createButtons();
+        createCenterFrame();
         createMenuBar();
         createTitleLabel(TITLE);
 
@@ -72,7 +72,7 @@ public class MainGUI extends MenuGUI {
 
     //Modifes: This
     //Effects: Creates the buttons for the Jframe
-    protected void createButtons() {
+    protected void createCenterFrame() {
         recipeMenuButton.addActionListener(this);
         canCookButton.addActionListener(this);
         pantryMenuButton.addActionListener(this);
@@ -114,13 +114,16 @@ public class MainGUI extends MenuGUI {
     //Effects: Specifies the actions preformed by each button;
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == recipeMenuButton) {
-            System.out.println("recipe");
+            gim.active = gim.RECIPE_ACTIVE;
+            gim.activateFrame();
         } else if (e.getSource() == pantryMenuButton) {
             System.out.println("pantry");
             gim.active = gim.PANTRY_ACTIVE;
             gim.activateFrame();
         } else if (e.getSource() == canCookButton) {
             System.out.println("cook");
+        } else {
+            menuBarActions(e);
         }
     }
 

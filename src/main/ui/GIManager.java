@@ -3,16 +3,19 @@ package ui;
 //Manages all the different Menu Panels for the GUI
 public class GIManager {
 
-    private MenuGUI foodTrackerGUI;
+    private MenuGUI mainGUI;
     private MenuGUI pantryGUI;
+    private MenuGUI recipeGUI;
 
     protected int active = 0;
     protected static final int MAIN_ACTIVE = 0;
     protected static final int PANTRY_ACTIVE = 1;
+    protected static final int RECIPE_ACTIVE = 2;
 
     public GIManager() {
-        this.foodTrackerGUI = new MainGUI(this);
+        this.mainGUI = new MainGUI(this);
         this.pantryGUI = new PantryGUI(this);
+        this.recipeGUI = new RecipeGUI(this);
         activateFrame();
     }
 
@@ -20,11 +23,17 @@ public class GIManager {
     //         Decativates the rest
     public void activateFrame() {
         if (this.active == MAIN_ACTIVE) {
-            foodTrackerGUI.activate();
+            mainGUI.activate();
             pantryGUI.deactivate();
+            recipeGUI.deactivate();
         } else if (this.active == PANTRY_ACTIVE) {
             pantryGUI.activate();
-            foodTrackerGUI.deactivate();
+            mainGUI.deactivate();
+            recipeGUI.deactivate();
+        } else if (this.active == RECIPE_ACTIVE) {
+            recipeGUI.activate();
+            mainGUI.deactivate();
+            pantryGUI.deactivate();
         }
     }
 
