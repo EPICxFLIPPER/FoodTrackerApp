@@ -35,6 +35,11 @@ public class MainGUI extends MenuGUI {
     }
 
 
+    @Override
+    public void updateSideList() {
+
+    }
+
     //Modifies: This
     //Effects: Sets the initial settings of the JFrame
     protected void init() {

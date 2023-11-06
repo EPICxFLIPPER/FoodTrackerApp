@@ -1,5 +1,8 @@
 package ui;
 
+import model.Ingredient;
+import model.Recipe;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -25,7 +28,11 @@ public class RecipeGUI extends MenuGUI {
 
     private ArrayList<String> recipesList = new ArrayList<>();
     private JList<String> sideList = new JList<>();
-    JScrollPane scrollPane = new JScrollPane(sideList);
+    private JScrollPane scrollPane = new JScrollPane(sideList);
+
+    private JButton canCookButton = new JButton("Can Cook?");
+
+
 
 
 
@@ -44,6 +51,16 @@ public class RecipeGUI extends MenuGUI {
 
         pack();
         repaint();
+    }
+
+    @Override
+    public void updateSideList() {
+        ArrayList<Recipe> recipes = gim.cookBook.getRecipes();
+        recipesList.clear();
+        for (Recipe r : recipes) {
+            recipesList.add(r.getName());
+        }
+        sideList.setListData(recipesList.toArray(listInit));
     }
 
     //Modifies: This
@@ -91,12 +108,12 @@ public class RecipeGUI extends MenuGUI {
         addIngredientButton.addActionListener(this);
         addRecipeButton.addActionListener(this);
         removeRecipeButton.addActionListener(this);
-
+        canCookButton.addActionListener(this);
         recipeSelect.addActionListener(this);
 
         centerPanel.add(new JLabel("Recipe Select:"));
         centerPanel.add(recipeSelect);
-        centerPanel.add(new JLabel());
+        centerPanel.add(canCookButton);
         centerPanel.add(new JLabel());
 
         centerPanel.add(addRecipeButton);

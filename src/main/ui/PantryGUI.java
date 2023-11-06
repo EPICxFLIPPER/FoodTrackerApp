@@ -1,5 +1,7 @@
 package ui;
 
+import model.Ingredient;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -111,7 +113,45 @@ public class PantryGUI extends MenuGUI {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        menuBarActions(e);
+        if (e.getSource() == addIngredientButton) {
+            addIngredient();
+        } else if (e.getSource() == removeIngredientButton) {
+            removeIngredient();
+        }
+    }
+
+
+    @Override
+    public void updateSideList() {
+        ArrayList<Ingredient> ingredients = gim.cookBook.getPantry().getIngredients();
+        ingredientsList.clear();
+        for (Ingredient i : ingredients) {
+            ingredientsList.add(i.getName());
+        }
+        sideList.setListData(ingredientsList.toArray(listInit));
+    }
+
+    private void addIngredient() {
+        String name = ingName.getText();
+        int quantity = Integer.valueOf(ingQty.getText());
+        String units = ingUnit.getText();
+        Ingredient ingredient = new Ingredient(name,quantity,units);
+        gim.cookBook.addToPantry(ingredient);
+        updateSideList();
+        resetTexts();
+    }
+
+    private void removeIngredient() {
+        gim.cookBook.removeFromPantry(ingSelect.getText());
+        updateSideList();
+        resetTexts();
+    }
+
+    private void resetTexts() {
+        ingName.setText("Ingredient Name");
+        ingQty.setText("Quantity (int)");
+        ingUnit.setText("Units");
+        ingSelect.setText("Ingredient Name");
     }
 
 

@@ -1,11 +1,17 @@
 package ui;
 
+import model.CookBook;
+
 import javax.swing.*;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import static ui.FoodTrackerApp.JSON_STORE;
 
 public abstract class MenuGUI extends JFrame implements ActionListener, MenuListener {
 
@@ -97,10 +103,10 @@ public abstract class MenuGUI extends JFrame implements ActionListener, MenuList
     //Effects: Sets the actions for the menu bar
     protected void menuBarActions(ActionEvent e) {
         if (e.getSource() == saveItem) {
-            //STUB
+            saveCookBook();
             System.out.println("save");
         } else if (e.getSource() == loadItem) {
-            //STUB
+            loadCookBook();
             System.out.println("load");
         }
     }
@@ -112,14 +118,42 @@ public abstract class MenuGUI extends JFrame implements ActionListener, MenuList
             gim.activateFrame();
         } else if (e.getSource() == pantryMenu) {
             gim.active = gim.PANTRY_ACTIVE;
+            gim.pantryGUI.updateSideList();
             gim.activateFrame();
             System.out.println("pantry");
         } else if (e.getSource() == recipeMenu) {
             gim.active = gim.RECIPE_ACTIVE;
+            gim.recipeGUI.updateSideList();
             gim.activateFrame();
             System.out.println("recipe");
         }
     }
+
+    // EFFECTS: saves the cookBook to file
+    private void saveCookBook() {
+        try {
+            gim.jsonWriter.open();
+            gim.jsonWriter.write(gim.cookBook);
+            gim.jsonWriter.close();
+            System.out.println("Saved CookBook to" + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: FoodTrackerApp, any menu that extends menu
+    // EFFECTS: loads CookBook from file, and apply it to all menus and food tracker app
+    private void loadCookBook() {
+        try {
+            CookBook tempBook = gim.jsonReader.read();
+            gim.setCookBook(tempBook);
+            System.out.println("Loaded CookBook from:" + JSON_STORE);
+
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
 
     @Override
     public void menuDeselected(MenuEvent e) {
@@ -130,6 +164,8 @@ public abstract class MenuGUI extends JFrame implements ActionListener, MenuList
     public void menuCanceled(MenuEvent e) {
 
     }
+
+    public abstract void updateSideList();
 
 
     protected abstract void init();
