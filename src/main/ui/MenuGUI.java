@@ -13,6 +13,9 @@ import java.io.IOException;
 
 import static ui.FoodTrackerApp.JSON_STORE;
 
+//Represents the Menu Screens used by the GUI
+//The screens are using a border layout with a grid layout center
+
 public abstract class MenuGUI extends JFrame implements ActionListener, MenuListener {
 
     protected GIManager gim;
@@ -44,7 +47,7 @@ public abstract class MenuGUI extends JFrame implements ActionListener, MenuList
 
     protected String[] listInit = new String[0];
 
-
+    //Creates a menu screen with the given title
     public MenuGUI(String title) {
         super(title);
     }
@@ -72,7 +75,7 @@ public abstract class MenuGUI extends JFrame implements ActionListener, MenuList
     }
 
     //Modifies: This
-    //Effects: Creates the title label
+    //Effects: Creates the title label for given menu
     protected void createTitleLabel(String title) {
         northPanel.setBackground(Color.green);
 
@@ -87,31 +90,32 @@ public abstract class MenuGUI extends JFrame implements ActionListener, MenuList
     }
 
     //Modifies: this
-    //Effects: Changes active to false and sets the visability to false
+    //Effects: Changes active to false and sets the visibility to false
     public void deactivate() {
         active = false;
-        this.setVisible(active);
+        this.setVisible(false);
     }
 
     //Modifies: this
-    //Effects: Changes active to true and sets the visability to true
+    //Effects: Changes active to true and sets the visibility to true
     public void activate() {
         active = true;
-        this.setVisible(active);
+        this.setVisible(true);
     }
 
     //Effects: Sets the actions for the menu bar
     protected void menuBarActions(ActionEvent e) {
         if (e.getSource() == saveItem) {
             saveCookBook();
-            System.out.println("save");
         } else if (e.getSource() == loadItem) {
             loadCookBook();
-            System.out.println("load");
+            updateSideList();
         }
     }
 
     @Override
+    //Modifies: GIManager
+    //Effects: Provides the actions for each individual selection from the menuBar
     public void menuSelected(MenuEvent e) {
         if (e.getSource() == mainMenu) {
             gim.active = gim.MAIN_ACTIVE;
@@ -129,7 +133,7 @@ public abstract class MenuGUI extends JFrame implements ActionListener, MenuList
         }
     }
 
-    // EFFECTS: saves the cookBook to file
+    // EFFECTS: saves the cookBook to JSON file
     private void saveCookBook() {
         try {
             gim.jsonWriter.open();
@@ -141,7 +145,7 @@ public abstract class MenuGUI extends JFrame implements ActionListener, MenuList
         }
     }
 
-    // MODIFIES: FoodTrackerApp, any menu that extends menu
+    // MODIFIES: gim.Cookbook
     // EFFECTS: loads CookBook from file, and apply it to all menus and food tracker app
     private void loadCookBook() {
         try {
@@ -156,20 +160,23 @@ public abstract class MenuGUI extends JFrame implements ActionListener, MenuList
 
 
     @Override
+    //Effects: Provides the actions for the Menu To be deselected
     public void menuDeselected(MenuEvent e) {
-
+        //STUB: No intended actions for this feature
     }
 
     @Override
     public void menuCanceled(MenuEvent e) {
-
+        //STUB: no intended actions for this feature
     }
 
-    public abstract void updateSideList();
+    //Effects: Refreshes the side list(s) of the menu
+    protected abstract void updateSideList();
 
-
+    //Effects: Initializes the menu
     protected abstract void init();
 
+    //Effects: Creates the features for the center main frame.
     protected abstract void createCenterFrame();
 
 

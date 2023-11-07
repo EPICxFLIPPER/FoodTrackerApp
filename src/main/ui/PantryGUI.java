@@ -25,7 +25,9 @@ public class PantryGUI extends MenuGUI {
 
     private ArrayList<String> ingredientsList = new ArrayList<>();
     private JList<String> sideList = new JList<>();
-    JScrollPane scrollPane = new JScrollPane(sideList);
+    private JScrollPane scrollPane = new JScrollPane(sideList);
+
+
 
 
     public PantryGUI(GIManager gim) {

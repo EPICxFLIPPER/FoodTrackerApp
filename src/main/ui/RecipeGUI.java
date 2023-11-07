@@ -27,10 +27,14 @@ public class RecipeGUI extends MenuGUI {
     private JTextField ingUnit = new JTextField("Units");
 
     private ArrayList<String> recipesList = new ArrayList<>();
-    private JList<String> sideList = new JList<>();
-    private JScrollPane scrollPane = new JScrollPane(sideList);
+    private JList<String> westList = new JList<>();
+    private JScrollPane scrollPaneWest = new JScrollPane(westList);
+
+    private JList<String> eastlist = new JList<>();
+    private JScrollPane scrollPaneEast = new JScrollPane(eastlist);
 
     private JButton canCookButton = new JButton("Can Cook?");
+    private JLabel cookResultLabel = new JLabel("No Input Yet!");
 
 
 
@@ -46,7 +50,7 @@ public class RecipeGUI extends MenuGUI {
         createMenuBar();
         createTitleLabel(TITLE);
         createCenterFrame();
-        createSideBar();
+        createSideBars();
 
 
         pack();
@@ -60,7 +64,7 @@ public class RecipeGUI extends MenuGUI {
         for (Recipe r : recipes) {
             recipesList.add(r.getName());
         }
-        sideList.setListData(recipesList.toArray(listInit));
+        westList.setListData(recipesList.toArray(listInit));
     }
 
     //Modifies: This
@@ -97,9 +101,11 @@ public class RecipeGUI extends MenuGUI {
         this.add(southPanel,BorderLayout.SOUTH);
     }
 
-    private void createSideBar() {
-        sideList.setListData(recipesList.toArray(listInit));
-        westPanel.add(scrollPane);
+    private void createSideBars() {
+        westList.setListData(recipesList.toArray(listInit));
+        westPanel.add(scrollPaneWest);
+
+        eastPanel.add(scrollPaneEast);
     }
 
 
@@ -109,12 +115,11 @@ public class RecipeGUI extends MenuGUI {
         addRecipeButton.addActionListener(this);
         removeRecipeButton.addActionListener(this);
         canCookButton.addActionListener(this);
-        recipeSelect.addActionListener(this);
 
         centerPanel.add(new JLabel("Recipe Select:"));
         centerPanel.add(recipeSelect);
         centerPanel.add(canCookButton);
-        centerPanel.add(new JLabel());
+        centerPanel.add(cookResultLabel);
 
         centerPanel.add(addRecipeButton);
         centerPanel.add(recipeName);
@@ -136,7 +141,57 @@ public class RecipeGUI extends MenuGUI {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        menuBarActions(e);
+        if (e.getSource() == addIngredientButton) {
+            addIngredientToRecipe();
+        } else if (e.getSource() == addRecipeButton) {
+            addRecipe();
+        } else if (e.getSource() == removeRecipeButton) {
+            removeRecipe();
+        } else if (e.getSource() == canCookButton) {
+            canCook();
+        }
+        updateSideList();
     }
+
+    private void addRecipe() {
+        String name = recipeName.getText();
+        Recipe recipe = new Recipe(name);
+        gim.cookBook.addRecipe(recipe);
+    }
+
+    private void addIngredientToRecipe() {
+        String name = ingName.getText();
+        int quantity = Integer.valueOf(ingQty.getText());
+        String units = ingUnit.getText();
+
+        Ingredient ingredient = new Ingredient(name,quantity,units);
+
+        String recipeName = recipeSelect.getText();
+        ArrayList<Recipe> recipes = gim.cookBook.getRecipes();
+
+        for (Recipe r : recipes) {
+            if (r.getName().equals(recipeName)) {
+                r.addIngredient(ingredient);
+            }
+        }
+
+    }
+
+    private void removeRecipe() {
+        String recipeName = recipeSelect.getText();
+        gim.cookBook.removeRecipe(recipeName);
+    }
+
+    private void canCook() {
+        ArrayList<String> items = gim.cookBook.itemsToCook(recipeSelect.getText());
+        if (items.size() == 0) {
+            cookResultLabel.setText("You can cook this!");
+        } else {
+            cookResultLabel.setText("Missing Ingredients!");
+        }
+
+        eastlist.setListData(items.toArray(listInit));
+    }
+
 
 }

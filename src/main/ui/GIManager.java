@@ -4,7 +4,7 @@ import model.CookBook;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
-//Manages all the different Menu Panels for the GUI
+//Combines all JFrame aspects with cookbook to create GUI
 public class GIManager {
 
     private MenuGUI mainGUI;
@@ -21,19 +21,14 @@ public class GIManager {
     protected JsonWriter jsonWriter;
     protected static final String JSON_STORE = "./data/cookbook.json";
 
+    //Effects: Starts the GUI
     public GIManager() {
-        this.cookBook = new CookBook();
-        this.jsonReader = new JsonReader(JSON_STORE);
-        this.jsonWriter = new JsonWriter(JSON_STORE);
-
-        this.mainGUI = new MainGUI(this);
-        this.pantryGUI = new PantryGUI(this);
-        this.recipeGUI = new RecipeGUI(this);
-        activateFrame();
+        linkCookBook();
+        linkFrames();
     }
 
-    //Effects: Activates the frame of the given nubmer,
-    //         Decativates the rest
+    //Effects: Activates the frame of the given number,
+    //         Deactivates all other frames
     public void activateFrame() {
         if (this.active == MAIN_ACTIVE) {
             mainGUI.activate();
@@ -50,12 +45,28 @@ public class GIManager {
         }
     }
 
+    //Modifies: This
+    //Effects: sets the cookbook and save and load features
+    private void linkCookBook() {
+        this.cookBook = new CookBook();
+        this.jsonReader = new JsonReader(JSON_STORE);
+        this.jsonWriter = new JsonWriter(JSON_STORE);
+    }
+
+    //Modifies: This
+    //Effects: Creates the different menu frames, and activates the main menu
+    private void linkFrames() {
+        active = 0;
+        this.mainGUI = new MainGUI(this);
+        this.pantryGUI = new PantryGUI(this);
+        this.recipeGUI = new RecipeGUI(this);
+        activateFrame();
+    }
+
+    //Modifies: This
+    //Effects: Sets this.cookbook to the given cookbook
     public void setCookBook(CookBook cookBook) {
         this.cookBook = cookBook;
     }
-
-
-
-
 
 }
