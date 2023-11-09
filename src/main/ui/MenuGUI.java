@@ -37,13 +37,13 @@ public abstract class MenuGUI extends JFrame implements ActionListener, MenuList
     protected boolean active;
 
     protected JMenuBar menuBar = new JMenuBar();
-    protected JMenu fileMenu = new JMenu("File v");
+//    protected JMenu fileMenu = new JMenu("File v");
     protected JMenu pantryMenu = new JMenu("Pantry");
     protected JMenu recipeMenu = new JMenu("Recipe");
     protected JMenu mainMenu = new JMenu("Main");
 
-    protected JMenuItem saveItem = new JMenuItem("Save");
-    protected JMenuItem loadItem = new JMenuItem("Load");
+//    protected JMenuItem saveItem = new JMenuItem("Save");
+//    protected JMenuItem loadItem = new JMenuItem("Load");
 
     protected String[] listInit = new String[0];
 
@@ -57,18 +57,13 @@ public abstract class MenuGUI extends JFrame implements ActionListener, MenuList
     protected void createMenuBar() {
 
 
-        fileMenu.add(saveItem);
-        fileMenu.add(loadItem);
 
-        menuBar.add(fileMenu);
         menuBar.add(pantryMenu);
         menuBar.add(recipeMenu);
         menuBar.add(mainMenu);
 
         setJMenuBar(menuBar);
 
-        saveItem.addActionListener(this);
-        loadItem.addActionListener(this);
         pantryMenu.addMenuListener(this);
         recipeMenu.addMenuListener(this);
         mainMenu.addMenuListener(this);
@@ -103,15 +98,15 @@ public abstract class MenuGUI extends JFrame implements ActionListener, MenuList
         this.setVisible(true);
     }
 
-    //Effects: Sets the actions for the menu bar
-    protected void menuBarActions(ActionEvent e) {
-        if (e.getSource() == saveItem) {
-            saveCookBook();
-        } else if (e.getSource() == loadItem) {
-            loadCookBook();
-            updateSideList();
-        }
-    }
+//    //Effects: Sets the actions for the menu bar
+//    protected void menuBarActions(ActionEvent e) {
+//        if (e.getSource() == saveItem) {
+//            saveCookBook();
+//        } else if (e.getSource() == loadItem) {
+//            loadCookBook();
+//            updateSideList();
+//        }
+//    }
 
     @Override
     //Modifies: GIManager
@@ -133,30 +128,30 @@ public abstract class MenuGUI extends JFrame implements ActionListener, MenuList
         }
     }
 
-    // EFFECTS: saves the cookBook to JSON file
-    private void saveCookBook() {
-        try {
-            gim.jsonWriter.open();
-            gim.jsonWriter.write(gim.cookBook);
-            gim.jsonWriter.close();
-            System.out.println("Saved CookBook to" + JSON_STORE);
-        } catch (FileNotFoundException e) {
-            System.out.println("Unable to write to file: " + JSON_STORE);
-        }
-    }
+//    // EFFECTS: saves the cookBook to JSON file
+//    private void saveCookBook() {
+//        try {
+//            gim.jsonWriter.open();
+//            gim.jsonWriter.write(gim.cookBook);
+//            gim.jsonWriter.close();
+//            System.out.println("Saved CookBook to" + JSON_STORE);
+//        } catch (FileNotFoundException e) {
+//            System.out.println("Unable to write to file: " + JSON_STORE);
+//        }
+//    }
 
-    // MODIFIES: gim.Cookbook
-    // EFFECTS: loads CookBook from file, and apply it to all menus and food tracker app
-    private void loadCookBook() {
-        try {
-            CookBook tempBook = gim.jsonReader.read();
-            gim.setCookBook(tempBook);
-            System.out.println("Loaded CookBook from:" + JSON_STORE);
-
-        } catch (IOException e) {
-            System.out.println("Unable to read from file: " + JSON_STORE);
-        }
-    }
+//    // MODIFIES: gim.Cookbook
+//    // EFFECTS: loads CookBook from file, and apply it to all menus and food tracker app
+//    private void loadCookBook() {
+//        try {
+//            CookBook tempBook = gim.jsonReader.read();
+//            gim.setCookBook(tempBook);
+//            System.out.println("Loaded CookBook from:" + JSON_STORE);
+//
+//        } catch (IOException e) {
+//            System.out.println("Unable to read from file: " + JSON_STORE);
+//        }
+//    }
 
 
     @Override

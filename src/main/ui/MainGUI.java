@@ -1,8 +1,14 @@
 package ui;
 
+import model.CookBook;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import static ui.FoodTrackerApp.JSON_STORE;
 
 //Represents the GUI for the Food Tracker application
 public class MainGUI extends MenuGUI {
@@ -15,9 +21,9 @@ public class MainGUI extends MenuGUI {
     private static final int GRID_ROWS = 3;
     private static final int GRID_COLS = 5;
 
-    private JButton recipeMenuButton = new JButton("Recipe Menu");
-    private JButton pantryMenuButton = new JButton("Pantry Menu");
-    private JButton canCookButton = new JButton("Can Cook?");
+    private JButton saveButton = new JButton("Save");
+    private JButton loadButton = new JButton("Load");
+//    private JButton canCookButton = new JButton("Can Cook?");
 
 
     public MainGUI(GIManager gim) {
@@ -75,41 +81,25 @@ public class MainGUI extends MenuGUI {
 
 
 
-    //Modifes: This
+    //Modifies: This
     //Effects: Creates the buttons for the Jframe
     protected void createCenterFrame() {
-        recipeMenuButton.addActionListener(this);
-        canCookButton.addActionListener(this);
-        pantryMenuButton.addActionListener(this);
+        saveButton.addActionListener(this);
+        loadButton.addActionListener(this);
 
-        centerPanel.add(new JLabel());
-
-        centerPanel.add(recipeMenuButton);
-
-
-        centerPanel.add(new JLabel());
-
-        centerPanel.add(pantryMenuButton);
-
-
-        centerPanel.add(new JLabel());
-        centerPanel.add(new JLabel());
-        centerPanel.add(new JLabel());
-
-        centerPanel.add(canCookButton);
-
-
-        centerPanel.add(new JLabel());
-        centerPanel.add(new JLabel());
-        centerPanel.add(new JLabel());
-        centerPanel.add(new JLabel());
-        centerPanel.add(new JLabel());
-        centerPanel.add(new JLabel());
-        centerPanel.add(new JLabel());
-
-
-        repaint();
+        createBlankLabels(1);
+        centerPanel.add(saveButton);
+        createBlankLabels(1);
+        centerPanel.add(loadButton);
+        createBlankLabels(11);
     }
+
+    private void createBlankLabels(int times) {
+        for (int i = 0; i < times; i++) {
+            centerPanel.add(new JLabel());
+        }
+    }
+
 
 
 
@@ -118,17 +108,35 @@ public class MainGUI extends MenuGUI {
     @Override
     //Effects: Specifies the actions preformed by each button;
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == recipeMenuButton) {
-            gim.active = gim.RECIPE_ACTIVE;
-            gim.activateFrame();
-        } else if (e.getSource() == pantryMenuButton) {
-            System.out.println("pantry");
-            gim.active = gim.PANTRY_ACTIVE;
-            gim.activateFrame();
-        } else if (e.getSource() == canCookButton) {
-            System.out.println("cook");
-        } else {
-            menuBarActions(e);
+        if (e.getSource() == saveButton) {
+            saveCookBook();
+        } else if (e.getSource() == loadButton) {
+            loadCookBook();
+        }
+    }
+
+    // EFFECTS: saves the cookBook to JSON file
+    private void saveCookBook() {
+        try {
+            gim.jsonWriter.open();
+            gim.jsonWriter.write(gim.cookBook);
+            gim.jsonWriter.close();
+            System.out.println("Saved CookBook to" + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: gim.Cookbook
+    // EFFECTS: loads CookBook from file, and apply it to all menus and food tracker app
+    private void loadCookBook() {
+        try {
+            CookBook tempBook = gim.jsonReader.read();
+            gim.setCookBook(tempBook);
+            System.out.println("Loaded CookBook from:" + JSON_STORE);
+
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
 

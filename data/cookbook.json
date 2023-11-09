@@ -1,15 +1,32 @@
 {
-    "recipes": [{
-        "name": "alyson",
-        "ingredients": [{
-            "quantity": 1,
-            "name": "Alyson",
-            "units": "Balyson"
-        }]
-    }],
-    "pantry": {"ingredients": [{
-        "quantity": 40,
-        "name": "sdgsjdgkdg",
-        "units": "fjkd"
-    }]}
+    "recipes": [
+        {
+            "name": "alyson",
+            "ingredients": [{
+                "quantity": 1,
+                "name": "Alyson",
+                "units": "Balyson"
+            }]
+        },
+        {
+            "name": "karen",
+            "ingredients": [{
+                "quantity": 1,
+                "name": "noodles",
+                "units": "grams"
+            }]
+        }
+    ],
+    "pantry": {"ingredients": [
+        {
+            "quantity": 40,
+            "name": "sdgsjdgkdg",
+            "units": "fjkd"
+        },
+        {
+            "quantity": 2,
+            "name": "testIng",
+            "units": "bruh"
+        }
+    ]}
 }

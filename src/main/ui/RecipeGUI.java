@@ -30,8 +30,8 @@ public class RecipeGUI extends MenuGUI {
     private JList<String> westList = new JList<>();
     private JScrollPane scrollPaneWest = new JScrollPane(westList);
 
-    private JList<String> eastlist = new JList<>();
-    private JScrollPane scrollPaneEast = new JScrollPane(eastlist);
+    private JList<String> eastList = new JList<>();
+    private JScrollPane scrollPaneEast = new JScrollPane(eastList);
 
     private JButton canCookButton = new JButton("Can Cook?");
     private JLabel cookResultLabel = new JLabel("No Input Yet!");
@@ -60,18 +60,18 @@ public class RecipeGUI extends MenuGUI {
     @Override
     public void updateSideList() {
         ArrayList<Recipe> recipes = gim.cookBook.getRecipes();
-        recipesList.clear();
+        ArrayList<String> recipeNames = new ArrayList<>();
+        //recipesList.clear();
         for (Recipe r : recipes) {
-            recipesList.add(r.getName());
+            recipeNames.add(r.getName());
         }
-        westList.setListData(recipesList.toArray(listInit));
+        westList.setListData(recipeNames.toArray(listInit));
     }
 
     //Modifies: This
     //Effects: Sets the initial settings of the JFrame
     protected void init() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //setVisible(true);
         setSize(X_DIM,Y_DIM);
         setResizable(true);
         setTitle(TITLE);
@@ -190,7 +190,7 @@ public class RecipeGUI extends MenuGUI {
             cookResultLabel.setText("Missing Ingredients!");
         }
 
-        eastlist.setListData(items.toArray(listInit));
+        eastList.setListData(items.toArray(listInit));
     }
 
 
