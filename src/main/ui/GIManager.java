@@ -42,35 +42,42 @@ public class GIManager extends JFrame implements MenuListener {
     public GIManager() {
         super("Food Tracker App");
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(X_DIM,Y_DIM);
-        setResizable(true);
-        setTitle("Food Tracker");
-
-        setMinimumSize(new Dimension(X_DIM,Y_DIM));
-
-        this.mainGUI = new MainGUI(this);
-        this.pantryGUI = new PantryGUI(this);
-        this.recipeGUI = new RecipeGUI(this);
-
-
-        contentPanel.setLayout(cardLayout);
-        contentPanel.add(mainGUI,"main");
-        contentPanel.add(pantryGUI,"pantry");
-        contentPanel.add(recipeGUI,"recipe");
-        cardLayout.show(contentPanel,"main");
-
-        createMenuBar();
+        init();
         add(contentPanel);
-
-
-        linkCookBook();
-
         setVisible(true);
         pack();
         repaint();
     }
 
+    private void init() {
+        setDefaults();
+        initPanels();
+        initContentPanel();
+        createMenuBar();
+        linkCookBook();
+    }
+
+    private void initContentPanel() {
+        contentPanel.setLayout(cardLayout);
+        contentPanel.add(mainGUI,"main");
+        contentPanel.add(pantryGUI,"pantry");
+        contentPanel.add(recipeGUI,"recipe");
+        cardLayout.show(contentPanel,"main");
+    }
+
+    private void initPanels() {
+        this.mainGUI = new MainGUI(this);
+        this.pantryGUI = new PantryGUI(this);
+        this.recipeGUI = new RecipeGUI(this);
+    }
+
+    private void setDefaults() {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(X_DIM,Y_DIM);
+        setResizable(true);
+        setTitle("Food Tracker");
+        setMinimumSize(new Dimension(X_DIM,Y_DIM));
+    }
 
 
     //Modifies: This
