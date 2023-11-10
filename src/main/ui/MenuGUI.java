@@ -38,13 +38,6 @@ public abstract class MenuGUI extends JPanel implements ActionListener {
 
     protected String[] listInit = new String[0];
 
-    //Creates a menu screen with the given title
-//    public MenuGUI(String title) {
-//        super(title);
-//    }
-
-
-
     //Modifies: This
     //Effects: Creates the title label for given menu
     protected void createTitleLabel(String title) {
@@ -60,49 +53,9 @@ public abstract class MenuGUI extends JPanel implements ActionListener {
         repaint();
     }
 
-    //Modifies: this
-    //Effects: Changes active to false and sets the visibility to false
-    public void deactivate() {
-        active = false;
-        this.setVisible(false);
-    }
 
-    //Modifies: this
-    //Effects: Changes active to true and sets the visibility to true
-    public void activate() {
-        active = true;
-        this.setVisible(true);
-    }
 
-//    //Effects: Sets the actions for the menu bar
-//    protected void menuBarActions(ActionEvent e) {
-//        if (e.getSource() == saveItem) {
-//            saveCookBook();
-//        } else if (e.getSource() == loadItem) {
-//            loadCookBook();
-//            updateSideList();
-//        }
-//    }
 
-//    @Override
-//    //Modifies: GIManager
-//    //Effects: Provides the actions for each individual selection from the menuBar
-//    public void menuSelected(MenuEvent e) {
-//        if (e.getSource() == mainMenu) {
-//            gim.active = gim.MAIN_ACTIVE;
-//            gim.activateFrame();
-//        } else if (e.getSource() == pantryMenu) {
-//            gim.active = gim.PANTRY_ACTIVE;
-//            gim.pantryGUI.updateSideList();
-//            gim.activateFrame();
-//            System.out.println("pantry");
-//        } else if (e.getSource() == recipeMenu) {
-//            gim.active = gim.RECIPE_ACTIVE;
-//            gim.recipeGUI.updateSideList();
-//            gim.activateFrame();
-//            System.out.println("recipe");
-//        }
-//    }
 
 //    // EFFECTS: saves the cookBook to JSON file
 //    private void saveCookBook() {
