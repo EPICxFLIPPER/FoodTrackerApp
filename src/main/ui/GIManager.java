@@ -58,6 +58,14 @@ public class GIManager extends JFrame implements MenuListener {
         initContentPanel();
         createMenuBar();
         linkCookBook();
+        setImageLogo();
+    }
+
+    //Modifies: This
+    //Effects: Sets the image logo for the frame
+    private void setImageLogo() {
+        ImageIcon image = new ImageIcon("./Images/cartoonBurger.jpg");
+        this.setIconImage(image.getImage());
     }
 
     //Modifies: this
@@ -154,9 +162,6 @@ public class GIManager extends JFrame implements MenuListener {
     }
 
 
-
-    //TODO : Fix bug with menu bar
-    //TODO : Add Image
 
 
 

@@ -23,7 +23,11 @@ public class MainGUI extends MenuGUI {
 
     private JButton saveButton = new JButton("Save");
     private JButton loadButton = new JButton("Load");
-//    private JButton canCookButton = new JButton("Can Cook?");
+
+    private static final String burgerImageLoc = "./Images/cartoonBurger.jpg";
+    private ImageIcon burgerImage;
+    private JLabel burgerImageLabel;
+
 
 
     public MainGUI(GIManager gim) {
@@ -32,6 +36,7 @@ public class MainGUI extends MenuGUI {
         active = false;
 
         init();
+        setImages();
         createCenterFrame();
 
         createTitleLabel(TITLE);
@@ -45,6 +50,19 @@ public class MainGUI extends MenuGUI {
     @Override
     public void updateSideList() {
 
+    }
+
+    private void setImages() {
+        try {
+            burgerImage = new ImageIcon(burgerImageLoc);
+        } catch (Exception e) {
+            System.out.println("could not find image");
+        }
+
+        burgerImageLabel = new JLabel();
+        burgerImageLabel.setIcon(burgerImage);
+
+        southPanel.add(burgerImageLabel);
     }
 
     //Modifies: This
@@ -88,6 +106,7 @@ public class MainGUI extends MenuGUI {
     protected void createCenterFrame() {
         createBlankLabels(1);
         centerPanel.add(saveButton);
+
         createBlankLabels(1);
         centerPanel.add(loadButton);
         createBlankLabels(11);
