@@ -8,6 +8,8 @@ import javax.swing.*;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 //Combines all JFrame aspects with cookbook to create GUI
 public class GIManager extends JFrame implements MenuListener {
@@ -112,6 +114,12 @@ public class GIManager extends JFrame implements MenuListener {
         pantryMenu.addMenuListener(this);
         recipeMenu.addMenuListener(this);
         mainMenu.addMenuListener(this);
+
+
+
+        pantryMenu.setMnemonic('P');
+        recipeMenu.setMnemonic('R');
+        mainMenu.setMnemonic('M');
     }
 
     @Override
@@ -135,7 +143,7 @@ public class GIManager extends JFrame implements MenuListener {
 
     @Override
     public void menuCanceled(MenuEvent e) {
-        System.out.println("cancled");
+        System.out.println("canceled");
     }
 
     //refreshes the sideLists on each of the Panels
@@ -144,6 +152,12 @@ public class GIManager extends JFrame implements MenuListener {
         pantryGUI.updateSideList();
         mainGUI.updateSideList();
     }
+
+
+
+    //TODO : Fix bug with menu bar
+    //TODO : Add Image
+
 
 
 

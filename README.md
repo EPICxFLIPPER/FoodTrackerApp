@@ -34,5 +34,7 @@ Users will need to enter:
 
 ## Citations
 - Json demo provided by the CPSC 210 course team.
+- Jswing Tutorial by BroCode on YouTube
+- Cute Burger Cartoon for Children Book, By OreNyee On AdobeStock
 
  

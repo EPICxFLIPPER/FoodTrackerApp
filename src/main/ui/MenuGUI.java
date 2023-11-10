@@ -53,36 +53,6 @@ public abstract class MenuGUI extends JPanel implements ActionListener {
         repaint();
     }
 
-
-
-
-
-//    // EFFECTS: saves the cookBook to JSON file
-//    private void saveCookBook() {
-//        try {
-//            gim.jsonWriter.open();
-//            gim.jsonWriter.write(gim.cookBook);
-//            gim.jsonWriter.close();
-//            System.out.println("Saved CookBook to" + JSON_STORE);
-//        } catch (FileNotFoundException e) {
-//            System.out.println("Unable to write to file: " + JSON_STORE);
-//        }
-//    }
-
-//    // MODIFIES: gim.Cookbook
-//    // EFFECTS: loads CookBook from file, and apply it to all menus and food tracker app
-//    private void loadCookBook() {
-//        try {
-//            CookBook tempBook = gim.jsonReader.read();
-//            gim.setCookBook(tempBook);
-//            System.out.println("Loaded CookBook from:" + JSON_STORE);
-//
-//        } catch (IOException e) {
-//            System.out.println("Unable to read from file: " + JSON_STORE);
-//        }
-//    }
-
-
     //Effects: Refreshes the side list(s) of the menu
     protected abstract void updateSideList();
 
