@@ -35,6 +35,7 @@ public class MainGUI extends MenuGUI {
         createCenterFrame();
         createMenuBar();
         createTitleLabel(TITLE);
+        setActionListeners();
 
         pack();
         repaint();
@@ -79,31 +80,23 @@ public class MainGUI extends MenuGUI {
         this.add(southPanel,BorderLayout.SOUTH);
     }
 
-
+    @Override
+    //Modifies: This
+    //Effects: Sets the action listeners for the features on the menu
+    protected void setActionListeners() {
+        saveButton.addActionListener(this);
+        loadButton.addActionListener(this);
+    }
 
     //Modifies: This
     //Effects: Creates the buttons for the Jframe
     protected void createCenterFrame() {
-        saveButton.addActionListener(this);
-        loadButton.addActionListener(this);
-
         createBlankLabels(1);
         centerPanel.add(saveButton);
         createBlankLabels(1);
         centerPanel.add(loadButton);
         createBlankLabels(11);
     }
-
-    private void createBlankLabels(int times) {
-        for (int i = 0; i < times; i++) {
-            centerPanel.add(new JLabel());
-        }
-    }
-
-
-
-
-
 
     @Override
     //Effects: Specifies the actions preformed by each button;

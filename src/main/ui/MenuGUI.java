@@ -174,6 +174,15 @@ public abstract class MenuGUI extends JFrame implements ActionListener, MenuList
     //Effects: Creates the features for the center main frame.
     protected abstract void createCenterFrame();
 
+    //Effects: Makes the blank filler labels for the center grid frame:
+    protected void createBlankLabels(int times) {
+        for (int i = 0; i < times; i++) {
+            centerPanel.add(new JLabel());
+        }
+    }
 
+    //Modifies: This
+    //Effects: Sets the action listeners for the features on the menu
+    protected abstract void setActionListeners();
 
 }

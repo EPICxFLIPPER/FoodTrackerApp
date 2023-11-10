@@ -40,6 +40,7 @@ public class PantryGUI extends MenuGUI {
         createTitleLabel(TITLE);
         createCenterFrame();
         createSidebar();
+        setActionListeners();
 
         pack();
         repaint();
@@ -63,29 +64,21 @@ public class PantryGUI extends MenuGUI {
 
     @Override
     protected void createCenterFrame() {
-        addIngredientButton.addActionListener(this);
-        removeIngredientButton.addActionListener(this);
-
-
         centerPanel.add(new JLabel("Items Select:"));
-
         centerPanel.add(ingSelect);
-
-        centerPanel.add(new JLabel());
-        centerPanel.add(new JLabel());
-
+        createBlankLabels(2);
         centerPanel.add(addIngredientButton);
         centerPanel.add(ingName);
         centerPanel.add(ingQty);
         centerPanel.add(ingUnit);
-
         centerPanel.add(removeIngredientButton);
+        createBlankLabels(3);
+    }
 
-        centerPanel.add(new JLabel());
-        centerPanel.add(new JLabel());
-        centerPanel.add(new JLabel());
-
-        repaint();
+    @Override
+    protected void setActionListeners() {
+        addIngredientButton.addActionListener(this);
+        removeIngredientButton.addActionListener(this);
     }
 
     //Modifies: this

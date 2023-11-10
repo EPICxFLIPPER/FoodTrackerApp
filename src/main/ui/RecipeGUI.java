@@ -46,11 +46,13 @@ public class RecipeGUI extends MenuGUI {
         active = false;
 
 
+
         init();
         createMenuBar();
         createTitleLabel(TITLE);
         createCenterFrame();
         createSideBars();
+        setActionListeners();
 
 
         pack();
@@ -111,10 +113,7 @@ public class RecipeGUI extends MenuGUI {
 
     @Override
     protected void createCenterFrame() {
-        addIngredientButton.addActionListener(this);
-        addRecipeButton.addActionListener(this);
-        removeRecipeButton.addActionListener(this);
-        canCookButton.addActionListener(this);
+
 
         centerPanel.add(new JLabel("Recipe Select:"));
         centerPanel.add(recipeSelect);
@@ -123,8 +122,7 @@ public class RecipeGUI extends MenuGUI {
 
         centerPanel.add(addRecipeButton);
         centerPanel.add(recipeName);
-        centerPanel.add(new JLabel());
-        centerPanel.add(new JLabel());
+        createBlankLabels(2);
 
         centerPanel.add(addIngredientButton);
         centerPanel.add(ingName);
@@ -132,11 +130,19 @@ public class RecipeGUI extends MenuGUI {
         centerPanel.add(ingUnit);
 
         centerPanel.add(removeRecipeButton);
-        centerPanel.add(new JLabel());
-        centerPanel.add(new JLabel());
-        centerPanel.add(new JLabel());
+        createBlankLabels(3);
 
-        repaint();
+
+    }
+
+    @Override
+    //Modifies: This
+    //Effects: Sets the action listeners for the features on the menu
+    protected void setActionListeners() {
+        addIngredientButton.addActionListener(this);
+        addRecipeButton.addActionListener(this);
+        removeRecipeButton.addActionListener(this);
+        canCookButton.addActionListener(this);
     }
 
     @Override
