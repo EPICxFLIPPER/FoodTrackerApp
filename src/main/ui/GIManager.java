@@ -18,11 +18,6 @@ public class GIManager extends JFrame implements MenuListener {
     protected MenuGUI pantryGUI;
     protected MenuGUI recipeGUI;
 
-    protected int active = 0;
-    protected static final int MAIN_ACTIVE = 0;
-    protected static final int PANTRY_ACTIVE = 1;
-    protected static final int RECIPE_ACTIVE = 2;
-
     protected CookBook cookBook;
     protected JsonReader jsonReader;
     protected JsonWriter jsonWriter;
@@ -44,8 +39,6 @@ public class GIManager extends JFrame implements MenuListener {
     public GIManager() {
         super("Food Tracker App");
         init();
-        add(contentPanel);
-        setVisible(true);
         pack();
         repaint();
     }
@@ -76,6 +69,7 @@ public class GIManager extends JFrame implements MenuListener {
         contentPanel.add(pantryGUI,"pantry");
         contentPanel.add(recipeGUI,"recipe");
         cardLayout.show(contentPanel,"main");
+        add(contentPanel);
     }
 
     //Modifies: This
@@ -94,6 +88,7 @@ public class GIManager extends JFrame implements MenuListener {
         setResizable(true);
         setTitle("Food Tracker");
         setMinimumSize(new Dimension(X_DIM,Y_DIM));
+        setVisible(true);
     }
 
     //Modifies: This
@@ -113,18 +108,31 @@ public class GIManager extends JFrame implements MenuListener {
     //Modifies: This
     //Effects: Creates the menu bar for the JFrame
     protected void createMenuBar() {
+        addMenus();
+        addMenuListeners();
+        createMenuMnemonics();
+        setJMenuBar(menuBar);
+    }
+
+    //Modifies: This
+    //Effects: Adds each of the menu tabs to the menu bar
+    private void addMenus() {
         menuBar.add(pantryMenu);
         menuBar.add(recipeMenu);
         menuBar.add(mainMenu);
+    }
 
-        setJMenuBar(menuBar);
-
+    //Modifies:This
+    //Effects: Adds a menu listener to each of the menu Items
+    private void addMenuListeners() {
         pantryMenu.addMenuListener(this);
         recipeMenu.addMenuListener(this);
         mainMenu.addMenuListener(this);
+    }
 
-
-
+    //Modifies: This
+    //Effects: Sets a Mnemonic to each of the Menu Items
+    private void createMenuMnemonics() {
         pantryMenu.setMnemonic('P');
         recipeMenu.setMnemonic('R');
         mainMenu.setMnemonic('M');
@@ -146,12 +154,12 @@ public class GIManager extends JFrame implements MenuListener {
 
     @Override
     public void menuDeselected(MenuEvent e) {
-        System.out.println("deselect");
+
     }
 
     @Override
     public void menuCanceled(MenuEvent e) {
-        System.out.println("canceled");
+
     }
 
     //refreshes the sideLists on each of the Panels
