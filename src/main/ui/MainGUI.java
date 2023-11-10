@@ -27,17 +27,17 @@ public class MainGUI extends MenuGUI {
 
 
     public MainGUI(GIManager gim) {
-        super(TITLE);
+
         this.gim = gim;
         active = false;
 
         init();
         createCenterFrame();
-        createMenuBar();
+
         createTitleLabel(TITLE);
         setActionListeners();
 
-        pack();
+        setVisible(true);
         repaint();
     }
 
@@ -50,12 +50,7 @@ public class MainGUI extends MenuGUI {
     //Modifies: This
     //Effects: Sets the initial settings of the JFrame
     protected void init() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(X_DIM,Y_DIM);
-        setResizable(true);
-        setTitle(TITLE);
 
-        setMinimumSize(new Dimension(X_DIM,Y_DIM));
         setLayout(new BorderLayout());
 
         initPanels();

@@ -16,12 +16,11 @@ import static ui.FoodTrackerApp.JSON_STORE;
 //Represents the Menu Screens used by the GUI
 //The screens are using a border layout with a grid layout center
 
-public abstract class MenuGUI extends JFrame implements ActionListener, MenuListener {
+public abstract class MenuGUI extends JPanel implements ActionListener {
 
     protected GIManager gim;
 
-    protected static final int X_DIM = 800;
-    protected static final int Y_DIM = 800;
+
 
     protected static final int FONT_SIZE = 20;
     protected static final Font COOPER_BLACK = new Font("Cooper Black",Font.PLAIN,FONT_SIZE);
@@ -36,38 +35,15 @@ public abstract class MenuGUI extends JFrame implements ActionListener, MenuList
 
     protected boolean active;
 
-    protected JMenuBar menuBar = new JMenuBar();
-//    protected JMenu fileMenu = new JMenu("File v");
-    protected JMenu pantryMenu = new JMenu("Pantry");
-    protected JMenu recipeMenu = new JMenu("Recipe");
-    protected JMenu mainMenu = new JMenu("Main");
-
-//    protected JMenuItem saveItem = new JMenuItem("Save");
-//    protected JMenuItem loadItem = new JMenuItem("Load");
 
     protected String[] listInit = new String[0];
 
     //Creates a menu screen with the given title
-    public MenuGUI(String title) {
-        super(title);
-    }
-
-    //Modifies: This
-    //Effects: Creates the menu bar for the JFrame
-    protected void createMenuBar() {
+//    public MenuGUI(String title) {
+//        super(title);
+//    }
 
 
-
-        menuBar.add(pantryMenu);
-        menuBar.add(recipeMenu);
-        menuBar.add(mainMenu);
-
-        setJMenuBar(menuBar);
-
-        pantryMenu.addMenuListener(this);
-        recipeMenu.addMenuListener(this);
-        mainMenu.addMenuListener(this);
-    }
 
     //Modifies: This
     //Effects: Creates the title label for given menu
@@ -108,25 +84,25 @@ public abstract class MenuGUI extends JFrame implements ActionListener, MenuList
 //        }
 //    }
 
-    @Override
-    //Modifies: GIManager
-    //Effects: Provides the actions for each individual selection from the menuBar
-    public void menuSelected(MenuEvent e) {
-        if (e.getSource() == mainMenu) {
-            gim.active = gim.MAIN_ACTIVE;
-            gim.activateFrame();
-        } else if (e.getSource() == pantryMenu) {
-            gim.active = gim.PANTRY_ACTIVE;
-            gim.pantryGUI.updateSideList();
-            gim.activateFrame();
-            System.out.println("pantry");
-        } else if (e.getSource() == recipeMenu) {
-            gim.active = gim.RECIPE_ACTIVE;
-            gim.recipeGUI.updateSideList();
-            gim.activateFrame();
-            System.out.println("recipe");
-        }
-    }
+//    @Override
+//    //Modifies: GIManager
+//    //Effects: Provides the actions for each individual selection from the menuBar
+//    public void menuSelected(MenuEvent e) {
+//        if (e.getSource() == mainMenu) {
+//            gim.active = gim.MAIN_ACTIVE;
+//            gim.activateFrame();
+//        } else if (e.getSource() == pantryMenu) {
+//            gim.active = gim.PANTRY_ACTIVE;
+//            gim.pantryGUI.updateSideList();
+//            gim.activateFrame();
+//            System.out.println("pantry");
+//        } else if (e.getSource() == recipeMenu) {
+//            gim.active = gim.RECIPE_ACTIVE;
+//            gim.recipeGUI.updateSideList();
+//            gim.activateFrame();
+//            System.out.println("recipe");
+//        }
+//    }
 
 //    // EFFECTS: saves the cookBook to JSON file
 //    private void saveCookBook() {
@@ -153,17 +129,6 @@ public abstract class MenuGUI extends JFrame implements ActionListener, MenuList
 //        }
 //    }
 
-
-    @Override
-    //Effects: Provides the actions for the Menu To be deselected
-    public void menuDeselected(MenuEvent e) {
-        //STUB: No intended actions for this feature
-    }
-
-    @Override
-    public void menuCanceled(MenuEvent e) {
-        //STUB: no intended actions for this feature
-    }
 
     //Effects: Refreshes the side list(s) of the menu
     protected abstract void updateSideList();

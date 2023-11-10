@@ -4,8 +4,13 @@ import model.CookBook;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+import javax.swing.*;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
+import java.awt.*;
+
 //Combines all JFrame aspects with cookbook to create GUI
-public class GIManager {
+public class GIManager extends JFrame implements MenuListener {
 
     private MenuGUI mainGUI;
     protected MenuGUI pantryGUI;
@@ -21,29 +26,52 @@ public class GIManager {
     protected JsonWriter jsonWriter;
     protected static final String JSON_STORE = "./data/cookbook.json";
 
+    private CardLayout cardLayout = new CardLayout();
+    private JPanel contentPanel = new JPanel();
+
+    protected JMenuBar menuBar = new JMenuBar();
+    protected JMenu pantryMenu = new JMenu("Pantry");
+    protected JMenu recipeMenu = new JMenu("Recipe");
+    protected JMenu mainMenu = new JMenu("Main");
+
+    protected static final int X_DIM = 800;
+    protected static final int Y_DIM = 800;
+
+
     //Effects: Starts the GUI
     public GIManager() {
+        super("Food Tracker App");
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(X_DIM,Y_DIM);
+        setResizable(true);
+        setTitle("Food Tracker");
+
+        setMinimumSize(new Dimension(X_DIM,Y_DIM));
+
+        this.mainGUI = new MainGUI(this);
+        this.pantryGUI = new PantryGUI(this);
+        this.recipeGUI = new RecipeGUI(this);
+
+
+        contentPanel.setLayout(cardLayout);
+        contentPanel.add(mainGUI,"main");
+        contentPanel.add(pantryGUI,"pantry");
+        contentPanel.add(recipeGUI,"recipe");
+        cardLayout.show(contentPanel,"main");
+
+        createMenuBar();
+        add(contentPanel);
+
+
         linkCookBook();
-        linkFrames();
+
+        setVisible(true);
+        pack();
+        repaint();
     }
 
-    //Effects: Activates the frame of the given number,
-    //         Deactivates all other frames
-    public void activateFrame() {
-        if (this.active == MAIN_ACTIVE) {
-            mainGUI.activate();
-            pantryGUI.deactivate();
-            recipeGUI.deactivate();
-        } else if (this.active == PANTRY_ACTIVE) {
-            pantryGUI.activate();
-            mainGUI.deactivate();
-            recipeGUI.deactivate();
-        } else if (this.active == RECIPE_ACTIVE) {
-            recipeGUI.activate();
-            mainGUI.deactivate();
-            pantryGUI.deactivate();
-        }
-    }
+
 
     //Modifies: This
     //Effects: sets the cookbook and save and load features
@@ -53,15 +81,7 @@ public class GIManager {
         this.jsonWriter = new JsonWriter(JSON_STORE);
     }
 
-    //Modifies: This
-    //Effects: Creates the different menu frames, and activates the main menu
-    private void linkFrames() {
-        active = 0;
-        this.mainGUI = new MainGUI(this);
-        this.pantryGUI = new PantryGUI(this);
-        this.recipeGUI = new RecipeGUI(this);
-        activateFrame();
-    }
+
 
     //Modifies: This
     //Effects: Sets this.cookbook to the given cookbook
@@ -69,4 +89,40 @@ public class GIManager {
         this.cookBook = cookBook;
     }
 
+    //Modifies: This
+    //Effects: Creates the menu bar for the JFrame
+    protected void createMenuBar() {
+        menuBar.add(pantryMenu);
+        menuBar.add(recipeMenu);
+        menuBar.add(mainMenu);
+
+        setJMenuBar(menuBar);
+
+        pantryMenu.addMenuListener(this);
+        recipeMenu.addMenuListener(this);
+        mainMenu.addMenuListener(this);
+    }
+
+    @Override
+    //Modifies: GIManager
+    //Effects: Provides the actions for each individual selection from the menuBar
+    public void menuSelected(MenuEvent e) {
+        if (e.getSource() == mainMenu) {
+            cardLayout.show(contentPanel,"main");
+        } else if (e.getSource() == pantryMenu) {
+            cardLayout.show(contentPanel,"pantry");
+        } else if (e.getSource() == recipeMenu) {
+            cardLayout.show(contentPanel,"recipe");
+        }
+    }
+
+    @Override
+    public void menuDeselected(MenuEvent e) {
+
+    }
+
+    @Override
+    public void menuCanceled(MenuEvent e) {
+
+    }
 }

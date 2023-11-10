@@ -41,21 +41,21 @@ public class RecipeGUI extends MenuGUI {
 
 
     public RecipeGUI(GIManager gim) {
-        super("Food Tracker");
+
         this.gim = gim;
         active = false;
 
 
 
         init();
-        createMenuBar();
+
         createTitleLabel(TITLE);
         createCenterFrame();
         createSideBars();
         setActionListeners();
 
 
-        pack();
+
         repaint();
     }
 
@@ -73,12 +73,9 @@ public class RecipeGUI extends MenuGUI {
     //Modifies: This
     //Effects: Sets the initial settings of the JFrame
     protected void init() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(X_DIM,Y_DIM);
-        setResizable(true);
-        setTitle(TITLE);
 
-        setMinimumSize(new Dimension(X_DIM,Y_DIM));
+
+
         setLayout(new BorderLayout());
 
         initPanels();
