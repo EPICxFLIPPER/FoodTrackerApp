@@ -40,7 +40,8 @@ public class RecipeGUI extends MenuGUI {
 
 
 
-
+    //Effects: Constructs a Pantry screen with a title, buttons,
+    //         and text fields to add user input
     public RecipeGUI(GIManager gim) {
 
         this.gim = gim;
@@ -61,6 +62,8 @@ public class RecipeGUI extends MenuGUI {
     }
 
     @Override
+    //Modifies: this
+    //Effects: updates the lists of recipes
     public void updateSideList() {
         ArrayList<Recipe> recipes = gim.cookBook.getRecipes();
         ArrayList<String> recipeNames = new ArrayList<>();
@@ -101,6 +104,8 @@ public class RecipeGUI extends MenuGUI {
         this.add(southPanel,BorderLayout.SOUTH);
     }
 
+    //Modifies: This
+    //Effects: Creates the side bars for recipes and ingreidnets
     private void createSideBars() {
         westList.setListData(recipesList.toArray(listInit));
         westPanel.add(scrollPaneWest);
@@ -110,6 +115,8 @@ public class RecipeGUI extends MenuGUI {
 
 
     @Override
+    //Modifies: This
+    //Effects: Creates the center frame for this panel
     protected void createCenterFrame() {
 
 
@@ -144,6 +151,7 @@ public class RecipeGUI extends MenuGUI {
     }
 
     @Override
+    //Effects: Controls the evnets in respose to button user input
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addIngredientButton) {
             addIngredientToRecipe();
@@ -157,12 +165,16 @@ public class RecipeGUI extends MenuGUI {
         updateSideList();
     }
 
+    //Modifies: Cookbook
+    //Effects: Adds the recipe to the cookbook based on user input
     private void addRecipe() {
         String name = recipeName.getText();
         Recipe recipe = new Recipe(name);
         gim.cookBook.addRecipe(recipe);
     }
 
+    //Modifies: Cookbook
+    //Effects: Adds the greeting to the recipe in the cookbook based on user input
     private void addIngredientToRecipe() {
         String name = ingName.getText();
         int quantity = Integer.valueOf(ingQty.getText());
@@ -181,11 +193,15 @@ public class RecipeGUI extends MenuGUI {
 
     }
 
+    //Modifes: Cookbook
+    //Effects: Removes the recipe from the cookbook based on user input
     private void removeRecipe() {
         String recipeName = recipeSelect.getText();
         gim.cookBook.removeRecipe(recipeName);
     }
 
+    //Effects: Changes lable to the result of cookbook can cook bolean value:
+    //         Produces the missing items to cook on the East side list.
     private void canCook() {
         ArrayList<String> items = gim.cookBook.itemsToCook(recipeSelect.getText());
         if (items.size() == 0) {

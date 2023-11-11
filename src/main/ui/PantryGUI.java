@@ -30,7 +30,8 @@ public class PantryGUI extends MenuGUI {
 
 
 
-
+    //Effects: Constructs a Pantry screen with a title, buttons,
+    //         and text fields to add user input
     public PantryGUI(GIManager gim) {
 
         this.gim = gim;
@@ -60,6 +61,8 @@ public class PantryGUI extends MenuGUI {
     }
 
     @Override
+    //Modifies: this
+    //Effects: Creates the center grid frame for this
     protected void createCenterFrame() {
         centerPanel.add(new JLabel("Items Select:"));
         centerPanel.add(ingSelect);
@@ -73,6 +76,8 @@ public class PantryGUI extends MenuGUI {
     }
 
     @Override
+    //Modifies: this
+    //Effects: Sets the action listeners for the buttons
     protected void setActionListeners() {
         addIngredientButton.addActionListener(this);
         removeIngredientButton.addActionListener(this);
@@ -97,6 +102,8 @@ public class PantryGUI extends MenuGUI {
         this.add(southPanel,BorderLayout.SOUTH);
     }
 
+    //Modifies: This
+    //Effects: Creates the side bar for this
     private void createSidebar() {
         sideList.setListData(ingredientsList.toArray(listInit));
         westPanel.add(scrollPane);
@@ -104,6 +111,7 @@ public class PantryGUI extends MenuGUI {
 
 
     @Override
+    //Effects: Provides response for user events
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addIngredientButton) {
             addIngredient();
@@ -114,6 +122,8 @@ public class PantryGUI extends MenuGUI {
 
 
     @Override
+    //Modifies: this
+    //Effects: updates the side list with the most current ingrident list
     public void updateSideList() {
         ArrayList<Ingredient> ingredients = gim.cookBook.getPantry().getIngredients();
         ingredientsList.clear();
@@ -123,6 +133,8 @@ public class PantryGUI extends MenuGUI {
         sideList.setListData(ingredientsList.toArray(listInit));
     }
 
+    //Modifies: Cookbook
+    //Effects: Adds the ingredient to the cookbook based on user input
     private void addIngredient() {
         String name = ingName.getText();
         int quantity = Integer.valueOf(ingQty.getText());
@@ -133,12 +145,16 @@ public class PantryGUI extends MenuGUI {
         resetTexts();
     }
 
+    //Modifies: CookBook
+    //Effects: Removes the ingrident from the cookbook based on user input
     private void removeIngredient() {
         gim.cookBook.removeFromPantry(ingSelect.getText());
         updateSideList();
         resetTexts();
     }
 
+    //Modifies: this
+    //Effects: Resets the text fields to their initial state
     private void resetTexts() {
         ingName.setText("Ingredient Name");
         ingQty.setText("Quantity (int)");

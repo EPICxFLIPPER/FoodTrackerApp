@@ -29,7 +29,8 @@ public class HomeGUI extends MenuGUI {
     private JLabel burgerImageLabel;
 
 
-
+    //Effects: Constructs a Home screen with a title, two buttons, save and load,
+    //         and an image
     public HomeGUI(GIManager gim) {
 
         this.gim = gim;
@@ -48,10 +49,14 @@ public class HomeGUI extends MenuGUI {
 
 
     @Override
+    //Modifies: this
+    //Effects: updates the side lists of ingridients/Recipes
     public void updateSideList() {
 
     }
 
+    //Modifies: this
+    //Effects: creates the burger image and adds the burger image to this
     private void setImages() {
         try {
             burgerImage = new ImageIcon(burgerImageLoc);

@@ -65,11 +65,13 @@ public class MenuBar extends JMenuBar implements MenuListener {
     }
 
     @Override
+    //Effects: none intended
     public void menuDeselected(MenuEvent e) {
 
     }
 
     @Override
+    //Effects: none intended
     public void menuCanceled(MenuEvent e) {
 
     }
