@@ -10,8 +10,8 @@ import java.io.IOException;
 
 import static ui.FoodTrackerApp.JSON_STORE;
 
-//Represents the GUI for the Food Tracker application
-public class MainGUI extends MenuGUI {
+//Represents the homeScreen for the GUI
+public class HomeGUI extends MenuGUI {
 
 
 
@@ -30,7 +30,7 @@ public class MainGUI extends MenuGUI {
 
 
 
-    public MainGUI(GIManager gim) {
+    public HomeGUI(GIManager gim) {
 
         this.gim = gim;
         active = false;

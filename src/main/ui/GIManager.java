@@ -5,16 +5,12 @@ import persistence.JsonReader;
 import persistence.JsonWriter;
 
 import javax.swing.*;
-import javax.swing.event.MenuEvent;
-import javax.swing.event.MenuListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 //Combines all JFrame aspects with cookbook to create GUI
 public class GIManager extends JFrame {
 
-    private MenuGUI mainGUI;
+    private MenuGUI homeGUI;
     protected MenuGUI pantryGUI;
     protected MenuGUI recipeGUI;
 
@@ -63,17 +59,17 @@ public class GIManager extends JFrame {
     //Effects: adds the different frames to the content panel
     private void initContentPanel() {
         contentPanel.setLayout(cardLayout);
-        contentPanel.add(mainGUI,"main");
+        contentPanel.add(homeGUI,"home");
         contentPanel.add(pantryGUI,"pantry");
         contentPanel.add(recipeGUI,"recipe");
-        cardLayout.show(contentPanel,"main");
+        cardLayout.show(contentPanel,"home");
         add(contentPanel);
     }
 
     //Modifies: This
     //Effects: Constructs the Jpanels
     private void initPanels() {
-        this.mainGUI = new MainGUI(this);
+        this.homeGUI = new HomeGUI(this);
         this.pantryGUI = new PantryGUI(this);
         this.recipeGUI = new RecipeGUI(this);
     }
@@ -119,7 +115,7 @@ public class GIManager extends JFrame {
     private void refresh() {
         recipeGUI.updateSideList();
         pantryGUI.updateSideList();
-        mainGUI.updateSideList();
+        homeGUI.updateSideList();
     }
 
 

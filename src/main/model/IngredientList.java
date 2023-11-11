@@ -1,13 +1,12 @@
 package model;
 
-//Represents a list of ingredients and contains methods that will be
-//Commonly Called on a list of ingredients.
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+//Represents a list of ingredients and contains methods that will be
+//Commonly Called on a list of ingredients.
 public abstract class IngredientList {
 
     protected ArrayList<Ingredient> ingredients;

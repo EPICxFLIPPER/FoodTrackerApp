@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
+//Represents the Recipe Screen for the GUI
 public class RecipeGUI extends MenuGUI {
 
     private static final String TITLE = "Recipe Menu";

@@ -15,7 +15,6 @@ import static ui.FoodTrackerApp.JSON_STORE;
 
 //Represents the Menu Screens used by the GUI
 //The screens are using a border layout with a grid layout center
-
 public abstract class MenuGUI extends JPanel implements ActionListener {
 
     protected GIManager gim;

@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
+//Represents the Pantry Screen for the GUI
 public class PantryGUI extends MenuGUI {
 
     private static final String TITLE = "Pantry Menu";

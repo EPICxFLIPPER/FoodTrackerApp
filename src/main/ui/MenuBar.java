@@ -4,12 +4,12 @@ import javax.swing.*;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
-//Creates the menu-bar for the application, and handles corrosponding events;
+//Creates the menu-bar for the application, and handles corresponding events;
 public class MenuBar extends JMenuBar implements MenuListener {
 
     private JMenu pantryMenu = new JMenu("Pantry");
     private JMenu recipeMenu = new JMenu("Recipe");
-    private JMenu mainMenu = new JMenu("Main");
+    private JMenu homeMenu = new JMenu("Home");
 
     private GIManager gim;
 
@@ -32,7 +32,7 @@ public class MenuBar extends JMenuBar implements MenuListener {
     private void addMenus() {
         this.add(pantryMenu);
         this.add(recipeMenu);
-        this.add(mainMenu);
+        this.add(homeMenu);
     }
 
     //Modifies:This
@@ -40,7 +40,7 @@ public class MenuBar extends JMenuBar implements MenuListener {
     private void addMenuListeners() {
         pantryMenu.addMenuListener(this);
         recipeMenu.addMenuListener(this);
-        mainMenu.addMenuListener(this);
+        homeMenu.addMenuListener(this);
     }
 
     //Modifies: This
@@ -48,15 +48,15 @@ public class MenuBar extends JMenuBar implements MenuListener {
     private void createMenuMnemonics() {
         pantryMenu.setMnemonic('P');
         recipeMenu.setMnemonic('R');
-        mainMenu.setMnemonic('M');
+        homeMenu.setMnemonic('H');
     }
 
     @Override
     //Modifies: GIManager
     //Effects: Provides the actions for each individual selection from the menuBar
     public void menuSelected(MenuEvent e) {
-        if (e.getSource() == mainMenu) {
-            gim.changeMenu("main");
+        if (e.getSource() == homeMenu) {
+            gim.changeMenu("home");
         } else if (e.getSource() == pantryMenu) {
             gim.changeMenu("pantry");
         } else if (e.getSource() == recipeMenu) {

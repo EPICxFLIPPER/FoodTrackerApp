@@ -1,12 +1,12 @@
 package model;
 
+import org.json.JSONObject;
+
 //An ingredient consists of a name of a food item, the quantity of that item, and its units.
 //All units are plural, even if there is 1 or 0 of the item
 //ex. 1 garlic cloves
 //All units must be the same to compare ingredients
 //Ex, Cheese, 100, grams is not comparable to Cheese, 200 , kilograms
-
-import org.json.JSONObject;
 
 public class Ingredient {
     private String name;
