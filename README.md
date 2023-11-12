@@ -37,4 +37,16 @@ Users will need to enter:
 - Jswing Tutorial by BroCode on YouTube
 - Cute Burger Cartoon for Children Book, By OreNyee On AdobeStock
 
+## Instructions For Grader
+- There are multiple visual aspects, The side lists in the pantry/Recipe Screens, the burger image on the home screen, and the burger image on the desktop hotbar.
+- Saving and loading can both be done at any time by pressing the respective buttons on the home screen.
+- Navigate to different screens via the menu bar at the top of the project or by pressing Alt+ the desired mnemonic
+- To Add ingredients to the pantry, type in the required fields and press add ingredient.
+- To Remove ingredients from the pantry, type the name of the ingredient in the "Ingredient select" field and press remove.
+- To Add a recipe to the cookbook, type the name of the recipe in the text feild next to the add recipe button and press the button.
+- To add ingridients to the recipe, type the name of the reicpe in the recipe select field and then add the ingridient with the same process as the pantry, only on the recipe menu.
+- Removing recipes is the same as the pantry screen.
+- To see if you can cook/ the ingredients needed to cook a recipe, type the recipe in the recipe select field and press can cook? button.
+
+
  

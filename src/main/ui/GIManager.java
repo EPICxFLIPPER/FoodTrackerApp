@@ -46,6 +46,7 @@ public class GIManager extends JFrame {
         createMenuBar();
         linkCookBook();
         setImageLogo();
+
     }
 
     //Modifies: This
@@ -62,6 +63,7 @@ public class GIManager extends JFrame {
         contentPanel.add(homeGUI,"home");
         contentPanel.add(pantryGUI,"pantry");
         contentPanel.add(recipeGUI,"recipe");
+
         cardLayout.show(contentPanel,"home");
         add(contentPanel);
     }
@@ -106,6 +108,7 @@ public class GIManager extends JFrame {
         setJMenuBar(menuBar);
     }
 
+    //Effects: Changes the current visible menu to menu
     public void changeMenu(String menu) {
         cardLayout.show(contentPanel,menu);
         refresh();
@@ -117,6 +120,8 @@ public class GIManager extends JFrame {
         pantryGUI.updateSideList();
         homeGUI.updateSideList();
     }
+
+
 
 
 

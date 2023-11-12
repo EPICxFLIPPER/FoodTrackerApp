@@ -1,32 +1,34 @@
 {
-    "recipes": [
-        {
-            "name": "alyson",
-            "ingredients": [{
+    "recipes": [{
+        "name": "Cheese + Crackers",
+        "ingredients": [
+            {
                 "quantity": 1,
-                "name": "Alyson",
-                "units": "Balyson"
-            }]
-        },
-        {
-            "name": "karen",
-            "ingredients": [{
-                "quantity": 1,
-                "name": "noodles",
-                "units": "grams"
-            }]
-        }
-    ],
+                "name": "Cheese",
+                "units": "Sleeve"
+            },
+            {
+                "quantity": 100,
+                "name": "Ham",
+                "units": "Grams"
+            }
+        ]
+    }],
     "pantry": {"ingredients": [
         {
-            "quantity": 40,
-            "name": "sdgsjdgkdg",
-            "units": "fjkd"
+            "quantity": 4,
+            "name": "Cheese",
+            "units": "Slices"
         },
         {
-            "quantity": 2,
-            "name": "testIng",
-            "units": "bruh"
+            "quantity": 1,
+            "name": "Crackers",
+            "units": "Sleeve"
+        },
+        {
+            "quantity": 50,
+            "name": "Ham",
+            "units": "grams"
         }
     ]}
 }
