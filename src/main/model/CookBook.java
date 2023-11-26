@@ -22,6 +22,7 @@ public class CookBook implements Writable {
     //Effects: Adds a new recipe to the list of Recipes
     public void addRecipe(Recipe recipe) {
         recipes.add(recipe);
+        EventLog.getInstance().logEvent(new Event("Added new Recipe :" + recipe.getName()));
     }
 
 
@@ -32,6 +33,7 @@ public class CookBook implements Writable {
         Recipe recipe = nameToRecipe(recipeName);
         if (!(recipe == null)) {
             recipes.remove(recipe);
+            EventLog.getInstance().logEvent(new Event("Removed the Recipe :" + recipeName));
         }
     }
 
@@ -73,6 +75,7 @@ public class CookBook implements Writable {
     //Effects: Adds the ingredient to the pantry's list of ingredients.
     public void addToPantry(Ingredient ingredient) {
         pantry.addIngredient(ingredient);
+        EventLog.getInstance().logEvent(new Event("Added Ingredient to Pantry :" + ingredient.getName()));
     }
 
 
@@ -80,6 +83,7 @@ public class CookBook implements Writable {
     //EFFECTS: removes ingredient with the same name from pantry
     public void removeFromPantry(String ingredientName) {
         pantry.removeIngredient(ingredientName);
+        EventLog.getInstance().logEvent(new Event("Removed Ingredient to Pantry :" + ingredientName));
     }
 
 

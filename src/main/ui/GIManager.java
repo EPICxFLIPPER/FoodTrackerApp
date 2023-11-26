@@ -1,14 +1,18 @@
 package ui;
 
 import model.CookBook;
+import model.Event;
+import model.EventLog;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 //Combines all JFrame aspects with cookbook to create GUI
-public class GIManager extends JFrame {
+public class GIManager extends JFrame implements WindowListener {
 
     private MenuGUI homeGUI;
     protected MenuGUI pantryGUI;
@@ -46,6 +50,7 @@ public class GIManager extends JFrame {
         createMenuBar();
         linkCookBook();
         setImageLogo();
+        addWindowListener(this);
 
     }
 
@@ -122,13 +127,44 @@ public class GIManager extends JFrame {
     }
 
 
+    @Override
+    public void windowOpened(WindowEvent e) {
 
+    }
 
+    @Override
+    public void windowClosing(WindowEvent e) {
+        printLog(EventLog.getInstance());
+    }
 
+    @Override
+    public void windowClosed(WindowEvent e) {
 
+    }
 
+    @Override
+    public void windowIconified(WindowEvent e) {
 
+    }
 
+    @Override
+    public void windowDeiconified(WindowEvent e) {
 
+    }
 
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
+    }
+
+    private void printLog(EventLog el) {
+        for (Event next : el) {
+            System.out.println(next.getDate() + "\n" + next.getDescription());
+        }
+    }
 }
