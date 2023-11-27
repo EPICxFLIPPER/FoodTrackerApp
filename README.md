@@ -65,5 +65,11 @@ Mon Nov 27 15:10:41 PST 2023<br>
 Added new Recipe :Cheese Recipe<br>
 
 ### Task 3:
+Given more time, to improve my design, I would first implement the Observer
+Pattern in my GUI. Currently, the side lists need to update when things are 
+added to lists and this is controlled by my current classes, when it could
+be done with the observer pattern. I would also use the Singleton pattern on
+the cookbook class, as there only needs to be one, that is univeral to the
+system, therefore it is a good place to implement it.
 
  
