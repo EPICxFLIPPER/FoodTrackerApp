@@ -20,7 +20,6 @@ public abstract class IngredientList {
     //Effects: Adds the ingredient to ingredients
     public void addIngredient(Ingredient ingredient) {
         ingredients.add(ingredient);
-        EventLog.getInstance().logEvent(new Event("Added Ingredient :" + ingredient.getName()));
     }
 
     //Modifies: This
@@ -29,7 +28,6 @@ public abstract class IngredientList {
         Ingredient i = nameToIngredient(ingredientName);
         if (!(i == null)) {
             ingredients.remove(i);
-            EventLog.getInstance().logEvent(new Event("removed Ingredient :" + ingredientName));
         }
 
     }

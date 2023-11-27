@@ -22,6 +22,13 @@ public class Recipe extends IngredientList {
     }
 
     @Override
+    public void addIngredient(Ingredient ingredient) {
+        super.addIngredient(ingredient);
+        EventLog.getInstance().logEvent(
+                new Event("Added Ingredient to " + getName() + ": " + ingredient.getName()));
+    }
+
+    @Override
     //Effects: Returns this as a JSON object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
