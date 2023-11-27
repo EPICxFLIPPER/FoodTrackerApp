@@ -7,6 +7,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 
 import static ui.FoodTrackerApp.JSON_STORE;
 
@@ -27,6 +29,8 @@ public class HomeGUI extends MenuGUI {
     private static final String burgerImageLoc = "./Images/cartoonBurger.jpg";
     private ImageIcon burgerImage;
     private JLabel burgerImageLabel;
+
+    private Date dateLogged;
 
 
     //Effects: Constructs a Home screen with a title, two buttons, save and load,
@@ -133,7 +137,8 @@ public class HomeGUI extends MenuGUI {
             gim.jsonWriter.open();
             gim.jsonWriter.write(gim.cookBook);
             gim.jsonWriter.close();
-            System.out.println("Saved CookBook to" + JSON_STORE);
+            dateLogged = Calendar.getInstance().getTime();
+            System.out.println(dateLogged + "\n" + "Saved CookBook to" + JSON_STORE);
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
         }
@@ -145,7 +150,8 @@ public class HomeGUI extends MenuGUI {
         try {
             CookBook tempBook = gim.jsonReader.read();
             gim.setCookBook(tempBook);
-            System.out.println("Loaded CookBook from:" + JSON_STORE);
+            dateLogged = Calendar.getInstance().getTime();
+            System.out.println(dateLogged + "\n" + "Loaded CookBook from:" + JSON_STORE);
 
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);

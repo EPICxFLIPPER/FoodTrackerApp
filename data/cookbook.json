@@ -1,34 +1,4 @@
 {
-    "recipes": [{
-        "name": "Cheese + Crackers",
-        "ingredients": [
-            {
-                "quantity": 1,
-                "name": "Cheese",
-                "units": "Sleeve"
-            },
-            {
-                "quantity": 100,
-                "name": "Ham",
-                "units": "Grams"
-            }
-        ]
-    }],
-    "pantry": {"ingredients": [
-        {
-            "quantity": 4,
-            "name": "Cheese",
-            "units": "Slices"
-        },
-        {
-            "quantity": 1,
-            "name": "Crackers",
-            "units": "Sleeve"
-        },
-        {
-            "quantity": 50,
-            "name": "Ham",
-            "units": "grams"
-        }
-    ]}
+    "recipes": [],
+    "pantry": {"ingredients": []}
 }
