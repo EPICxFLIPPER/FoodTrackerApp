@@ -26,7 +26,7 @@ public class GIManager extends JFrame implements WindowListener {
     private CardLayout cardLayout = new CardLayout();
     private JPanel contentPanel = new JPanel();
 
-    private JMenuBar menuBar;
+    private MenuBar menuBar;
 
 
     protected static final int X_DIM = 800;

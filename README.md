@@ -48,5 +48,22 @@ Users will need to enter:
 - Removing recipes is the same as the pantry screen.
 - To see if you can cook/ the ingredients needed to cook a recipe, type the recipe in the recipe select field and press can cook? button.
 
+## Phase 4:
+
+### Task 2:
+Mon Nov 27 15:09:42 PST 2023 <br>
+Loaded CookBook from:./data/cookbook.json <br>
+Mon Nov 27 15:11:12 PST 2023<br>
+Saved CookBook to./data/cookbook.json<br>
+Mon Nov 27 15:09:59 PST 2023<br>
+Added Ingredient to Pantry :Cheese<br>
+Mon Nov 27 15:10:21 PST 2023<br>
+Added Ingredient to Pantry :Ham<br>
+Mon Nov 27 15:10:27 PST 2023<br>
+Removed Ingredient to Pantry :Cheese<br>
+Mon Nov 27 15:10:41 PST 2023<br>
+Added new Recipe :Cheese Recipe<br>
+
+### Task 3:
 
  
