@@ -10,7 +10,8 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 
-import static ui.FoodTrackerApp.JSON_STORE;
+import static ui.GIManager.JSON_STORE;
+
 
 //Represents the homeScreen for the GUI
 public class HomeGUI extends MenuGUI {

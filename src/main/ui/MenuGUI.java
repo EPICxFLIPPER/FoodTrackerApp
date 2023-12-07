@@ -1,17 +1,10 @@
 package ui;
 
-import model.CookBook;
+import ui.GIManager;
 
 import javax.swing.*;
-import javax.swing.event.MenuEvent;
-import javax.swing.event.MenuListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
-import static ui.FoodTrackerApp.JSON_STORE;
 
 //Represents the Menu Screens used by the GUI
 //The screens are using a border layout with a grid layout center

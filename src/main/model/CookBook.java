@@ -1,5 +1,7 @@
 package model;
 
+import conversions.UnitConverter;
+import exception.InvalidConversionException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
@@ -10,12 +12,14 @@ import java.util.ArrayList;
 public class CookBook implements Writable {
     private ArrayList<Recipe> recipes;
     private Pantry pantry;
+    private UnitConverter theConverter;
 
     //Effects: Constructs a cookbook with an empty list of recipes,
     // and a pantry
     public CookBook() {
         this.recipes = new ArrayList<>();
         this.pantry = new Pantry();
+        theConverter = UnitConverter.getInstance();
     }
 
     //Modifies: This
@@ -24,7 +28,6 @@ public class CookBook implements Writable {
         recipes.add(recipe);
         EventLog.getInstance().logEvent(new Event("Added new Recipe :" + recipe.getName()));
     }
-
 
 
     //Modifies: This
@@ -87,7 +90,6 @@ public class CookBook implements Writable {
     }
 
 
-
     //Effects: returns the recipe from recipes with the given name,
     //         Null if a recipe with that name is not in recipes.
     private Recipe nameToRecipe(String recipeName) {
@@ -103,16 +105,31 @@ public class CookBook implements Writable {
     //EFFECTS: returns true if the pantry contains an ingredient with the same name
     // and the ingredient in the pantry has quantity >= given ingredient
     private boolean pantryHasIngredientInQuantity(Ingredient ingredient) {
+
         String name = ingredient.getName();
-        Boolean rsf = false;
+        int quantity = ingredient.getQuantity();
+        String unit = ingredient.getUnits();
+
+
         for (Ingredient j : pantry.getIngredients()) {
-            if (j.getName().equals(name)
-                    && j.getQuantity() >= ingredient.getQuantity()) {
-                rsf = true;
+            if (j.getName().equals(name)) {
+                if (j.getUnits().toUpperCase() == unit.toUpperCase()) {
+                    return j.getQuantity() >= quantity;
+                } else {
+                    try {
+                        double factor = theConverter.convertFactor(unit, j.getUnits());
+                        return j.getQuantity() >= quantity * factor;
+                    } catch (InvalidConversionException e) {
+                        return false;
+                    }
+
+                }
             }
+
         }
-        return rsf;
+        return false;
     }
+
 
     public ArrayList<Recipe> getRecipes() {
         return recipes;
@@ -147,8 +164,6 @@ public class CookBook implements Writable {
     }
 
 
-
-
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -172,7 +187,6 @@ public class CookBook implements Writable {
 
         return jsonArray;
     }
-
 
 
 }

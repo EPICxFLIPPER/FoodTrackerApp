@@ -22,9 +22,9 @@ public class CookBookTest {
         testCookBook = new CookBook();
         testRecipe1 = new Recipe("Cheese+Crackers");
         testRecipe2 = new Recipe("Goldfish");
-        cheese500 = new Ingredient("Cheese", 500, "grams");
-        crackers10 = new Ingredient("Crackers", 10, "crackers");
-        goldfish20 = new Ingredient("Goldfish", 20, "fish");
+        cheese500 = new Ingredient("Cheese", 500, "g");
+        crackers10 = new Ingredient("Crackers", 10, "unit");
+        goldfish20 = new Ingredient("Goldfish", 20, "unit");
     }
 
     @Test
@@ -93,7 +93,7 @@ public class CookBookTest {
 
     @Test
     void testCanCookRecipeTooFewIngredients() {
-        Ingredient cheese100 = new Ingredient("Cheese",100,"grams");
+        Ingredient cheese100 = new Ingredient("Cheese",100,"g");
         testRecipe1.addIngredient(cheese500);
         testCookBook.addRecipe(testRecipe1);
         testCookBook.addToPantry(cheese100);
@@ -103,7 +103,7 @@ public class CookBookTest {
 
     @Test
     void testCanCookRecipeMissingIngredient() {
-        Ingredient cheese100 = new Ingredient("Cheese",100,"grams");
+        Ingredient cheese100 = new Ingredient("Cheese",100,"g");
         testRecipe1.addIngredient(cheese500);
         testRecipe1.addIngredient(crackers10);
         testCookBook.addRecipe(testRecipe1);
@@ -114,7 +114,7 @@ public class CookBookTest {
 
     @Test
     void testCanCookRecipePerfectIngredients() {
-        Ingredient cheese100 = new Ingredient("Cheese",100,"grams");
+        Ingredient cheese100 = new Ingredient("Cheese",100,"g");
         testRecipe1.addIngredient(cheese500);
         testRecipe1.addIngredient(crackers10);
         testCookBook.addRecipe(testRecipe1);
@@ -126,7 +126,7 @@ public class CookBookTest {
 
     @Test
     void testCanCookRecipeExcessIngredients() {
-        Ingredient cheese100 = new Ingredient("Cheese",100,"grams");
+        Ingredient cheese100 = new Ingredient("Cheese",100,"g");
         testRecipe1.addIngredient(cheese100);
         testRecipe1.addIngredient(crackers10);
         testCookBook.addRecipe(testRecipe1);
@@ -170,7 +170,7 @@ public class CookBookTest {
     void testItemsToCookTooLittleQuantity(){
         testRecipe1.addIngredient(cheese500);
         testRecipe1.addIngredient(crackers10);
-        Ingredient cheese100 = new Ingredient("Cheese",100,"grams");
+        Ingredient cheese100 = new Ingredient("Cheese",100,"g");
         testCookBook.addToPantry(cheese100);
         testCookBook.addRecipe(testRecipe1);
         assertEquals(2,testCookBook.itemsToCook("Cheese+Crackers").size());
@@ -221,6 +221,30 @@ public class CookBookTest {
     void testItemsToCookRecipeNotThere() {
         ArrayList<String> rsf = testCookBook.itemsToCook("clagkjs");
         assertEquals(0,rsf.size());
+    }
+
+    @Test
+    void testCanCookComparableIngredientsTrue() {
+        testRecipe1.addIngredient(cheese500);
+        testCookBook.addToPantry(new Ingredient("Cheese",1,"kg"));
+        testCookBook.addRecipe(testRecipe1);
+        assertTrue(testCookBook.canCookRecipe("Cheese+Crackers"));
+    }
+
+    @Test
+    void testCanCookComparableIngredientsFalse() {
+        testRecipe1.addIngredient(cheese500);
+        testCookBook.addToPantry(new Ingredient("Cheese",1,"mg"));
+        testCookBook.addRecipe(testRecipe1);
+        assertFalse(testCookBook.canCookRecipe("Cheese+Crackers"));
+    }
+
+    @Test
+    void testCanCookNotComparableIngredients() {
+        testRecipe1.addIngredient(cheese500);
+        testCookBook.addToPantry(new Ingredient("Cheese",1,"unit"));
+        testCookBook.addRecipe(testRecipe1);
+        assertFalse(testCookBook.canCookRecipe("Cheese+Crackers"));
     }
 
 
