@@ -85,14 +85,12 @@ public class CookBook implements Writable {
         EventLog.getInstance().logEvent(new Event("Added Ingredient to Pantry :" + ingredient.getName()));
     }
 
-
     //Modifies: this.pantry
     //EFFECTS: removes ingredient with the same name from pantry
     public void removeFromPantry(String ingredientName) {
         pantry.removeIngredient(ingredientName);
         EventLog.getInstance().logEvent(new Event("Removed Ingredient to Pantry :" + ingredientName));
     }
-
 
     //EFFECTS: returns true if the pantry contains an ingredient with the same name
     // and the ingredient in the pantry has quantity >= given ingredient
@@ -102,24 +100,26 @@ public class CookBook implements Writable {
         int quantity = ingredient.getQuantity();
         String unit = ingredient.getUnits();
 
+        Ingredient pulled = pantry.getIngredients().get(name);
 
-        for (Ingredient j : pantry) {
-            if (j.getName().equals(name)) {
-                if (j.getUnits().toUpperCase() == unit.toUpperCase()) {
-                    return j.getQuantity() >= quantity;
-                } else {
-                    try {
-                        double factor = theConverter.convertFactor(unit, j.getUnits());
-                        return j.getQuantity() >= quantity * factor;
-                    } catch (InvalidConversionException e) {
-                        return false;
-                    }
+        if (pulled != null) {
 
+            int pulledQuantity = pulled.getQuantity();
+            String pulledUnits = pulled.getUnits();
+
+            if (pulledUnits.toUpperCase() == unit.toUpperCase()) {
+                return pulledQuantity >= quantity;
+            } else {
+                try {
+                    double factor = theConverter.convertFactor(unit, pulledUnits);
+                    return pulledQuantity >= quantity * factor;
+                } catch (InvalidConversionException e) {
+                    return false;
                 }
             }
-
+        } else {
+            return false;
         }
-        return false;
     }
 
     public int recipesSize() {
