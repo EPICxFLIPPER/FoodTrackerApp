@@ -6,6 +6,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Stream;
 
 import model.CookBook;
@@ -76,8 +78,8 @@ public class JsonReader {
     }
 
     //EFFECTS: parses a list of Ingredients from JSONObject and returns the list
-    private ArrayList<Ingredient> createIngredientList(JSONObject jsonObject) {
-        ArrayList<Ingredient> ingredients = new ArrayList<>();
+    private Map<String,Ingredient> createIngredientList(JSONObject jsonObject) {
+        HashMap<String, Ingredient> ingredients = new HashMap<>();
         JSONArray jsonArray = jsonObject.getJSONArray("ingredients");
         for (Object json : jsonArray) {
             JSONObject nextIngredient = (JSONObject) json;
@@ -87,13 +89,13 @@ public class JsonReader {
     }
 
     //EFFECTS: constructs an Ingredient from the json Object and adds it to the given list of ingredients
-    private ArrayList<Ingredient> addIngredient(ArrayList<Ingredient> ingredients, JSONObject jsonObject) {
+    private Map<String,Ingredient> addIngredient(Map<String,Ingredient> ingredients, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         int quantity = jsonObject.getInt("quantity");
         String units = jsonObject.getString("units");
 
         Ingredient ingredient = new Ingredient(name, quantity,units);
-        ingredients.add(ingredient);
+        ingredients.put(name,ingredient);
 
         return ingredients;
     }

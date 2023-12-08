@@ -21,7 +21,7 @@ public abstract class IngredientListTest {
     void testAddIngredientOnce() {
         testList.addIngredient(cheese);
         assertEquals(1, testList.getIngredients().size());
-        assertEquals(cheese, testList.getIngredients().get(0));
+        assertEquals(cheese, testList.getIngredients().get("Cheese"));
     }
 
     @Test
@@ -29,8 +29,8 @@ public abstract class IngredientListTest {
         testList.addIngredient(cheese);
         testList.addIngredient(crackers);
         assertEquals(2, testList.getIngredients().size());
-        assertEquals(cheese, testList.getIngredients().get(0));
-        assertEquals(crackers, testList.getIngredients().get(1));
+        assertEquals(cheese, testList.getIngredients().get("Cheese"));
+        assertEquals(crackers, testList.getIngredients().get("Crackers"));
     }
 
     @Test
@@ -39,7 +39,7 @@ public abstract class IngredientListTest {
         testList.addIngredient(crackers);
         testList.removeIngredient("Cheese");
         assertEquals(1, testList.getIngredients().size());
-        assertEquals(crackers, testList.getIngredients().get(0));
+        assertEquals(crackers, testList.getIngredients().get("Crackers"));
     }
 
     @Test
@@ -57,8 +57,8 @@ public abstract class IngredientListTest {
         testList.addIngredient(crackers);
         testList.removeIngredient("Blecke");
         assertEquals(2, testList.getIngredients().size());
-        assertEquals(cheese, testList.getIngredients().get(0));
-        assertEquals(crackers, testList.getIngredients().get(1));
+        assertEquals(cheese, testList.getIngredients().get("Cheese"));
+        assertEquals(crackers, testList.getIngredients().get("Crackers"));
     }
 
 

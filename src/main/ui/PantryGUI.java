@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.Collection;
 
 //Represents the Pantry Screen for the GUI
 public class PantryGUI extends MenuGUI {
@@ -125,7 +126,7 @@ public class PantryGUI extends MenuGUI {
     //Modifies: this
     //Effects: updates the side list with the most current ingrident list
     public void updateSideList() {
-        ArrayList<Ingredient> ingredients = gim.cookBook.getPantry().getIngredients();
+        Collection<Ingredient> ingredients = gim.cookBook.getPantry().getIngredients().values();
         ingredientsList.clear();
         for (Ingredient i : ingredients) {
             ingredientsList.add(i.getName());

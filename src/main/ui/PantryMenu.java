@@ -4,6 +4,7 @@ import model.CookBook;
 import model.Ingredient;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Scanner;
 
 
@@ -47,7 +48,7 @@ public class PantryMenu extends Menu {
 
     //EFFECTS: prints a list of ingredient names that are in the pantry.
     private void viewPantry() {
-        ArrayList<Ingredient> itemsInPantry = cookBook.getPantry().getIngredients();
+        Collection<Ingredient> itemsInPantry = cookBook.getPantry().getIngredients().values();
         for (Ingredient i : itemsInPantry) {
             System.out.println("\n" + i.getName());
         }

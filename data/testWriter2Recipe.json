@@ -22,6 +22,29 @@
                 "name": "ham",
                 "units": "lbs"
             }]
+        },
+        {
+            "name": "Cheese+Crackers",
+            "ingredients": [
+                {
+                    "quantity": 500,
+                    "name": "Cheese",
+                    "units": "grams"
+                },
+                {
+                    "quantity": 10,
+                    "name": "Crackers",
+                    "units": "crackers"
+                }
+            ]
+        },
+        {
+            "name": "Ham",
+            "ingredients": [{
+                "quantity": 20,
+                "name": "ham",
+                "units": "lbs"
+            }]
         }
     ],
     "pantry": {"ingredients": []}

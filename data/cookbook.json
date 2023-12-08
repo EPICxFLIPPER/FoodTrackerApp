@@ -1,11 +1,8 @@
 {
-    "recipes": [{
-        "name": "Cheese Recipe",
-        "ingredients": []
-    }],
+    "recipes": [],
     "pantry": {"ingredients": [{
-        "quantity": 500,
-        "name": "Ham",
-        "units": "Grams"
+        "quantity": 2,
+        "name": "Ingredient Name",
+        "units": "Units"
     }]}
 }

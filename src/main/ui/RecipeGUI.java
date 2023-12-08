@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.Collection;
 
 //Represents the Recipe Screen for the GUI
 public class RecipeGUI extends MenuGUI {
@@ -65,7 +66,7 @@ public class RecipeGUI extends MenuGUI {
     //Modifies: this
     //Effects: updates the lists of recipes
     public void updateSideList() {
-        ArrayList<Recipe> recipes = gim.cookBook.getRecipes();
+        Collection<Recipe> recipes = gim.cookBook.getRecipes().values();
         ArrayList<String> recipeNames = new ArrayList<>();
         //recipesList.clear();
         for (Recipe r : recipes) {
@@ -183,7 +184,7 @@ public class RecipeGUI extends MenuGUI {
         Ingredient ingredient = new Ingredient(name,quantity,units);
 
         String recipeName = recipeSelect.getText();
-        ArrayList<Recipe> recipes = gim.cookBook.getRecipes();
+        Collection<Recipe> recipes = gim.cookBook.getRecipes().values();
 
         for (Recipe r : recipes) {
             if (r.getName().equals(recipeName)) {

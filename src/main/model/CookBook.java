@@ -7,10 +7,11 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 //A cookbook contains a list of recipes and a pantry
 public class CookBook implements Writable {
-    private ArrayList<Recipe> recipes;
+    private HashMap<String,Recipe> recipes;
     private Pantry pantry;
 
     private UnitConverter theConverter;
@@ -18,7 +19,7 @@ public class CookBook implements Writable {
     //Effects: Constructs a cookbook with an empty list of recipes,
     // and a pantry
     public CookBook() {
-        this.recipes = new ArrayList<>();
+        this.recipes = new HashMap<>();
         this.pantry = new Pantry();
         theConverter = UnitConverter.getInstance();
     }
@@ -26,33 +27,35 @@ public class CookBook implements Writable {
     //Modifies: This
     //Effects: Adds a new recipe to the list of Recipes
     public void addRecipe(Recipe recipe) {
-        recipes.add(recipe);
+        recipes.put(recipe.getName(),recipe);
         EventLog.getInstance().logEvent(new Event("Added new Recipe :" + recipe.getName()));
     }
-
 
     //Modifies: This
     //Effects: Removes recipe with given name from the list of recipes
     public void removeRecipe(String recipeName) {
-        Recipe recipe = nameToRecipe(recipeName);
-        if (!(recipe == null)) {
-            recipes.remove(recipe);
-            EventLog.getInstance().logEvent(new Event("Removed the Recipe :" + recipeName));
-        }
+        recipes.remove(recipeName);
     }
 
 
     //Effects: Returns true if all the ingredients in the recipe with the given name
     //are present in the pantry and have quantities >= specified quantity
     public boolean canCookRecipe(String recipeName) {
-        Recipe recipe = nameToRecipe(recipeName);
+        Recipe recipe = recipes.get(recipeName);
         Boolean rsf = true;
         if (!(recipe == null)) {
+
+
+
+
             for (Ingredient i : recipe) {
                 if (!pantryHasIngredientInQuantity(i)) {
                     rsf = false;
                 }
             }
+
+
+
         }
         return rsf;
     }
@@ -62,7 +65,7 @@ public class CookBook implements Writable {
     //or are of too little quantity in the pantry based off of the recipes
     //own ingredient list
     public ArrayList<String> itemsToCook(String recipeName) {
-        Recipe recipe = nameToRecipe(recipeName);
+        Recipe recipe = recipes.get(recipeName);
         ArrayList<String> rsf = new ArrayList<>();
         if (!(recipe == null)) {
             for (Ingredient i : recipe) {
@@ -90,18 +93,6 @@ public class CookBook implements Writable {
         EventLog.getInstance().logEvent(new Event("Removed Ingredient to Pantry :" + ingredientName));
     }
 
-
-    //Effects: returns the recipe from recipes with the given name,
-    //         Null if a recipe with that name is not in recipes.
-    private Recipe nameToRecipe(String recipeName) {
-        Recipe recipe = null;
-        for (Recipe r : recipes) {
-            if (r.getName().equals(recipeName)) {
-                recipe = r;
-            }
-        }
-        return recipe;
-    }
 
     //EFFECTS: returns true if the pantry contains an ingredient with the same name
     // and the ingredient in the pantry has quantity >= given ingredient
@@ -132,7 +123,7 @@ public class CookBook implements Writable {
     }
 
 
-    public ArrayList<Recipe> getRecipes() {
+    public HashMap<String,Recipe> getRecipes() {
         return recipes;
     }
 
@@ -182,11 +173,27 @@ public class CookBook implements Writable {
     private JSONArray recipesToJson() {
         JSONArray jsonArray = new JSONArray();
 
-        for (Recipe r : recipes) {
+        for (Recipe r : recipes.values()) {
             jsonArray.put(r.toJson());
         }
 
+        for (String key : recipes.keySet()) {
+            jsonArray.put(recipes.get(key).toJson());
+        }
+
         return jsonArray;
+    }
+
+    public int recipesSize() {
+        return recipes.values().size();
+    }
+
+    public int pantrySize() {
+        return pantry.getIngredients().values().size();
+    }
+
+    public Recipe getRecipe(String name) {
+        return recipes.get(name);
     }
 
 

@@ -5,6 +5,7 @@ import model.Ingredient;
 import model.Recipe;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Scanner;
 
 //Handles the creation and functionality of the Recipe Menu screen;
@@ -98,7 +99,7 @@ public class RecipeMenu extends Menu {
 
     //EFFECTS: Prints a list of all recipe names in cookbook.recipes to console
     private void viewRecipes() {
-        ArrayList<Recipe> recipesInCookBook = cookBook.getRecipes();
+        Collection<Recipe> recipesInCookBook = cookBook.getRecipes().values();
         for (Recipe r : recipesInCookBook) {
             System.out.println("\n" + r.getName());
         }

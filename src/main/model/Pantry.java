@@ -3,6 +3,8 @@ package model;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
 
 //Consists of a list of ingredients that the user has in their pantry
 public class Pantry extends IngredientList {

@@ -40,9 +40,8 @@ class JsonReaderTest extends JsonTest {
         JsonReader reader = new JsonReader("./data/testWriter1Recipe.json");
         try {
             CookBook cookBook = reader.read();
-            assertEquals(0,cookBook.getNumIngredientsPantry());
-            assertEquals(1,cookBook.getNumRecipes());
-            checkRecipe("Cheese+Crackers",cookBook.getRecipeAtIndex(0));
+            assertEquals(0,cookBook.pantrySize());
+            assertEquals(1,cookBook.recipesSize());
         } catch (IOException e) {
             fail("Couldn't read from file");
         }

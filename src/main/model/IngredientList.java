@@ -3,54 +3,38 @@ package model;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.*;
 
 //Represents a list of ingredients and contains methods that will be
 //Commonly Called on a list of ingredients.
 public abstract class IngredientList implements Iterable<Ingredient> {
 
-    protected ArrayList<Ingredient> ingredients;
+//    protected ArrayList<Ingredient> ingredients;
+    protected Map<String,Ingredient> ingredients;
 
     //Effects: Constructs an empty ingredient list
     public IngredientList() {
-        ingredients = new ArrayList<>();
+        ingredients = new HashMap<>();
     }
 
     //Modifies: This
     //Effects: Adds the ingredient to ingredients
     public void addIngredient(Ingredient ingredient) {
-        ingredients.add(ingredient);
+        ingredients.put(ingredient.getName(),ingredient);
     }
 
     //Modifies: This
     //Effects: removes nameToIngredient(ingredientName) from ingredients
     public void removeIngredient(String ingredientName) {
-        Ingredient i = nameToIngredient(ingredientName);
-        if (!(i == null)) {
-            ingredients.remove(i);
-        }
-
+        ingredients.remove(ingredientName);
     }
 
-
-    //Effects: returns the ingredient from ingredients with name = ingredientName.
-    private Ingredient nameToIngredient(String ingredientName) {
-        Ingredient ingredient = null;
-        for (Ingredient i : ingredients) {
-            if (i.getName().equals(ingredientName)) {
-                ingredient = i;
-            }
-        }
-        return ingredient;
-    }
-
-    public ArrayList<Ingredient> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(ArrayList<Ingredient> ingredients) {
+    public void setIngredients(Map<String,Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public Map<String,Ingredient> getIngredients() {
+        return ingredients;
     }
 
     //EFFECTS: Returns this as a Json Object
@@ -60,17 +44,19 @@ public abstract class IngredientList implements Iterable<Ingredient> {
     protected JSONArray ingredientsToJson() {
         JSONArray jsonArray = new JSONArray();
 
-        for (Ingredient i : ingredients) {
-            jsonArray.put(i.toJson());
+
+        for (String key : ingredients.keySet()) {
+            jsonArray.put(ingredients.get(key).toJson());
         }
 
         return jsonArray;
     }
 
-
     @Override
     public Iterator<Ingredient> iterator() {
-        return ingredients.iterator();
+        return ingredients.values().iterator();
     }
+
+
 
 }

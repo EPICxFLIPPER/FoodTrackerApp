@@ -84,10 +84,10 @@ public class JsonWriterTest extends JsonTest{
             cookBook = reader.read();
 
             //The new recipe that should have been read
-            Recipe currentRecipe = cookBook.getRecipeAtIndex(0);
+            Recipe currentRecipe = cookBook.getRecipe("Cheese+Crackers");
 
-            assertEquals(1,cookBook.getNumRecipes());
-            assertEquals(0,cookBook.getNumIngredientsPantry());
+            assertEquals(1,cookBook.recipesSize());
+            assertEquals(0,cookBook.pantrySize());
             checkRecipe(currentRecipe.getName(),testRecipeCC);
 
         } catch (IOException e) {
@@ -109,11 +109,11 @@ public class JsonWriterTest extends JsonTest{
             cookBook = reader.read();
 
             //The new recipe that should have been read at each index
-            Recipe currentRecipe0 = cookBook.getRecipeAtIndex(0);
-            Recipe currentRecipe1 = cookBook.getRecipeAtIndex(1);
+            Recipe currentRecipe0 = cookBook.getRecipe("Cheese+Crackers");
+            Recipe currentRecipe1 = cookBook.getRecipe("Ham");
 
-            assertEquals(2,cookBook.getNumRecipes());
-            assertEquals(0,cookBook.getNumIngredientsPantry());
+            assertEquals(2,cookBook.recipesSize());
+            assertEquals(0,cookBook.pantrySize());
             checkRecipe(currentRecipe0.getName(),testRecipeCC);
             checkRecipe(currentRecipe1.getName(),testRecipeH);
 
@@ -135,10 +135,10 @@ public class JsonWriterTest extends JsonTest{
             cookBook = reader.read();
 
             //The Ingredient that should be at 0 in the pantrys ingredients
-            Ingredient curr0 = cookBook.getIngredientFromPantryIndex(0);
+            Ingredient curr0 = cookBook.getPantry().getIngredients().get("Cheese");
 
-            assertEquals(0,cookBook.getNumRecipes());
-            assertEquals(1,cookBook.getNumIngredientsPantry());
+            assertEquals(0,cookBook.recipesSize());
+            assertEquals(1,cookBook.pantrySize());
             checkIngredient(curr0,cheese);
 
         } catch (IOException e) {
@@ -160,11 +160,11 @@ public class JsonWriterTest extends JsonTest{
             cookBook = reader.read();
 
             //The Ingredient that should be at 0 in the pantrys ingredients
-            Ingredient curr0 = cookBook.getIngredientFromPantryIndex(0);
-            Ingredient curr1 = cookBook.getIngredientFromPantryIndex(1);
+            Ingredient curr0 = cookBook.getPantry().getIngredients().get("Cheese");
+            Ingredient curr1 = cookBook.getPantry().getIngredients().get("Crackers");
 
-            assertEquals(0,cookBook.getNumRecipes());
-            assertEquals(2,cookBook.getNumIngredientsPantry());
+            assertEquals(0,cookBook.recipesSize());
+            assertEquals(2,cookBook.pantrySize());
             checkIngredient(curr0,cheese);
             checkIngredient(curr1,crackers);
 
