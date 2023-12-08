@@ -63,8 +63,8 @@ public class JsonWriterTest extends JsonTest{
             JsonReader reader = new JsonReader("./data/testWriterEmptyCookBook.json");
             cookBook = reader.read();
 
-            assertEquals(0,cookBook.getNumRecipes());
-            assertEquals(0,cookBook.getNumIngredientsPantry());
+            assertEquals(0,cookBook.recipesSize());
+            assertEquals(0,cookBook.pantrySize());
 
         } catch (IOException e) {
             fail("Exception should not have been thrown");

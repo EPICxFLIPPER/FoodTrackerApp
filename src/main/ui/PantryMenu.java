@@ -40,7 +40,7 @@ public class PantryMenu extends Menu {
         } else if (command.equals("m")) {
             foodTrackerApp.displayMode = foodTrackerApp.MAIN_MENU;
         } else if (command.equals("n")) {
-            System.out.println(cookBook.getNumIngredientsPantry());
+            System.out.println(cookBook.pantrySize());
         } else {
             System.out.println("Not a valid Command!");
         }

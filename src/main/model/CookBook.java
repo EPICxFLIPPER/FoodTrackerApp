@@ -122,6 +122,17 @@ public class CookBook implements Writable {
         return false;
     }
 
+    public int recipesSize() {
+        return recipes.values().size();
+    }
+
+    public int pantrySize() {
+        return pantry.getIngredients().values().size();
+    }
+
+    public Recipe getRecipe(String name) {
+        return recipes.get(name);
+    }
 
     public HashMap<String,Recipe> getRecipes() {
         return recipes;
@@ -134,27 +145,6 @@ public class CookBook implements Writable {
     public void setPantry(Pantry pantry) {
         this.pantry = pantry;
     }
-
-    //EFFECTS: Produces the number of recipes in recipes
-    public int getNumRecipes() {
-        return recipes.size();
-    }
-
-    //EFFECTS: Produces the number of ingredients in the pantry
-    public int getNumIngredientsPantry() {
-        return pantry.getIngredients().size();
-    }
-
-    //EFFECTS: Produces the recipe from recipes at the given index
-    public Recipe getRecipeAtIndex(int index) {
-        return recipes.get(index);
-    }
-
-    //EFFECTS: produces the ingredient at the given index in the pantry
-    public Ingredient getIngredientFromPantryIndex(int index) {
-        return pantry.getIngredients().get(index);
-    }
-
 
     @Override
     public JSONObject toJson() {
@@ -184,17 +174,7 @@ public class CookBook implements Writable {
         return jsonArray;
     }
 
-    public int recipesSize() {
-        return recipes.values().size();
-    }
 
-    public int pantrySize() {
-        return pantry.getIngredients().values().size();
-    }
-
-    public Recipe getRecipe(String name) {
-        return recipes.get(name);
-    }
 
 
 }
