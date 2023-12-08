@@ -1,5 +1,6 @@
 package ui;
 
+import conversions.Unit;
 import model.Ingredient;
 import model.Recipe;
 
@@ -37,6 +38,8 @@ public class RecipeGUI extends MenuGUI {
 
     private JButton canCookButton = new JButton("Can Cook?");
     private JLabel cookResultLabel = new JLabel("No Input Yet!");
+
+    private JComboBox units = new JComboBox<>();
 
 
 
@@ -84,6 +87,7 @@ public class RecipeGUI extends MenuGUI {
         setLayout(new BorderLayout());
 
         initPanels();
+        initUnitComboBox();
     }
 
     //Modifies: this
@@ -133,7 +137,7 @@ public class RecipeGUI extends MenuGUI {
         centerPanel.add(addIngredientButton);
         centerPanel.add(ingName);
         centerPanel.add(ingQty);
-        centerPanel.add(ingUnit);
+        centerPanel.add(units);
 
         centerPanel.add(removeRecipeButton);
         createBlankLabels(3);
@@ -179,9 +183,9 @@ public class RecipeGUI extends MenuGUI {
     private void addIngredientToRecipe() {
         String name = ingName.getText();
         int quantity = Integer.valueOf(ingQty.getText());
-        String units = ingUnit.getText();
+        String unit = (String) units.getSelectedItem();
 
-        Ingredient ingredient = new Ingredient(name,quantity,units);
+        Ingredient ingredient = new Ingredient(name,quantity,unit);
 
         String recipeName = recipeSelect.getText();
         Collection<Recipe> recipes = gim.cookBook.getRecipes().values();
@@ -212,6 +216,13 @@ public class RecipeGUI extends MenuGUI {
         }
 
         eastList.setListData(items.toArray(listInit));
+    }
+
+    //Effects: Creates the combo box that stores units
+    private void initUnitComboBox() {
+        for (Unit u : Unit.values()) {
+            units.addItem(u.toString());
+        }
     }
 
 

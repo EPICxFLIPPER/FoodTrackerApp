@@ -1,8 +1,8 @@
 {
     "recipes": [],
     "pantry": {"ingredients": [{
-        "quantity": 2,
+        "quantity": 6,
         "name": "Ingredient Name",
-        "units": "Units"
+        "units": "UNIT"
     }]}
 }

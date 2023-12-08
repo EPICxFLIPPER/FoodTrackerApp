@@ -1,5 +1,6 @@
 package ui;
 
+import conversions.Unit;
 import model.Ingredient;
 
 import javax.swing.*;
@@ -28,6 +29,8 @@ public class PantryGUI extends MenuGUI {
     private ArrayList<String> ingredientsList = new ArrayList<>();
     private JList<String> sideList = new JList<>();
     private JScrollPane scrollPane = new JScrollPane(sideList);
+
+    private JComboBox units = new JComboBox<>();
 
 
 
@@ -59,6 +62,7 @@ public class PantryGUI extends MenuGUI {
         setLayout(new BorderLayout());
 
         initPanels();
+        initUnitComboBox();
     }
 
     @Override
@@ -71,7 +75,7 @@ public class PantryGUI extends MenuGUI {
         centerPanel.add(addIngredientButton);
         centerPanel.add(ingName);
         centerPanel.add(ingQty);
-        centerPanel.add(ingUnit);
+        centerPanel.add(units);
         centerPanel.add(removeIngredientButton);
         createBlankLabels(3);
     }
@@ -139,8 +143,8 @@ public class PantryGUI extends MenuGUI {
     private void addIngredient() {
         String name = ingName.getText();
         int quantity = Integer.valueOf(ingQty.getText());
-        String units = ingUnit.getText();
-        Ingredient ingredient = new Ingredient(name,quantity,units);
+        String unit = (String) units.getSelectedItem();
+        Ingredient ingredient = new Ingredient(name,quantity,unit);
         gim.cookBook.addToPantry(ingredient);
         updateSideList();
         resetTexts();
@@ -161,6 +165,13 @@ public class PantryGUI extends MenuGUI {
         ingQty.setText("Quantity (int)");
         ingUnit.setText("Units");
         ingSelect.setText("Ingredient Name");
+    }
+
+    //Effects: Creates the combo box that stores units
+    private void initUnitComboBox() {
+        for (Unit u : Unit.values()) {
+            units.addItem(u.toString());
+        }
     }
 
 
