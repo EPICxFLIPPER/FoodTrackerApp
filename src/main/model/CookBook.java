@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class CookBook implements Writable {
     private ArrayList<Recipe> recipes;
     private Pantry pantry;
+
     private UnitConverter theConverter;
 
     //Effects: Constructs a cookbook with an empty list of recipes,
@@ -47,7 +48,7 @@ public class CookBook implements Writable {
         Recipe recipe = nameToRecipe(recipeName);
         Boolean rsf = true;
         if (!(recipe == null)) {
-            for (Ingredient i : recipe.getIngredients()) {
+            for (Ingredient i : recipe) {
                 if (!pantryHasIngredientInQuantity(i)) {
                     rsf = false;
                 }
@@ -64,7 +65,7 @@ public class CookBook implements Writable {
         Recipe recipe = nameToRecipe(recipeName);
         ArrayList<String> rsf = new ArrayList<>();
         if (!(recipe == null)) {
-            for (Ingredient i : recipe.getIngredients()) {
+            for (Ingredient i : recipe) {
                 if (!pantryHasIngredientInQuantity(i)) {
                     rsf.add(i.getName());
                 }
@@ -111,7 +112,7 @@ public class CookBook implements Writable {
         String unit = ingredient.getUnits();
 
 
-        for (Ingredient j : pantry.getIngredients()) {
+        for (Ingredient j : pantry) {
             if (j.getName().equals(name)) {
                 if (j.getUnits().toUpperCase() == unit.toUpperCase()) {
                     return j.getQuantity() >= quantity;

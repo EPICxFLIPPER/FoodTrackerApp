@@ -6,6 +6,7 @@ package model;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Recipe extends IngredientList {
 
@@ -36,4 +37,6 @@ public class Recipe extends IngredientList {
         json.put("ingredients", ingredientsToJson());
         return json;
     }
+
+
 }

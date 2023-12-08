@@ -4,10 +4,11 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 //Represents a list of ingredients and contains methods that will be
 //Commonly Called on a list of ingredients.
-public abstract class IngredientList {
+public abstract class IngredientList implements Iterable<Ingredient> {
 
     protected ArrayList<Ingredient> ingredients;
 
@@ -64,6 +65,12 @@ public abstract class IngredientList {
         }
 
         return jsonArray;
+    }
+
+
+    @Override
+    public Iterator<Ingredient> iterator() {
+        return ingredients.iterator();
     }
 
 }
