@@ -45,21 +45,15 @@ public class CookBook implements Writable {
         Boolean rsf = true;
         if (!(recipe == null)) {
 
-
-
-
             for (Ingredient i : recipe) {
                 if (!pantryHasIngredientInQuantity(i)) {
                     rsf = false;
                 }
             }
 
-
-
         }
         return rsf;
     }
-
 
     //Effects: returns a list of all the names of ingredients that are not in
     //or are of too little quantity in the pantry based off of the recipes

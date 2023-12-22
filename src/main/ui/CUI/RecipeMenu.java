@@ -1,8 +1,8 @@
-package ui;
+package ui.CUI;
 
-import model.CookBook;
 import model.Ingredient;
 import model.Recipe;
+import ui.GUI.Menu;
 
 import java.util.ArrayList;
 import java.util.Collection;

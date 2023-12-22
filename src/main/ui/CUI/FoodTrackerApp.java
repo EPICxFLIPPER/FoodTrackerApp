@@ -1,8 +1,9 @@
-package ui;
+package ui.CUI;
 
 import model.CookBook;
 import persistence.JsonReader;
 import persistence.JsonWriter;
+import ui.GUI.Menu;
 
 import java.util.Scanner;
 

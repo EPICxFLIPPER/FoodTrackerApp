@@ -1,6 +1,4 @@
-package ui;
-
-import ui.GIManager;
+package ui.GUI;
 
 import javax.swing.*;
 import javax.swing.event.MenuEvent;

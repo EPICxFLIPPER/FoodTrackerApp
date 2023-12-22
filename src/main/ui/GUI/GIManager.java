@@ -1,4 +1,4 @@
-package ui;
+package ui.GUI;
 
 import model.CookBook;
 import model.Event;

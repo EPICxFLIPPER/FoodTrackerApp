@@ -1,4 +1,4 @@
-package ui;
+package ui.GUI;
 
 import conversions.Unit;
 import model.Ingredient;

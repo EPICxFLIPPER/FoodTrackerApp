@@ -1,12 +1,13 @@
-package ui;
+package ui.CUI;
 
 import model.CookBook;
+import ui.GUI.Menu;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-import static ui.FoodTrackerApp.JSON_STORE;
+import static ui.CUI.FoodTrackerApp.JSON_STORE;
 
 //Handles the creation and functionality of the Main Menu screen;
 public class MainMenu extends Menu {
