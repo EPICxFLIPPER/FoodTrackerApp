@@ -1,4 +1,4 @@
-package ui.GUI;
+package ui.gui;
 
 import javax.swing.*;
 import javax.swing.event.MenuEvent;
@@ -10,6 +10,7 @@ public class MenuBar extends JMenuBar implements MenuListener {
     private JMenu pantryMenu = new JMenu("Pantry");
     private JMenu recipeMenu = new JMenu("Recipe");
     private JMenu homeMenu = new JMenu("Home");
+    private JMenu editorMenu = new JMenu("Recipe Editor");
 
     private GIManager gim;
 
@@ -33,6 +34,7 @@ public class MenuBar extends JMenuBar implements MenuListener {
         this.add(pantryMenu);
         this.add(recipeMenu);
         this.add(homeMenu);
+        this.add(editorMenu);
     }
 
     //Modifies:This
@@ -41,6 +43,7 @@ public class MenuBar extends JMenuBar implements MenuListener {
         pantryMenu.addMenuListener(this);
         recipeMenu.addMenuListener(this);
         homeMenu.addMenuListener(this);
+        editorMenu.addMenuListener(this);
     }
 
     //Modifies: This
@@ -49,6 +52,7 @@ public class MenuBar extends JMenuBar implements MenuListener {
         pantryMenu.setMnemonic('P');
         recipeMenu.setMnemonic('R');
         homeMenu.setMnemonic('H');
+        homeMenu.setMnemonic('E');
     }
 
     @Override
@@ -61,6 +65,8 @@ public class MenuBar extends JMenuBar implements MenuListener {
             gim.changeMenu("pantry");
         } else if (e.getSource() == recipeMenu) {
             gim.changeMenu("recipe");
+        } else if (e.getSource() == editorMenu) {
+            gim.changeMenu("editor");
         }
     }
 

@@ -1,4 +1,4 @@
-package ui.GUI;
+package ui.gui;
 
 import model.CookBook;
 
@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 
-import static ui.GUI.GIManager.JSON_STORE;
+import static ui.gui.GIManager.JSON_STORE;
 
 
 //Represents the homeScreen for the GUI

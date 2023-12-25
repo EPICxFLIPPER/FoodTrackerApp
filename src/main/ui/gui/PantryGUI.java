@@ -1,4 +1,4 @@
-package ui.GUI;
+package ui.gui;
 
 import conversions.Unit;
 import model.Ingredient;
@@ -133,9 +133,13 @@ public class PantryGUI extends MenuGUI {
         Collection<Ingredient> ingredients = gim.cookBook.getPantry().getIngredients().values();
         ingredientsList.clear();
         for (Ingredient i : ingredients) {
-            ingredientsList.add(i.getName());
+            ingredientsList.add(printIngredient(i));
         }
         sideList.setListData(ingredientsList.toArray(listInit));
+    }
+
+    private String printIngredient(Ingredient ingredient) {
+        return ingredient.getName() + ": " + ingredient.getQuantity() + ", " + ingredient.getUnits();
     }
 
     //Modifies: Cookbook

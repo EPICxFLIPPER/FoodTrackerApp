@@ -1,7 +1,7 @@
 package ui;
 
 
-import ui.GUI.GIManager;
+import ui.gui.GIManager;
 
 public class Main {
 

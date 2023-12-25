@@ -1,7 +1,7 @@
-package ui.CUI;
+package ui.cui;
 
 import model.Ingredient;
-import ui.GUI.Menu;
+import ui.gui.Menu;
 
 import java.util.Collection;
 import java.util.Scanner;

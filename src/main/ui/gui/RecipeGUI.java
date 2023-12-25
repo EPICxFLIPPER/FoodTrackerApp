@@ -1,4 +1,4 @@
-package ui.GUI;
+package ui.gui;
 
 import conversions.Unit;
 import model.Ingredient;
@@ -7,11 +7,12 @@ import model.Recipe;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collection;
 
 //Represents the Recipe Screen for the GUI
-public class RecipeGUI extends MenuGUI {
+public class RecipeGUI extends MenuGUI implements ActionListener {
 
     private static final String TITLE = "Recipe Menu";
 
@@ -21,13 +22,13 @@ public class RecipeGUI extends MenuGUI {
     private JButton addRecipeButton = new JButton("Add Recipe");
     private JButton addIngredientButton = new JButton("Add Ingredient");
     private JButton removeRecipeButton = new JButton("Remove Recipe");
+    private JButton editRecipeButton = new JButton("Edit/View Recipe");
 
 
     private JTextField recipeName = new JTextField("Recipe Name");
     private JTextField recipeSelect = new JTextField("Recipe Name");
     private JTextField ingName = new JTextField("Name");
     private JTextField ingQty = new JTextField("Quantity (int)");
-    private JTextField ingUnit = new JTextField("Units");
 
     private ArrayList<String> recipesList = new ArrayList<>();
     private JList<String> westList = new JList<>();
@@ -71,7 +72,6 @@ public class RecipeGUI extends MenuGUI {
     public void updateSideList() {
         Collection<Recipe> recipes = gim.cookBook.getRecipes().values();
         ArrayList<String> recipeNames = new ArrayList<>();
-        //recipesList.clear();
         for (Recipe r : recipes) {
             recipeNames.add(r.getName());
         }
@@ -140,7 +140,8 @@ public class RecipeGUI extends MenuGUI {
         centerPanel.add(units);
 
         centerPanel.add(removeRecipeButton);
-        createBlankLabels(3);
+        createBlankLabels(2);
+        centerPanel.add(editRecipeButton);
 
 
     }

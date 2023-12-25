@@ -1,8 +1,46 @@
 {
-    "recipes": [],
-    "pantry": {"ingredients": [{
-        "quantity": 6,
-        "name": "Ingredient Name",
-        "units": "UNIT"
-    }]}
+    "recipes": [
+        {
+            "name": "Cheese+Crackers",
+            "ingredients": [
+                {
+                    "quantity": 4,
+                    "name": "Cheese",
+                    "units": "UNIT"
+                },
+                {
+                    "quantity": 16,
+                    "name": "Crackers",
+                    "units": "UNIT"
+                }
+            ]
+        },
+        {
+            "name": "Cheese+Crackers",
+            "ingredients": [
+                {
+                    "quantity": 4,
+                    "name": "Cheese",
+                    "units": "UNIT"
+                },
+                {
+                    "quantity": 16,
+                    "name": "Crackers",
+                    "units": "UNIT"
+                }
+            ]
+        }
+    ],
+    "pantry": {"ingredients": [
+        {
+            "quantity": 5,
+            "name": "Cheese",
+            "units": "UNIT"
+        },
+        {
+            "quantity": 15,
+            "name": "Crackers",
+            "units": "UNIT"
+        }
+    ]}
 }

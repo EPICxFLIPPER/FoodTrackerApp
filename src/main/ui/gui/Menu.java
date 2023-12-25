@@ -1,7 +1,7 @@
-package ui.GUI;
+package ui.gui;
 
 import model.CookBook;
-import ui.CUI.FoodTrackerApp;
+import ui.cui.FoodTrackerApp;
 
 import java.util.Scanner;
 

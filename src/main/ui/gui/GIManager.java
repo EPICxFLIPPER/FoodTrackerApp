@@ -1,4 +1,4 @@
-package ui.GUI;
+package ui.gui;
 
 import model.CookBook;
 import model.Event;
@@ -17,6 +17,7 @@ public class GIManager extends JFrame implements WindowListener {
     private MenuGUI homeGUI;
     protected MenuGUI pantryGUI;
     protected MenuGUI recipeGUI;
+    protected MenuGUI recipeEditorGUI;
 
     protected CookBook cookBook;
     protected JsonReader jsonReader;
@@ -68,6 +69,7 @@ public class GIManager extends JFrame implements WindowListener {
         contentPanel.add(homeGUI,"home");
         contentPanel.add(pantryGUI,"pantry");
         contentPanel.add(recipeGUI,"recipe");
+        contentPanel.add(recipeEditorGUI, "editor");
 
         cardLayout.show(contentPanel,"home");
         add(contentPanel);
@@ -79,6 +81,7 @@ public class GIManager extends JFrame implements WindowListener {
         this.homeGUI = new HomeGUI(this);
         this.pantryGUI = new PantryGUI(this);
         this.recipeGUI = new RecipeGUI(this);
+        this.recipeEditorGUI = new RecipeEditor(this);
     }
 
     //Modifies: This
@@ -124,6 +127,7 @@ public class GIManager extends JFrame implements WindowListener {
         recipeGUI.updateSideList();
         pantryGUI.updateSideList();
         homeGUI.updateSideList();
+        recipeEditorGUI.updateSideList();
     }
 
 
