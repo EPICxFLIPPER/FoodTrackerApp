@@ -21,6 +21,9 @@ public class RecipeEditor extends MenuGUI implements ActionListener {
     Ingredient activeIngredient;
     Recipe activeRecipe;
 
+    private ArrayList<String> recipes = new ArrayList<>();
+    private ArrayList<String> ingredients = new ArrayList<>();
+
     private JList<String> westList = new JList<>();
     private JScrollPane recipesList = new JScrollPane(westList);
 
@@ -58,24 +61,26 @@ public class RecipeEditor extends MenuGUI implements ActionListener {
 
     @Override
     protected void updateSideList() {
-        Collection<Recipe> recipes = gim.cookBook.getRecipes().values();
-        ArrayList<String> recipeNames = new ArrayList<>();
+        recipes.clear();
+        ingredients.clear();
 
-        for (Recipe r : recipes) {
-            recipeNames.add(r.getName());
+        Collection<Recipe> recipesFromBook = gim.cookBook.getRecipes().values();
+
+
+        for (Recipe r : recipesFromBook) {
+            recipes.add(r.getName());
         }
 
-        westList.setListData(recipeNames.toArray(listInit));
+        westList.setListData(recipes.toArray(listInit));
 
         if (activeRecipe != null) {
-            Collection<Ingredient> ingredients = activeRecipe.getIngredients().values();
-            ArrayList<String> ingredientPrintOuts = new ArrayList<>();
+            Collection<Ingredient> ingredientsFromBook = activeRecipe.getIngredients().values();
 
-            for (Ingredient i : ingredients) {
-                recipeNames.add(printIngredient(i));
+            for (Ingredient i : ingredientsFromBook) {
+                ingredients.add(printIngredient(i));
             }
 
-            eastList.setListData(recipeNames.toArray(listInit));
+            eastList.setListData(ingredients.toArray(listInit));
         }
     }
 
@@ -92,6 +97,9 @@ public class RecipeEditor extends MenuGUI implements ActionListener {
         initUnitComboBox();
         createCenterFrame();
         setActionListeners();
+        westPanel.add(recipesList);
+
+        eastPanel.add(ingredientsList);
     }
 
     @Override
@@ -117,9 +125,9 @@ public class RecipeEditor extends MenuGUI implements ActionListener {
     @Override
     protected void setActionListeners() {
         activateRecipe.addActionListener(this);
-        activeRecipeTextBox.addActionListener(this);
+
         activateIngredient.addActionListener(this);
-        activeIngreidnetTextBox.addActionListener(this);
+
         removeIngredient.addActionListener(this);
         ingredientName.addActionListener(this);
         ingredientQuantity.addActionListener(this);
@@ -128,6 +136,24 @@ public class RecipeEditor extends MenuGUI implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == activateRecipe) {
+            activeRecipe = gim.cookBook.getRecipe(activeRecipeTextBox.getText());
+        } else if (e.getSource() == activateIngredient) {
+            activeIngredient = activeRecipe.getIngredients().get(activeIngreidnetTextBox.getText());
+        } else if (e.getSource() == removeIngredient) {
+            activeRecipe.removeIngredient(activeIngredient.getName());
+
+        } else if (e.getSource() == ingredientName) {
+            activeIngredient.setName(ingName.getText());
+
+        } else if (e.getSource() == ingredientQuantity) {
+            activeIngredient.setQuantity(Integer.valueOf(ingQty.getText()));
+
+        } else if (e.getSource() == ingredientUnits) {
+            activeIngredient.setUnits((String) units.getSelectedItem());
+
+        }
+        updateSideList();
 
     }
 

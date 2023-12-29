@@ -11,7 +11,8 @@ import org.json.JSONObject;
 public class Ingredient {
     private String name;
     private int quantity;
-    private final String units;
+
+    private String units;
 
     //EFFECTS: Creates a new ingredient with a name and quantity, and units
     public Ingredient(String name, int quantity, String units) {
@@ -39,6 +40,18 @@ public class Ingredient {
         json.put("quantity", quantity);
         json.put("units", units);
         return json;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setUnits(String units) {
+        this.units = units;
     }
 
 
