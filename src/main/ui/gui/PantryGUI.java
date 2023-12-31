@@ -32,6 +32,12 @@ public class PantryGUI extends MenuGUI {
 
     private JComboBox units = new JComboBox<>();
 
+    private Ingredient activeIngredient;
+    private JButton activateIngredientButton = new JButton("Set Active Inredient");
+    private JButton ingredientNameEdit = new JButton("Set Ingredient Name");
+    private JButton ingredientQuantityEdit = new JButton("Set Ingredient Quantity");
+    private JButton ingredientUnitsEdit = new JButton("Set Ingredient Units");
+
 
 
     //Effects: Constructs a Pantry screen with a title, buttons,
@@ -40,6 +46,7 @@ public class PantryGUI extends MenuGUI {
 
         this.gim = gim;
         active = false;
+        this.activeIngredient = null;
 
         init();
 
@@ -69,7 +76,7 @@ public class PantryGUI extends MenuGUI {
     //Modifies: this
     //Effects: Creates the center grid frame for this
     protected void createCenterFrame() {
-        centerPanel.add(new JLabel("Items Select:"));
+        centerPanel.add(activateIngredientButton);
         centerPanel.add(ingSelect);
         createBlankLabels(2);
         centerPanel.add(addIngredientButton);
@@ -77,7 +84,9 @@ public class PantryGUI extends MenuGUI {
         centerPanel.add(ingQty);
         centerPanel.add(units);
         centerPanel.add(removeIngredientButton);
-        createBlankLabels(3);
+        centerPanel.add(ingredientNameEdit);
+        centerPanel.add(ingredientQuantityEdit);
+        centerPanel.add(ingredientUnitsEdit);
     }
 
     @Override
@@ -86,6 +95,10 @@ public class PantryGUI extends MenuGUI {
     protected void setActionListeners() {
         addIngredientButton.addActionListener(this);
         removeIngredientButton.addActionListener(this);
+        ingredientNameEdit.addActionListener(this);
+        ingredientQuantityEdit.addActionListener(this);
+        ingredientUnitsEdit.addActionListener(this);
+        activateIngredientButton.addActionListener(this);
     }
 
     //Modifies: this
@@ -122,7 +135,16 @@ public class PantryGUI extends MenuGUI {
             addIngredient();
         } else if (e.getSource() == removeIngredientButton) {
             removeIngredient();
+        } else if (e.getSource() == activateIngredientButton) {
+            activeIngredient = gim.cookBook.getPantry().getIngredients().get(ingSelect.getText());
+        } else if (e.getSource() == ingredientNameEdit) {
+            activeIngredient.setName(ingName.getText());
+        } else if (e.getSource() == ingredientQuantityEdit) {
+            activeIngredient.setQuantity(Integer.valueOf(ingQty.getText()));
+        } else if (e.getSource() == ingredientUnitsEdit) {
+            activeIngredient.setUnits((String) units.getSelectedItem());
         }
+        updateSideList();
     }
 
 
