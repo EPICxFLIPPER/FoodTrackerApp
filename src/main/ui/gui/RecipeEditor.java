@@ -18,6 +18,8 @@ public class RecipeEditor extends MenuGUI implements ActionListener {
 
     private GIManager gim;
 
+    private static final String TITLE = "Recipe Editor";
+
     Ingredient activeIngredient;
     Recipe activeRecipe;
 
@@ -53,6 +55,7 @@ public class RecipeEditor extends MenuGUI implements ActionListener {
         this.activeRecipe = null;
         this.gim = gim;
         init();
+        createTitleLabel(TITLE);
         setVisible(true);
         repaint();
     }
